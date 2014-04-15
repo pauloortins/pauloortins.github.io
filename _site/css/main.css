@@ -515,7 +515,7 @@ a {
 		  #content article .entry-content .github-widget p { margin-top: 0px }
 		  #content article .entry-content .more-link:before { line-height: 1.2em }
 		  #content article .entry-content .more-link { padding-left: 0px }
-		  #content article .entry-content h2 { font-size: 1.3em;margin-top:30px;margin-bottom:-20px;font-weight:bold }
+		  #content article .entry-content h2 { font-size: 1.3em;margin-top:30px;margin-bottom:-20px;font-weight:200; color: brown}
 		  #content article .entry-content h2::before { border-bottom: none }
 		  #content article .entry-content blockquote { border-left: 5px solid #4466c5;background:#F7F7F7 }
 		  #content article .entry-content blockquote p { margin-top: 0px }
@@ -523,7 +523,7 @@ a {
 		  #content article .entry-content table td { text-align: left }
 		  #content article .meta { color: #999;font-family:"Open Sans";font-weight:100;font-size:1.2em }
 		  #content article .meta .date { display: inline }
-		  #content article h1.title { font-family: "Open Sans", "Microsoft YaHei", "Hiragino Sans GB", "Hiragino Sans GB W3", "微软雅黑", "Helvetica Neue", Arial, sans-serif;font-weight:300;font-size:6em;padding-bottom:15px; }
+		  #content article h1.title { color: brown; font-family: "Open Sans", "Microsoft YaHei", "Hiragino Sans GB", "Hiragino Sans GB W3", "微软雅黑", "Helvetica Neue", Arial, sans-serif;font-weight:300;font-size:6em;padding-bottom:15px; }
 		  #content article h1.title a { color: brown;-webkit-transition:color 0.3s;-moz-transition:color 0.3s;-o-transition:color 0.3s;transition:color 0.3s }
 		  #content div.archives h1.title { font-size: 3em }
 		  .container .mid-col footer { width: 100% }
