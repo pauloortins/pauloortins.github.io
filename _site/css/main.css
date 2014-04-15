@@ -30,7 +30,7 @@ h3 { font-size: 1.3em }
 a {
 	text-decoration: none;
 	outline-width: 0;
-	color: #4466c5;
+	color: brown;
 }
 .alignleft { float: left }
 .alignright { float: right }
@@ -84,10 +84,10 @@ a {
 	-o-transition: color 0.3s;
 	transition: color 0.3s;
 }
-#header a:hover { color: #258fb8 }
+#header a:hover {color: brown }
 #header h1 {
-	font-family: "Open Sans";
-	font-weight: 400;
+	font-family: ; '"Open Sans", "Microsoft YaHei", "Hiragino Sans GB", "Hiragino Sans GB W3", "微软雅黑", "Helvetica Neue", Arial, sans-serif;';
+	font-weight: 100;
 	font-size: 4em;
 	line-height: 0.9;
 	float: left;
@@ -142,7 +142,7 @@ a {
 	      }
 	      #main-nav>ul>li:last-of-type { margin-right: 0 }
       }
-      #main-nav>ul>li:hover>a { color: #258fb8 }
+      #main-nav>ul>li:hover>a { color: brown }
       #main-nav>ul>li>a {
 	      padding: 38px 0;
 	      margin-top: -38px;
@@ -524,7 +524,7 @@ a {
 		  #content article .meta { color: #999;font-family:"Open Sans";font-weight:100;font-size:1.2em }
 		  #content article .meta .date { display: inline }
 		  #content article h1.title { font-family: "Open Sans", "Microsoft YaHei", "Hiragino Sans GB", "Hiragino Sans GB W3", "微软雅黑", "Helvetica Neue", Arial, sans-serif;font-weight:300;font-size:6em;padding-bottom:15px; }
-		  #content article h1.title a { color: #333;-webkit-transition:color 0.3s;-moz-transition:color 0.3s;-o-transition:color 0.3s;transition:color 0.3s }
+		  #content article h1.title a { color: brown;-webkit-transition:color 0.3s;-moz-transition:color 0.3s;-o-transition:color 0.3s;transition:color 0.3s }
 		  #content div.archives h1.title { font-size: 3em }
 		  .container .mid-col footer { width: 100% }
 		  .left-col { width: 23%;position:fixed;height:100% }
