@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Getting CSharper #4: Working with numbers - Paulo Ortins</title>
+	<meta name="author" content="Paulo Ortins">
+
+	
+	<meta name="description" content="
+		
+	">
+	
+
+	<!-- http://t.co/dKP3o1e -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+	<link rel="canonical" href="/c%23/getting/csharper/2013/10/04/getting-csharper-4-working-with-numbers.html">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/css/main.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/css/syntax.css" type="text/css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	
+  	
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="left-col">
+      <div class="intrude-less">
+        <header id="header" class="inner"><div class="profilepic">
+	
+	<img src="http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160" alt="Profile Picture" style="width: 160px;" />
+	
+</div>
+<hgroup>
+  <h1><a href="/">Paulo Ortins</a></h1>
+  
+</hgroup>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/about/">about</a></li>
+  <li><a href="/archives">archives</a></li>
+</ul>
+
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		
+	</div>
+</nav></header>        
+      </div>
+    </div>
+    <div class="mid-col">
+      <div class="mid-col-container">
+        <div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Getting CSharper #4: Working with numbers</h1>	
+	<div class="entry-content" itemprop="articleBody"><p>Continuing our road through C#, that already covered a <a href="http://pauloortins.com/understanding-a-csharp-program/" title="Getting CSharper #2: Understanding a C# Program">basic C# program</a> and <a href="http://pauloortins.com/getting-csharper-3-understanding-csharp-types/" title="Getting CSharper #3: Understanding C# Types">how types are used in C#</a>, now we will work with numeric types that, together with string and arrays, are the most used types in C#.</p>
+<p><br/></p>
+<hr>
+<h2>Built-in numeric types</h2>
+<p>We saw in the last post that C# has some predefined types to represent numbers. To represent integers, C# has 8 types, sbyte, short, int, long and their respective unsigned versions, byte, ushort, uint and ulong. They can be used to represent numbers in the following sizes, 8 bits(<code>sbyte</code>), 16 bits(<code>short</code>), 32 bits(<code>int</code>) and 64 bits(<code>long</code>). When we need represent real numbers, C# gives to us 3 options. <code>Float</code> and <code>double</code> are normally used for scientific calculations while <code>decimal</code> is normally used for financial calculations. The table below describes each one of these types, their sizes and their ranges.</p>
+<p>[table id=1 /]</p>
+<p><br/></p>
+<hr>
+<h2>Declaring Numbers</h2>
+<p>Numbers in C# can be declared using decimal, hexadecimal or exponential notation.</p>
+<pre>
+int decimalNotation = 10; // 10
+int hexadecimalNotation = 0xA; // 10
+double exponentialNotation = 1E2; // 100
+</pre>
+<p><br/></p>
+<hr>
+<h2>Type Inference</h2>
+<p>When we are declaring a number, the compiler always tries to infer the type of a given number is. If a given number contains a decimal point or an exponential notation (E), the given number is a <code>double</code>. Otherwise, the compiler tries to find a integer type that can represent the given number, the following order is used: <code>int</code>, <code>uint</code>, <code>long</code> and <code>ulong</code>.</p>
+<pre>
+1.0                  // double
+1.25                 // double
+1E2                  // double
+1                    // int
+10000000000000000000 // ulong
+</pre>
+<p>When declaring a number, we can also use numeric suffixes (U, L, UL, F, D, M) to force the compiler to infer a given type.</p>
+<pre>
+1U // uint
+1L // long
+1UL // ulong
+1F // float
+1D // double
+1M // decimal
+</pre>
+<p><br/></p>
+<hr>
+<h2>Type Conversions</h2>
+<p>Numeric conversions in C# can be implicit or explicit. If the destination type can represent all the possible values that a given type can, an implicit conversion can be executed. Otherwise, if a given type can represent more values that the destination type a cast (explicit conversion) have to be performed. </p>
+<p>For example, when converting from <code>short</code> to <code>int</code>, we can make an implicit conversion, since an <code>int</code> can represents all the possible values that a <code>short</code> can represent. Otherwise, when converting from <code>long</code> to <code>int</code>, an explicit conversion is required, with possible losses, since a <code>long</code> can represent more values that an <code>int</code>. </p>
+<p>Between <code>float</code> and <code>double</code> the same thing happens, you can make an implicit conversion from a <code>float</code> to a <code>double</code>, and have to make an explicit conversion when converting from a <code>double</code> to a <code>float</code>.</p>
+<p>When converting to a <code>decimal</code>, an exception exists, all integer values can be converted implicitly to a <code>decimal</code>. Otherwise, a explicit conversion is required.</p>
+<pre>
+short shortNum = 1;
+int intNum = 1;
+long bigLongNum = 1100000000000000000;
+long smallLongNum = 1;
+
+intNum = shortNum;                 // 1 - implicit conversion
+intNum = (int)smallLongNum;        // 1 - explicit conversion
+intNum = (int)bigLongNum;          // 82706432 - explicit conversion with loss
+
+float floatNum = 1.0F; 
+double smallDoubleNum = 2.0;
+double bigDoubleNum = 10E200;
+
+smallDoubleNum = floatNum;         // 1.0 - implicit conversion
+floatNum = (float)smallDoubleNum;  // 1.0 - explicit conversion
+floatNum = (float)bigDoubleNum;    // +infinite - explicit conversion with loss
+
+decimal decimalNum = 0;
+
+decimalNum = 1U;                   // 1
+decimalNum = 1;                    // 1
+decimalNum = 1L;                   // 1
+decimalNum = 1UL;                  // 1
+decimalNum = (decimal) 1F;         // 1
+decimalNum = (decimal) 1D;         // 1
+
+</pre>
+<p><br/></p>
+<hr/>
+<h2>Operators</h2>
+<p>C# has the same basic operators than other languages (<code>+</code>,<code>-</code>,<code>/</code>,<code>*</code>) and due to being a C-Like, it also has unary operators with before and after increments/decrements.</p>
+<pre>
+int a = 3, b = 2;
+
+Console.WriteLine(a + b); // 5
+Console.WriteLine(a - b); // 1
+Console.WriteLine(a/b);   // 1 - divisions between integers are truncated
+Console.WriteLine(a*b);   // 6
+Console.WriteLine(a++);   // 3 - increment after to print the number
+Console.WriteLine(++a);   // 5 - increment before to print the number
+Console.WriteLine(b--);   // 2 - decrement after to print the number
+Console.WriteLine(--b);   // 0 - decrement before to print the number
+</pre>
+<p><br/></p>
+<hr>
+<h2>Double or Decimal</h2>
+<p><code>Decimal</code> should be used when accuracy is important, money for example. Otherwise, we can use <code>double</code> or <code>float</code>. A common mistake when learning C# is to use <code>double</code> to represent financial values, there is a reason to avoid it, <code>float</code> and <code>double</code> are represented internally in base 2, that is, it can only represent precisely base 2 numbers, while <code>decimal</code> is represented in base 10, that is, it can represent floating point numbers more precisely but there is a cost, performance.</p>
+<pre>
+double doubleA = 0.1F;
+double doubleB = 1F;
+
+Console.WriteLine(doubleB - 10 * doubleA);   // -1,49011611938477E-08
+Console.WriteLine(doubleB + 10 * doubleA);   // 2,00000001490116
+
+decimal decimalA = 0.1M;
+decimal decimalB = 1M;
+
+Console.WriteLine(decimalB - 10 * decimalA); // 0,0
+Console.WriteLine(decimalB + 10 * decimalA); // 2,0
+</pre>
+<p><br/></p>
+<hr>
+<h2>See also other posts from this series</h2>
+<p><a href="http://pauloortins.com/getting-csharper-1-a-short-introduction-to-csharp/" title="Getting CSharper #1: A short introduction to C#">Getting CSharper #1: A short introduction to C#</a><br />
+<a href="http://pauloortins.com/understanding-a-csharp-program/" title="Getting CSharper #2: Understanding a C# Program">Getting CSharper #2: Understanding a C# Program</a><br />
+<a href="http://pauloortins.com/getting-csharper-3-understanding-csharp-types/" title="Getting CSharper #3: Understanding C# Types">Getting CSharper #3: Understanding C# Types</a></p>
+</div>
+</article>
+
+<div data-type="ad" data-publisher="lqm.youvebeenhacked.site" data-zone="ron" data-format="728x90"></div>
+
+
+	
+
+
+<div id="page-navigation"> 
+        <div class="previous"> 
+         
+                <a href="/c%23/2013/09/18/how-to-automatically-deploy-a-team-foundation-service-git-project-on-azure-step-by-step.html" title="Previous Post: 
+How to automatically deploy a Team Foundation Service + Git Project on Azure (Step by Step)">&laquo; How to automatically deploy a Team Foundation Service + Git Project on Azure (Step by Step)</a>
+         
+        </div>
+
+        <div class="next"> 
+         
+               <a href="/open/source/source/mining/2013/10/12/where-when-and-how-apaches-commits-are-made.html" title="next Post: 
+Where, when and how Apache's Commits are made">Where, when and how Apache's Commits are made &raquo; </a> 
+         
+        </div>
+</div> </div>
+      </div>
+      <footer id="footer" class="inner"><p>
+  Copyright &copy; 2014 - Paulo Ortins - Blog content under the Creative Commons <a href="http://creativecommons.org/licenses/by/2.5/">CC BY 2.5</a>
+</p>
+</footer>
+    </div>
+  </div>
+
+</body>
+</html>

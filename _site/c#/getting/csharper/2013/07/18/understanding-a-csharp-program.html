@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Getting CSharper #2: Understanding a C# Program - Paulo Ortins</title>
+	<meta name="author" content="Paulo Ortins">
+
+	
+	<meta name="description" content="
+		
+	">
+	
+
+	<!-- http://t.co/dKP3o1e -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+	<link rel="canonical" href="/c%23/getting/csharper/2013/07/18/understanding-a-csharp-program.html">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/css/main.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/css/syntax.css" type="text/css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	
+  	
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="left-col">
+      <div class="intrude-less">
+        <header id="header" class="inner"><div class="profilepic">
+	
+	<img src="http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160" alt="Profile Picture" style="width: 160px;" />
+	
+</div>
+<hgroup>
+  <h1><a href="/">Paulo Ortins</a></h1>
+  
+</hgroup>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/about/">about</a></li>
+  <li><a href="/archives">archives</a></li>
+</ul>
+
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		
+	</div>
+</nav></header>        
+      </div>
+    </div>
+    <div class="mid-col">
+      <div class="mid-col-container">
+        <div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Getting CSharper #2: Understanding a C# Program</h1>	
+	<div class="entry-content" itemprop="articleBody"><p>In the <a href="http://pauloortins.com/getting-csharper-1-a-short-introduction-to-csharp/" title="Getting CSharper #1: A short introduction to C#">previous post</a> we talked about C# history, how it’s evolving and some of his characteristics. Now, we will start to see code. We are going to see the C# keywords, blocks, how a C# program is structured and so on.</p>
+<h3><strong>Understanding our First C# Program</strong></h3>
+<pre>
+using System; // Using declaration
+
+namespace ConsoleApplication1 // Namespace declaration
+{
+   /*
+      This is my 
+      multiline comment
+    */
+    class Program // Class declaration
+    {
+        static void Main() // Main declaration
+        {
+            string name1 = "Philip";  // Statement/Variable Declaration
+            int age1 = 23;            // Statement/Variable Declaration
+
+            string name2 = "Roger";   // Statement/Variable Declaration
+            int age2;                 // Statement/Variable Attribution
+            age2 = age1 + 10;
+            Console.WriteLine(CreatePhrase(name1, age1)); // Statement/Method Call
+            Console.WriteLine(CreatePhrase(name2, age2)); // Statement/Method Call
+        }
+
+        static string CreatePhrase(string name, int age) // Method Declaration           
+        {
+            return string.Format("Hi {0}, you are {1} years old.", name, age); // Statement/Return
+        }
+    }
+}
+</pre>
+<p>What this program does? It prints a welcome message to two people. Now, let's using a bottom-up approach to figure out what each part means.</p>
+<p><strong>Statements</strong></p>
+<p><strong>Statements </strong>are the smallest element in a language. A program is formed by a sequence of one or more statements. If you look to our program we will see that we have 7 statements, statements can be classified by type. <strong>Declaration Statements</strong> are statements used to declare a variable. <strong>Attribution Statements</strong> are used to assign a value to a variable. <strong>Call Statements</strong> are statements used to call a method (we see more about it soon). The last statement that we are using in our program is the <strong>Return Statement</strong> that we use to finish a method and return a value.</p>
+<p><strong>Methods</strong></p>
+<p>Sometimes, to break our program in subroutines that we can reuse latter, or to simplify our code, <strong>we can group statements in methods</strong>. <strong>Methods </strong>can receive one or more input data aka <strong>parameters </strong>and can return, or not, data to the caller. Our <strong>method </strong><em>CreatePhrase </em>receive two parameters name and age and return a welcome message. <em>Main </em>method, when we are executing a <strong>console application </strong>(our program is a console application), the C# recognizes a <strong>method </strong>called <em>Main </em>as an entry point of execution and this <strong>method </strong>will be called to run the program.</p>
+<p><strong>Classes</strong></p>
+<p>In our example, we have a <strong>class </strong>called <em>Program</em>. A <strong>class </strong>is a unit of code who has state (data field members) and behaviors (methods). Our <em>Program </em>class has two <strong>methods</strong>, <em>Main</em> and <em>CreatePhrase</em>. A <strong>class </strong>is a kind of type and we can combine some of them to design our programs.</p>
+<p><strong>Namespaces</strong></p>
+<p>When our project is getting large, we feel the need to organize these types in other structures. They are called <strong>namespaces</strong>, and they are sets of types (class is a type, interface is a type and so on). In our program, we are declaring a <strong>namespace </strong>called <em>ConsoleApplication1 </em>which has only one <strong>class </strong><em>Program</em>. Now look at the <em>Console.WriteLine</em> statement. Sometimes in our program we need to use types that were already created by other people, it's a good practice, we don't have to reinvent the wheel every time. To reuse a type already created we can import a <strong>namespace </strong>and we do it through the <strong>using statement</strong>. In our example, we are using a <strong>class </strong>called <em>Console </em>who belongs to a <strong>namespace </strong>called <em>System</em>. The using is there for convenience, without it, we should type the fully qualified name '<em>System.Console.WriteLine</em>' to call the <strong>method </strong><em>WriteLine</em>.</p>
+<h3><strong>Syntax</strong></h3>
+<p>C# <strong>syntax </strong>is inspired by C, C++ and Java.</p>
+<p><strong>Identifiers</strong></p>
+<p><strong>Identifiers </strong>are names that we, programmers, choose for our types (variables, methods, classes, namespaces and so on). In our program we are using the following identifiers: <em>ConsoleApplication1</em>, <em>Program</em>, <em>Main</em>, <em>name1</em>, <em>age1</em>, <em>name2</em>, <em>age2</em>, <em>CreatePhrase</em>. And the .NET Framework is using these: <em>System</em>, <em>Console</em>, <em>WriteLine</em>, <em>string</em>, <em>Format</em>. Identifiers in C# must be a whole word, formed by numbers, letters and underscore. By convention, <strong>parameters</strong>, <strong>local variables</strong>, and <strong>private fields</strong> should be in <strong>camel case</strong> (e.g. <em>personName</em>) and all other identifiers (<strong>namespaces</strong>, <strong>classes</strong>, <strong>methods</strong>) should be in <strong>pascal case</strong> (e.g. <em>WriteLine</em>, <em>Console</em>, <em>System</em>).</p>
+<p><strong>Keywords</strong></p>
+<p><strong>Keywords </strong>are names reserved by the language, you can't use them as identifiers. In our program, using, <strong>class</strong>, <strong>namespace</strong>, <strong>static </strong>are example of keywords.<br />
+Below there is a list of C# keywords:</p>
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/07/keywords.png"><img src="http://pauloortins.com/wp-content/uploads/2013/07/keywords.png" alt="keywords" width="428" height="462" class="aligncenter size-full wp-image-705" /></a></p>
+<p><strong>Braces and Semicolons</strong></p>
+<p>Like C, C++ and Java, C# uses braces to delimit statements blocks and semicolons to mark the end of the line.</p>
+<p><strong>Comments</strong></p>
+<p>C# has support for two different types of code comments. Single-line comments and multi-line comments. A <strong>single-line comment</strong> starts with '//' and it continues until the end of the line. If we look at our program we will perceive that most of our program comments are single line comments. And there are the <strong>multiline comments</strong>, that start with '/*' and ends with '*/' and can contain one or more comment lines.</p>
+<p><strong>Conclusion</strong></p>
+<p>I think that we cover a little bit about C# strutures and syntax. In the next posts we will start to go deep in the language. There are a lot of ground to cover!</p>
+</div>
+</article>
+
+<div data-type="ad" data-publisher="lqm.youvebeenhacked.site" data-zone="ron" data-format="728x90"></div>
+
+
+	
+
+
+<div id="page-navigation"> 
+        <div class="previous"> 
+         
+                <a href="/c%23/getting/csharper/2013/07/17/getting-csharper-1-a-short-introduction-to-csharp.html" title="Previous Post: 
+Getting CSharper #1: A short introduction to C#">&laquo; Getting CSharper #1: A short introduction to C#</a>
+         
+        </div>
+
+        <div class="next"> 
+         
+               <a href="/nosql/2013/07/22/nosql-databases-why-we-should-use-and-which-one-we-should-choose.html" title="next Post: 
+NoSQL Databases, why we should use, and which one we should choose">NoSQL Databases, why we should use, and which one we should choose &raquo; </a> 
+         
+        </div>
+</div> </div>
+      </div>
+      <footer id="footer" class="inner"><p>
+  Copyright &copy; 2014 - Paulo Ortins - Blog content under the Creative Commons <a href="http://creativecommons.org/licenses/by/2.5/">CC BY 2.5</a>
+</p>
+</footer>
+    </div>
+  </div>
+
+</body>
+</html>
