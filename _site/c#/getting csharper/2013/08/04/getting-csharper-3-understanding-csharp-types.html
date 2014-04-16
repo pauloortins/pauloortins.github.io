@@ -1,0 +1,418 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Getting CSharper #3: Understanding C# Types - Paulo Ortins</title>
+	<meta name="author" content="Paulo Ortins">
+
+	
+	<meta name="description" content="
+		
+	">
+	
+
+	<!-- http://t.co/dKP3o1e -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+	<link rel="canonical" href="/c%23/getting%20csharper/2013/08/04/getting-csharper-3-understanding-csharp-types.html">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/css/main.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/css/syntax.css" type="text/css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	
+  	
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="left-col">
+      <div class="intrude-less">
+        <header id="header" class="inner"><div class="profilepic">
+	
+	<img src="http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160" alt="Profile Picture" style="width: 160px;" />
+	
+</div>
+<hgroup>
+  <h1><a href="/">Paulo Ortins</a></h1>
+  
+</hgroup>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/about/">about</a></li>
+  <li><a href="/archives">archives</a></li>
+</ul>
+
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		
+	</div>
+</nav></header>        
+      </div>
+    </div>
+    <div class="mid-col">
+      <div class="mid-col-container">
+        <div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Getting CSharper #3: Understanding C# Types</h1>	
+	<div class="entry-content" itemprop="articleBody"><p>In my <a href="http://pauloortins.com/understanding-a-csharp-program/" title="Getting CSharper #2: Understanding a C# Program">previous post</a>, we saw our first C# program, we covered how it was built and what kind of structures we should use and so on. In this post, we will talk about the types that we can use when we are building a program.</p>
+<p><br/></p>
+<hr>
+<strong>What is a Type ?</strong></p>
+<p>Type, in programming, can be defined as a data classification that determines the possible values for a data, the operations that can be performed and how it will be stored.</p>
+<pre>
+static void Main()
+{
+    string firstName = "Paulo";
+    string lastName = "Ortins";
+    int age = 23;
+    int salary = 100;
+
+    Console.WriteLine(firstName + lastName); // PauloOrtins
+    Console.WriteLine(age + salary); // 123
+    Console.WriteLine(firstName.ToUpper()); // PAULO
+    Console.WriteLine(salary.ToUpper());
+}                                    
+</pre>
+<p>In the example above, we are declaring four variables, two of them are variable of type <em>string</em>, and the others are of type <em>int</em>. Note that, in both cases we are defining what we can store in each variable, and how we can manipulate them. When we sum two <em>strings</em>, we are doing a concatenation, on the other hand, when we sum two integers we are performing a math operation. We can capitalize every letter in a string with the <em>ToUpper </em>method, but this method doesn't exist in type <em>int</em>.</p>
+<p><br/></p>
+<hr>
+<strong>Built-in Types</strong></p>
+<p><strong>Built-in types</strong> are types that are specially supported by the compiler. They are also known as <strong>primitive types</strong>, we can group them to build other types. Below is a list of C# built-in types and how we can use each one.</p>
+<table>
+<tr>
+<td>
+<strong>Type</strong>
+</td>
+<td>
+<strong>Description</strong>
+</td>
+<td>
+<strong>Example</strong>
+</td>
+</tr>
+<tr>
+<td>
+object
+</td>
+<td>
+The ultimate base type of all other types
+</td>
+<td>
+<pre>
+object o = null;
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+string
+</td>
+<td>
+String type; a string is a sequence of Unicode characters
+</td>
+<td>
+<pre>
+string s = "hello";
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+sbyte
+</td>
+<td>
+8-bit signed integral type
+</td>
+<td>
+<pre>
+sbyte val = 12;
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+short
+</td>
+<td>
+16-bit signed integral type
+</td>
+<td>
+<pre>
+short val = 12;
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+int
+</td>
+<td>
+32-bit signed integral type
+</td>
+<td>
+<pre>
+int val = 12;
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+long
+</td>
+<td>
+64-bit signed integral type
+</td>
+<td>
+<pre>
+long val1 = 12;
+long val2 = 34L;
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+byte
+</td>
+<td>
+8-bit unsigned integral type
+</td>
+<td>
+<pre>
+byte val1 = 12;
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+ushort
+</td>
+<td>
+16-bit unsigned integral type
+</td>
+<td>
+<pre>
+ushort val1 = 12;
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+uint
+</td>
+<td>
+32-bit unsigned integral type
+</td>
+<td>
+<pre>
+uint val1 = 12;
+uint val2 = 34U;
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+ulong
+</td>
+<td>
+64-bit unsigned integral type
+</td>
+<td>
+<pre>
+ulong val1 = 12;
+ulong val2 = 34U;
+ulong val3 = 56L;
+ulong val4 = 78UL;
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+float
+</td>
+<td>
+Single-precision floating point type
+</td>
+<td>
+<pre>
+float val = 1.23F;
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+double
+</td>
+<td>
+Double-precision floating point type
+</td>
+<td>
+<pre>
+double val1 = 1.23;
+double val2 = 4.56D;
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+bool
+</td>
+<td>
+Boolean type; a bool value is either true or false
+</td>
+<td>
+<pre>
+bool val1 = true;
+bool val2 = false;
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+char
+</td>
+<td>
+Character type; a char value is a Unicode character
+</td>
+<td>
+<pre>
+char val = 'h';
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+decimal
+</td>
+<td>
+Precise decimal type with 28 significant digits
+</td>
+<td>
+<pre>
+decimal val = 1.23M;
+</pre>
+</td>
+</tr>
+</table>
+<p><br/></p>
+<hr>
+<strong>Custom Types</strong></p>
+<p>In C#, and in every language, we can combine primitive types to build our own types. For example, let's create a type called Person, that has two attributes, a variable of <em>int </em>type called age and a variable of <em>string </em>type called name.</p>
+<pre>
+class Person
+{
+    string name;
+    int age;
+    public Person(string paramName, int paramAge)
+    {
+        name = paramName;
+        age = paramAge;
+    }
+}
+</pre>
+<p><br/></p>
+<hr>
+<strong>Initializing Data</strong></p>
+<pre>
+string firstName = "Paulo";
+int age = 23;
+Person person = new Person("Paulo", 23);
+</pre>
+<p>Types are models for data. When we are creating data, we need to instantiate a type. Predefined types are specially supported by the compiler, so we can create data just assigning a value for them. In the other hand, for custom types, we have to use the new operator. The new operator trigger a constructor call, that is like a method used to build a instance for a given type. If you look carefully to our custom type Person, we can find a constructor with two parameters, that is called when a new Person is created.</p>
+<p><br/></p>
+<hr>
+<strong>Conversions</strong></p>
+<p>Normally, we will have situations where we can store a value of one type in a variable of another type. It's called a conversion. Conversions can be implicit or explicit. Implicit conversions are conversions where the compiler can guarantee that it will succeed and no information will lost in the conversion. Conversely, explicit conversions are conversions where the compiler cannot guarantee that it will succeed and information can be lost during conversion.</p>
+<pre>
+int x = 123; // 32-bit integer
+long y = x; // Long are 64-bit so it can store a int 
+int z = (int) y; // Long is bigger than int, so an explicit conversion is required
+</pre>
+<p><br/></p>
+<hr>
+<strong>Value Types x Reference Types</strong></p>
+<p>Types in C# can be:</p>
+<ul>
+<li>Value Types</li>
+<li>Reference Types</li>
+</ul>
+<p>Value types comprises almost all built-in types, like <em>char</em>, <em>bool</em>, <em>int</em>, <em>short</em>, <em>long </em>and so on.<br />
+Reference types comprises all <em>custom types</em>, <em>classes</em>, <em>interfaces </em>and <em>arrays</em>.</p>
+<p>They're are different by the way they are handled in memory. <strong>A variable of a value type stores a value</strong>, for example, a <em>int </em>variable stores a 32-bit data. <strong>Conversely, a variable of a reference type stores two values, a object value, and reference for that object</strong>. When we assign a value to a value type, we are modifying his value, but when we assign reference type, we are modifying a reference for an object. Let's play with these differences.</p>
+<pre>
+Person person = new Person("Paulo",23); // Person is a reference type
+int age = 23; // int is a value type
+
+Console.WriteLine(person.name); // Paulo
+Console.WriteLine(age); // 23
+
+int age2 = age;   // We are creating a new variable in memory with a value of 23
+Person person2 = person; /* We are creating a new reference for a memory position,
+                          * now both variable point for the same place 
+                          */
+
+age2 = age2 + 1;
+
+// age and age2 are two different values
+
+Console.WriteLine(age); // 23
+Console.WriteLine(age2); // 24
+
+person2.name = person.name + "123";
+
+// person and person2 are references for a same memory position
+
+Console.WriteLine(person.name); // Paulo123
+Console.WriteLine(person2.name); // Paulo123
+</pre>
+<p><br/></p>
+<hr>
+<strong>More Resources</strong></p>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Data_type">Data Type</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/s6938f28.aspx">Passing Reference-Type Parameters</a></li>
+</ul>
+</div>
+</article>
+
+<div data-type="ad" data-publisher="lqm.youvebeenhacked.site" data-zone="ron" data-format="728x90"></div>
+
+
+	
+
+
+<div id="page-navigation"> 
+        <div class="previous"> 
+         
+                <a href="/nosql/2013/07/22/nosql-databases-why-we-should-use-and-which-one-we-should-choose.html" title="Previous Post: 
+NoSQL Databases, why we should use, and which one we should choose">&laquo; NoSQL Databases, why we should use, and which one we should choose</a>
+         
+        </div>
+
+        <div class="next"> 
+         
+               <a href="/performance/2013/08/07/performance-matters-a-lot.html" title="next Post: 
+Performance Matters! A lot!">Performance Matters! A lot! &raquo; </a> 
+         
+        </div>
+</div> </div>
+      </div>
+      <footer id="footer" class="inner"><p>
+  Copyright &copy; 2014 - Paulo Ortins - Blog content under the Creative Commons <a href="http://creativecommons.org/licenses/by/2.5/">CC BY 2.5</a>
+</p>
+</footer>
+    </div>
+  </div>
+
+</body>
+</html>

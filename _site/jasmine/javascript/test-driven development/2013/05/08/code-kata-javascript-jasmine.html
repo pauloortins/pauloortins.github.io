@@ -1,0 +1,335 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Practicing programming with Code Kata and Javascript/Jasmine - Paulo Ortins</title>
+	<meta name="author" content="Paulo Ortins">
+
+	
+	<meta name="description" content="
+		
+	">
+	
+
+	<!-- http://t.co/dKP3o1e -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+	<link rel="canonical" href="/jasmine/javascript/test-driven%20development/2013/05/08/code-kata-javascript-jasmine.html">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/css/main.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/css/syntax.css" type="text/css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	
+  	
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="left-col">
+      <div class="intrude-less">
+        <header id="header" class="inner"><div class="profilepic">
+	
+	<img src="http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160" alt="Profile Picture" style="width: 160px;" />
+	
+</div>
+<hgroup>
+  <h1><a href="/">Paulo Ortins</a></h1>
+  
+</hgroup>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/about/">about</a></li>
+  <li><a href="/archives">archives</a></li>
+</ul>
+
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		
+	</div>
+</nav></header>        
+      </div>
+    </div>
+    <div class="mid-col">
+      <div class="mid-col-container">
+        <div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Practicing programming with Code Kata and Javascript/Jasmine</h1>	
+	<div class="entry-content" itemprop="articleBody"><p>In <a href="http://pauloortins.com/jasmine-javascript-unit-tests/" title="Jasmine, you have to write javascript unit tests !">my last post</a>, we saw how jasmine works, how we can create tests, make asserts and so on. In this post, I propose that we do a practice named <em>Code Kata</em>. The name <em>Kata</em> came from martial arts, where it means a series of moviments that focus on skills improvement. So a Code Kata is a series of programming exercises that focus on programming skills improvement. To this post, I chose the following kata:</p>
+<pre>
+/*
+Your task is process a integer sequence to determine the following statistics:
+
+   Minimum Value
+   Maximum Value
+   Sequence Length
+   Average Value
+
+E.g. For a integer sequence "6, 9, 15, -2, 92, 11" we have the following answers:
+
+   Minimum Value: -2
+   Maximum Value: 92
+   Sequence Length: 6
+   Average Value: 18.1666666
+*/
+</pre>
+<p><br/><br />
+<strong>Hands on! Downloading Jasmine!</strong></p>
+<p>Click <a href="https://github.com/pivotal/jasmine/downloads">here</a> to download the most recent Jasmine version. Extracting zip file, we will find the following folder structure:</p>
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-07-at-7.29.06-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-07-at-7.29.06-PM-243x300.png" alt="Screen Shot 2013-05-07 at 7.29.06 PM" width="243" height="300" class="alignnone size-medium wp-image-313" /></a></p>
+<p>Here, were have to pay attention in the following folders:</p>
+<ul>
+<li><em>spec</em> where we will put our tests</li>
+<li><em>src</em> where we will put our production code, code that will be tested</li>
+</ul>
+<p>We can notice that default project comes with a bunch of tests, if we run <em>SpecRunner.html</em>, we will see the tests being executed.</p>
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.28.02-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.28.02-PM.png" alt="Screen Shot 2013-05-14 at 9.28.02 PM" width="441" height="262" class="alignnone size-full wp-image-370" /></a></p>
+<p>For our example, let's remove these files and add our own tests.</p>
+<pre>
+<!-- include source files here... -->
+<script type="text/javascript" src="src/Kata.js"></script>
+
+<!-- include spec files here... -->
+<script type="text/javascript" src="spec/KataSpec.js"></script>
+</pre>
+<p><br/><br />
+<strong>Requirement 1:</strong></p>
+<p>Our first requirement is find the minimum value in a list, remember that we are running <a href="http://pauloortins.com/tdd-test-driven-development/" title="Intro to TDD – Test-Driven Development">TDD</a>, so let's write our first test, and we will see our test fail.</p>
+<pre>
+// KataSpec.js
+
+describe("Calculating Statistics", function() {
+   var kata;
+   var list;
+
+   beforeEach(function() {
+      kata = new Kata();
+      list = [6, 9, 15, -2, 92, 11];
+   });
+
+   it('should calculate minimum value properly', function() {
+      var minimumValue = kata.calculateMinimumValue(list);
+      expect(minimumValue).toEqual(-2);
+   });
+});
+</pre>
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.41.43-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.41.43-PM.png" alt="Screen Shot 2013-05-14 at 9.41.43 PM" width="474" height="276" class="alignnone size-full wp-image-372" /></a></p>
+<p>Obviously, our test will fail, because we don't create our Kata class yet, let's write it!</p>
+<pre>
+// Kata.js
+
+function Kata() {
+
+}
+
+Kata.prototype.calculateMinimumValue = function(list) {
+   return 0;
+};
+</pre>
+<p>And now, we have a different error, the function isn't implemented properly.</p>
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.44.33-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.44.33-PM.png" alt="Screen Shot 2013-05-14 at 9.44.33 PM" width="467" height="225" class="alignnone size-full wp-image-374" /></a></p>
+<p>Let's implement the code that will make our first test pass.</p>
+<pre>
+// Kata.js
+
+function Kata() {
+
+}
+
+Kata.prototype.calculateMinimumValue = function(list) {
+   list.sort();
+   return list[0];
+};
+</pre>
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.45.19-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.45.19-PM.png" alt="Screen Shot 2013-05-14 at 9.45.19 PM" width="322" height="157" class="alignnone size-full wp-image-375" /></a></p>
+<p>It's all green! Our first test passed, now we can move to the second requirement.</p>
+<p><strong>Requirement 2:</strong></p>
+<p>Our second requirement is to find the maximum value in a list. Let's write our second test and a fail implementation.</p>
+<pre>
+// KataSpec.js
+
+describe("Calculating Statistics", function() {
+   var kata;
+   var list;
+
+   beforeEach(function() {
+      kata = new Kata();
+      list = [6, 9, 15, -2, 92, 11];
+   });
+
+   it('should calculate minimum value properly', function() {
+      var minimumValue = kata.calculateMinimumValue(list);
+      expect(minimumValue).toEqual(-2);
+   });
+
+   it('should calculate maximum value properly', function() {
+      var maximumValue = kata.calculateMaximumValue(list);
+      expect(maximumValue).toEqual(92);
+   });
+});
+</pre>
+<pre>
+// Kata.js
+
+function Kata() {
+
+}
+
+Kata.prototype.calculateMinimumValue = function(list) {
+   list.sort();
+   return list[0];
+};
+
+Kata.prototype.calculateMaximumValue = function(list) {
+   return 0;
+};
+</pre>
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.48.04-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.48.04-PM.png" alt="Screen Shot 2013-05-14 at 9.48.04 PM" width="474" height="250" class="alignnone size-full wp-image-376" /></a></p>
+<p>Let's move to our next implementation. This one will make our second test pass.</p>
+<pre>
+// Kata.js
+
+function Kata() {
+
+}
+
+Kata.prototype.calculateMinimumValue = function(list) {
+   list.sort();
+   return list[0];
+};
+
+Kata.prototype.calculateMaximumValue = function(list) {
+   list.sort();
+   return list[list.length-1];
+};
+</pre>
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.48.37-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.48.37-PM.png" alt="Screen Shot 2013-05-14 at 9.48.37 PM" width="436" height="218" class="alignnone size-full wp-image-377" /></a></p>
+<p>Now, we learned how the flow works, so let's write the third requirement.</p>
+<p><strong>Requirement 3:</strong></p>
+<p>We should calculate the sequence length. Let's write a test one more time.</p>
+<pre>
+// KataSpec.js
+
+describe("Calculating Statistics", function() {
+   var kata;
+   var list;
+
+   beforeEach(function() {
+      kata = new Kata();
+      list = [6, 9, 15, -2, 92, 11];
+   });
+
+   it('should calculate minimum value properly', function() {
+      var minimumValue = kata.calculateMinimumValue(list);
+      expect(minimumValue).toEqual(-2);
+   });
+
+   it('should calculate maximum value properly', function() {
+      var maximumValue = kata.calculateMaximumValue(list);
+      expect(maximumValue).toEqual(92);
+   });
+
+   it('should calculate sequence length properly', function() {
+      var sequenceLength = kata.calculateSequenceLength(list);
+      expect(sequenceLength).toEqual(6);
+   });	
+});
+</pre>
+<pre>
+// Kata.js
+
+function Kata() {
+
+}
+
+Kata.prototype.calculateMinimumValue = function(list) {
+   list.sort();
+   return list[0];
+};
+
+Kata.prototype.calculateMaximumValue = function(list) {
+   list.sort();
+   return list[list.length-1];
+};
+
+Kata.prototype.calculateSequenceLength = function(list) {
+   return 0;
+};
+</pre>
+<p>As expected, the test is failing</p>
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.49.26-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.49.26-PM.png" alt="Screen Shot 2013-05-14 at 9.49.26 PM" width="481" height="230" class="alignnone size-full wp-image-378" /></a></p>
+<p>Let's write the implementation.</p>
+<pre>
+// Kata.js
+
+function Kata() {
+
+}
+
+Kata.prototype.calculateMinimumValue = function(list) {
+   list.sort();
+   return list[0];
+};
+
+Kata.prototype.calculateMaximumValue = function(list) {
+   list.sort();
+   return list[list.length-1];
+};
+
+Kata.prototype.calculateSequenceLength = function(list) {
+   return list.length;
+};
+</pre>
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.50.07-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.50.07-PM.png" alt="Screen Shot 2013-05-14 at 9.50.07 PM" width="431" height="208" class="alignnone size-full wp-image-379" /></a></p>
+<p>Our tests are green again! The last test will be the reader's homework :D</p>
+<p>Test in javascript is as easy as in others language, there are a lot of frameworks available. My objectives with this post was show a little bit about using TDD and javascript and show how we can improve our programming skills using Code Kata. I love to do Kata, if you know a good Code Kata site, let me know!</p>
+<p><strong>Good Code Kata Sites</strong></p>
+<ul>
+<li><a href="http://codekata.pragprog.com/">Code Kata - Dave Thomas</a></li>
+<li><a href="http://projecteuler.net/">Project Euler</a></li>
+<li><a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8">UVa Online Judge</a></li>
+</ul>
+</div>
+</article>
+
+<div data-type="ad" data-publisher="lqm.youvebeenhacked.site" data-zone="ron" data-format="728x90"></div>
+
+
+	
+
+
+<div id="page-navigation"> 
+        <div class="previous"> 
+         
+                <a href="/javascript/test-driven%20development/2013/05/06/jasmine-javascript-unit-tests.html" title="Previous Post: 
+Jasmine, you have to write javascript unit tests!">&laquo; Jasmine, you have to write javascript unit tests!</a>
+         
+        </div>
+
+        <div class="next"> 
+         
+               <a href="/becoming%20a%20ninja/c%23/2013/06/15/good-resources-to-learn-casp-net.html" title="next Post: 
+Resources to become a Ninja: C#">Resources to become a Ninja: C# &raquo; </a> 
+         
+        </div>
+</div> </div>
+      </div>
+      <footer id="footer" class="inner"><p>
+  Copyright &copy; 2014 - Paulo Ortins - Blog content under the Creative Commons <a href="http://creativecommons.org/licenses/by/2.5/">CC BY 2.5</a>
+</p>
+</footer>
+    </div>
+  </div>
+
+</body>
+</html>

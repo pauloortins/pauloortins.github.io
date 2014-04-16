@@ -1,0 +1,399 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Creating python command-line applications - Paulo Ortins</title>
+	<meta name="author" content="Paulo Ortins">
+
+	
+	<meta name="description" content="
+		
+	">
+	
+
+	<!-- http://t.co/dKP3o1e -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+	<link rel="canonical" href="/python/2013/06/18/creating-python-command-line-applications.html">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/css/main.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/css/syntax.css" type="text/css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	
+  	
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="left-col">
+      <div class="intrude-less">
+        <header id="header" class="inner"><div class="profilepic">
+	
+	<img src="http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160" alt="Profile Picture" style="width: 160px;" />
+	
+</div>
+<hgroup>
+  <h1><a href="/">Paulo Ortins</a></h1>
+  
+</hgroup>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/about/">about</a></li>
+  <li><a href="/archives">archives</a></li>
+</ul>
+
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		
+	</div>
+</nav></header>        
+      </div>
+    </div>
+    <div class="mid-col">
+      <div class="mid-col-container">
+        <div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Creating python command-line applications</h1>	
+	<div class="entry-content" itemprop="articleBody"><p>For those who comes from .NET or Java, one of best things about python or ruby is the capability to write scripts. These little programs can solve a lot of problems like move files in a CI Server, clean some data, run tests and so on. When we are learning python, we have to learn also to use python scripts, everybody uses the following commands when we are installing a python library:</p>
+<pre>
+python setup.py build
+python setup.py install
+</pre>
+<p>Or we use the following command when we are programming with django:</p>
+<pre>
+django-admin.py startproject mysite
+</pre>
+<p><strong>Building a command-line application<br />
+</strong></p>
+<p>In this post, we are going to learn how we can build a command-line calculator. Below is our application backlog:</p>
+<pre>
+/*
+We are going to create a command-line calculator. The calculator should be used in this way:
+
+python calc.py add 2 2
+> 4
+
+python calc.py subtract 2 2
+> 0
+
+python calc.py multiply 2 2
+> 4
+
+python calc.py divide 2 2
+> 1
+   
+*/
+</pre>
+<p><strong>Using sys.argv</strong></p>
+<p>When calling a python script, our arguments are stored in sys.argv variable in the following order: Script Name + arguments, so we can print each argument in this way:</p>
+<pre>
+# calc.py
+
+import sys
+
+for arg in sys.argv:
+	print arg
+</pre>
+<p>And here we are printing our arguments:</p>
+<pre>
+python calc.py 1 2 3
+> calc.py
+> 1
+> 2
+> 3
+</pre>
+<p><strong>Building our calculator</strong></p>
+<p>We already know how we can get our arguments, now we can implement the operations:</p>
+<p><strong>Implementing Add</strong></p>
+<pre>
+# calc.py
+
+import sys
+
+args = sys.argv[1:]
+
+operation = args[0]
+num1 = int(args[1])
+num2 = int(args[2])
+
+if operation == 'add':
+	total = num1 + num2
+
+print total	
+</pre>
+<p><strong>Other Operations</strong></p>
+<p>Implement the other operations is straightforward, we can easily code them:</p>
+<pre>
+# calc.py
+
+import sys
+
+args = sys.argv[1:]
+
+operation = args[0]
+num1 = int(args[1])
+num2 = int(args[2])
+
+if operation == 'add':
+	total = num1 + num2
+elif operation == 'subtract':
+	total = num1 - num2
+elif operation == 'multiply':
+	total = num1 * num2
+elif operation == 'divide':
+	total = num1 / num2
+
+print total
+
+</pre>
+<p><strong>A switch..case situation ?</strong></p>
+<p>Python, unlike many OO languages, doesn't have switch..case statement and if it can be seen as a disadvantage  at first look, it has a reason! When we use switch..case, in most of cases it indicates that there should be a polymorphic call there. But if..elif is bad as switch..case. We can write it in a more elegant way using dictionaries and functional programming. So we end up with the following code:</p>
+<pre>
+# calc.py
+
+import sys
+
+args = sys.argv[1:]
+
+operation = args[0]
+num1 = int(args[1])
+num2 = int(args[2])
+
+functions = {
+	'add': lambda num1, num2: num1 + num2,
+	'subtract': lambda num1, num2: num1 - num2,
+	'multiply': lambda num1, num2: num1 * num2,
+	'divide': lambda num1, num2: num1 / num2
+}
+
+total = functions[operation](num1, num2)
+
+print total
+
+</pre>
+<p>Much better!</p>
+<p><strong>Just a toy application</strong></p>
+<p>It’s just a toy application. People don’t write command-line applications in this way. Real command-line applications have error checking, flags, help and other things. Instead it, people use modules that help to achieve these requirements. Some of the existent options are:</p>
+<ul>
+<li><a href="http://docs.python.org/dev/library/argparse.html">argparse</a></li>
+<li><a href="http://docopt.org/">docopt</a></li>
+</ul>
+<p><strong>Using argparse to write a more robust application</strong></p>
+<p>Argparse makes easy to write command-line applications. You provide info about the parameters and argparse parse those out of sys.argv. It also provides help, usage messages and issues errors.</p>
+<p><strong>A basic program</strong></p>
+<pre>
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.parse_args()
+</pre>
+<p>This program does nothing. But we can already see the error messages, help and usage tips.</p>
+<pre>
+python calc_argparse.py
+>>>
+
+python calc_argparse.py --help
+>>> usage: calc_argparse.py [-h]
+>>>
+>>> optional arguments: -h, --help  show this help message and exit
+
+python calc_argparse.py --flag
+>>> usage: calc_argparse.py [-h]
+>>> calc_argparse.py: error: unrecognized arguments: --flag
+
+python calc_argparse.py arg
+>>> usage: calc_argparse.py [-h]
+>>> calc_argparse.py: error: unrecognized arguments: arg
+
+</pre>
+<p><strong>Adding arguments</strong></p>
+<p>Our command-line calculator does nothing, so let's start to add the parameters. The first parameter will be the operation.</p>
+<pre>
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("operation")
+args = parser.parse_args()
+
+print args.operation
+</pre>
+<p>Let's see how argparse parses arguments and shows error and help messages.</p>
+<pre>
+python calc_argparse.py
+>>> usage: calc_argparse.py [-h] operation
+>>> calc_argparse.py: error: too few arguments
+
+python calc_argparse.py --help
+>>> usage: calc_argparse.py [-h] operation
+>>> positional arguments: operation
+>>> optional arguments: -h, --help  show this help message and exit
+
+python calc_argparse.py sum
+>>> sum
+</pre>
+<p><strong>Better help messages</strong></p>
+<p>Everything is working fine. But if we look carefully, what operation means ? We should have a help message. With argparse we can do it when we add an argument. Let’s do it:</p>
+<pre>
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("operation", help="mathematical operation that will be performed")
+args = parser.parse_args()
+
+print args.operation
+</pre>
+<p>And we will see a better help message.</p>
+<pre>
+python calc_argparse.py --help
+>>> usage: calc_argparse.py [-h] operation
+>>> positional arguments: operation   mathematical operation that will be performed
+>>> optional arguments: -h, --help  show this help message and exit
+</pre>
+<p><strong>Write the calculator</strong></p>
+<p>Until this moment we are just playing with argparse features. Now, we are going to write our calculator operations.<br />
+We have to add more two arguments (num1 and num2) and we will use the functions from the previous example to perform the operations. It should work.</p>
+<pre>
+import argparse
+
+functions = {
+	'add': lambda num1, num2: num1 + num2,
+	'subtract': lambda num1, num2: num1 - num2,
+	'multiply': lambda num1, num2: num1 * num2,
+	'divide': lambda num1, num2: num1 / num2
+}
+
+parser = argparse.ArgumentParser()
+parser.add_argument("operation", help="mathematical operation that will be performed")
+parser.add_argument("num1", help="the first number")
+parser.add_argument("num2", help="the second number")
+args = parser.parse_args()
+print functions[args.operation](args.num1, args.num2)
+</pre>
+<pre>
+python calc_argparse.py multiply 1 2
+>>> Traceback (most recent call last):
+>>>  File "calc_argparse.py", line 16, in <module>
+>>>    print functions[args.operation](args.num1, args.num2)
+>>>  File "calc_argparse.py", line 6, in <lambda>
+>>>    'multiply': lambda num1, num2: num1 * num2,
+>>> TypeError: can't multiply sequence by non-int of type 'str'
+</pre>
+<p>But it's not working. If we analyze the error, we can perceive that looks like the numbers are been parsed as str. It's a TypeError. When using argparse, we have to pass the argument types, it will parse with the right type and will check for type errors. Let's do it.</p>
+<pre>
+import argparse
+
+functions = {
+	'add': lambda num1, num2: num1 + num2,
+	'subtract': lambda num1, num2: num1 - num2,
+	'multiply': lambda num1, num2: num1 * num2,
+	'divide': lambda num1, num2: num1 / num2
+}
+
+parser = argparse.ArgumentParser()
+parser.add_argument("operation", help="mathematical operation that will be performed")
+parser.add_argument("num1", help="the first number", type=int)
+parser.add_argument("num2", help="the second number", type=int)
+args = parser.parse_args()
+
+print functions[args.operation](args.num1, args.num2)
+</pre>
+<p>Now everything is working fine, we also have type errors checking.</p>
+<pre>
+python calc_argparse.py add 2 2
+>>> 4
+
+python calc_argparse.py subtract 2 2
+>>> 0
+
+python calc_argparse.py multiply 2 2
+>>> 4
+
+python calc_argparse.py divide 2 2
+>>> 1
+
+python calc_argparse.py add '2' '2'
+>>> usage: calc_argparse.py [-h] operation num1 num2
+>>> calc_argparse.py: error: argument num1: invalid int value: "'2'"
+</pre>
+<p><strong>Operation Error Checking</strong><br />
+Look what happens when me try to perform a invalid operation.</p>
+<pre>
+python calc_argparse.py invalid_operation 2 2
+>>> Traceback (most recent call last):
+>>>  File "calc_argparse.py", line 16, in <module>
+>>>    print functions[args.operation](args.num1, args.num2)
+>>> KeyError: 'invalid_operation'
+</pre>
+<p>Obviously, there isn't a 'invalid_operation' operation in math. So we should be limiting the available operations. With argparse, we can do it using the choices argument when we are adding an argument:</p>
+<pre>
+import argparse
+
+functions = {
+	'add': lambda num1, num2: num1 + num2,
+	'subtract': lambda num1, num2: num1 - num2,
+	'multiply': lambda num1, num2: num1 * num2,
+	'divide': lambda num1, num2: num1 / num2
+}
+
+parser = argparse.ArgumentParser()
+parser.add_argument("operation", help="mathematical operation that will be performed", 
+	choices=['add', 'subtract', 'multiply', 'divide'])
+parser.add_argument("num1", help="the first number", type=int)
+parser.add_argument("num2", help="the second number", type=int)
+args = parser.parse_args()
+
+print functions[args.operation](args.num1, args.num2)
+</pre>
+<p>Now, if we try a different operation we will see a better error.</p>
+<pre>
+python calc_argparse.py invalid_operation 2 2
+>>> usage: calc_argparse.py [-h] {add,subtract,multiply,divide} num1 num2
+>>> calc_argparse.py: error: argument operation: invalid choice: 'invalid_operation'
+>>>  (choose from 'add', 'subtract', 'multiply', 'divide')
+</pre>
+<p>This is it. With argparse, we can achieve a more robust and error-safe application with less code.</p>
+</div>
+</article>
+
+<div data-type="ad" data-publisher="lqm.youvebeenhacked.site" data-zone="ron" data-format="728x90"></div>
+
+
+	
+
+
+<div id="page-navigation"> 
+        <div class="previous"> 
+         
+                <a href="/becoming%20a%20ninja/machine%20learning/2013/06/16/resources-to-become-a-ninja-machine-learning.html" title="Previous Post: 
+Resources to become a Ninja: Machine Learning">&laquo; Resources to become a Ninja: Machine Learning</a>
+         
+        </div>
+
+        <div class="next"> 
+         
+               <a href="/becoming%20a%20ninja/javascript/2013/06/18/resources-to-become-a-ninja-javascript.html" title="next Post: 
+Resources to become a Ninja: Javascript">Resources to become a Ninja: Javascript &raquo; </a> 
+         
+        </div>
+</div> </div>
+      </div>
+      <footer id="footer" class="inner"><p>
+  Copyright &copy; 2014 - Paulo Ortins - Blog content under the Creative Commons <a href="http://creativecommons.org/licenses/by/2.5/">CC BY 2.5</a>
+</p>
+</footer>
+    </div>
+  </div>
+
+</body>
+</html>

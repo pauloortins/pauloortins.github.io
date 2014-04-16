@@ -1,0 +1,105 @@
+---
+layout: post
+title: MapReduce com python utilizando mincemeat.py
+categories:
+- Map Reduce
+- Python
+tags:
+- map-reduce
+- mapreduce
+- mincemeat.py
+- python
+status: publish
+type: post
+published: true
+meta:
+  jabber_published: '1366159764'
+  _publicize_pending: '1'
+  publicize_twitter_user: pauloortins
+  email_notification: '1366159765'
+  _wpas_done_1484748: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:100003222225038;b:1;}}
+  _wpas_done_946095: '1'
+  _wpas_done_946094: '1'
+  robotsmeta: index,follow
+  _edit_last: '1'
+  _wpas_skip_1484748: '1'
+  wp88_mc_campaign: '1'
+  _clicky_goal: a:2:{s:2:"id";s:0:"";s:5:"value";s:0:"";}
+  _wpas_skip_946095: '1'
+author:
+  login: paulo.ortins@gmail.com
+  email: paulo.ortins@gmail.com
+  display_name: paulo ortins
+  first_name: ''
+  last_name: ''
+---
+<p><strong>O que é o MapReduce ?</strong></p>
+<p>É um modelo de programação que tem como objetivo processar e gerar grandes coleções de dados, utlizando programação paralela para que possa rodar nos clusters. Hoje diversas empresas utilizam alguma implementação do MapReduce, tais como: Google, Facebook, Amazon e etc.</p>
+<p>Algumas das aplicações do MapReduce são: processamento de logs, crawling de paginas da web, ordenações, criação de indices para buscas e etc.</p>
+<p><strong>Funcionamento</strong></p>
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/04/mapreduce_overview.png"><img src="http://pauloortins.com/wp-content/uploads/2013/04/mapreduce_overview.png" alt="Mapreduce_Overview" width="400" height="300" class="alignnone size-full wp-image-207" /></a></p>
+<p>O MapReduce, como o próprio nome sugere, é baseado em duas funções:</p>
+<p>A função de Map, que processa os dados gerando um modelo de dados intermediário baseado em chave/valor.</p>
+<p>A função de Reduce, que irá fazer o merge dos dados associados para a mesma chave.</p>
+<p>O passo-a-passo de um programa usando MapReduce se dá da seguinte forma:</p>
+<ol>
+<li>
+É inicializado um número X de execucões do programa onde X é o número de maquinas no cluster.</li>
+<li>
+Tais maquinas irão agir como Mappers, ou seja, irão fazer o parse dos dados em estado bruto para um modelo de dados intermediário baseado em chave/valor.</li>
+<li>
+Após a fase de mapeamento, os dados irão para a fase de Reduce, onde os Reducers irão executar a função de Reduce, com o objetivo de extrair dados para cada chave única.</li>
+<li>
+Após a fase de Reduce, os dados são sumarizados e disponibilizados.</li>
+</ol>
+<p><strong>Mincemeat.py</strong></p>
+<p>O Mincemeat.py é uma implementação lightweight do MapReduce (apenas 1 arquivo com menos de 20kb) na linguagem python. Ele é open source e pode ser encontrado no GitHub (https://github.com/michaelfairley/mincemeatpy).</p>
+<p><strong>Exemplo de aplicação usando o Mincemeat.py</strong></p>
+<pre language="python">
+import mincemeat
+data = ["Humpty Dumpty sat on a wall",
+ "Humpty Dumpty had a great fall";,
+ "All the King's horses and all the King's men",
+ "Couldn't put Humpty together again",
+ ]
+# The data source can be any dictionary-like object
+datasource = dict(enumerate(data))
+
+def mapfn(k, v):
+ for w in v.split():
+ yield w, 1
+
+def reducefn(k, vs):
+ result = sum(vs)
+ return result
+
+s = mincemeat.Server()
+s.datasource = datasource
+s.mapfn = mapfn
+s.reducefn = reducefn
+
+results = s.run_server(password=&quot;changeme&quot;)
+print results
+</pre>
+<p>O exemplo acima é um programa que tem como objetivo contar o número de vezes em que cada palavra se repete.</p>
+<p>O exemplo utiliza a funcão mapfn que irá transformar os dados em um modelo de dados intermediário composto de chave/valor, onde a chave é a palavra e o valor será igual a 1.</p>
+<p>Após isso a função de reduce irá somar o número de aparições de cada palavra somando os valores que compartilham a mesma chave.</p>
+<p>Até que então os dados serão disponibilizados para o cliente.</p>
+<p><strong>Executando o exemplo</strong></p>
+<ol>
+<li>Baixar os arquivos <a href="https://github.com/michaelfairley/mincemeatpy/blob/master/example.py" title="example.py" target="_blank">example.py</a> e o <a href="https://github.com/michaelfairley/mincemeatpy/blob/master/mincemeat.py" title="mincemeat.py" target="_blank">mincemeat.py</a></li>
+<li>Abrir janela do console na pasta dos arquivos e inicializar o server através do comando "python example.py"
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/04/untitled-2.png"><img src="http://pauloortins.com/wp-content/uploads/2013/04/untitled-2.png" alt="Untitled 2" width="363" height="239" class="alignnone size-full wp-image-203" /></a></li>
+<li>Abrir outra janela do console na pasta dos arquivos e inicializar o client através do comando "python mincemeat.py -p changeme localhost"
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/04/untitled-3.png"><img src="http://pauloortins.com/wp-content/uploads/2013/04/untitled-3.png" alt="Untitled 3" width="364" height="232" class="alignnone size-full wp-image-204" /></a>
+</li>
+<li>Após a execução, o programa irá exibir na tela o resultado do processamento.
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/04/untitled.png"><img src="http://pauloortins.com/wp-content/uploads/2013/04/untitled.png" alt="Untitled" width="474" height="307" class="alignnone size-full wp-image-202" /></a></li>
+</ol>
+<p><strong>Conclusão</strong></p>
+<p>O MapReduce é um modelo muito fácil de utilizar, visto que ele encapsula muitas das dificuldades ao se criar um programa que utiliza programação paralela/distribuida tais como:  paralelização, balanceamento de carga e tolerância a falhas e etc.</p>
+<p>Também tem sido largamente usado em empresas que armazenam grandes quantidades de dados (Big Data), ex: Redes Sociais, Buscadores e etc, e a tendência é que seja cada vez mais utilizado, afinal, a cada dia que passa as empresas acumulam cada vez mais dados.</p>
+<p><strong>Fontes:</strong><br />
+<a href="http://en.wikipedia.org/wiki/MapReduce" title="Artigo no Wikipedia" target="_blank">Artigo no Wikipedia</a><br />
+<a href="http://static.googleusercontent.com/external_content/untrusted_dlcp/research.google.com/en//archive/mapreduce-osdi04.pdf" title="Artigo do Google Research" target="_blank">Artigo do Google Research</a></p>

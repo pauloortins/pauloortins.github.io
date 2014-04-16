@@ -1,0 +1,98 @@
+---
+layout: post
+title: Performance Driven Development usando .NET com MiniProfiler
+categories:
+- Performance
+tags:
+- miniprofiler
+- pdd
+- performance driven development
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+  jabber_published: '1367156091'
+  _wpas_done_1484748: '1'
+  publicize_twitter_user: pauloortins
+  _wpas_done_946094: '1'
+  email_notification: '1367156094'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:100003222225038;b:1;}}
+  _wpas_done_946095: '1'
+  publicize_reach: a:3:{s:7:"twitter";a:1:{i:946095;i:35;}s:2:"fb";a:1:{i:1484748;i:318;}s:2:"wp";a:1:{i:0;i:5;}}
+  _wpas_skip_1484748: '1'
+  _wpas_skip_946095: '1'
+  _wpas_skip_946094: '1'
+  _edit_last: '1'
+  wp88_mc_campaign: '1'
+  _clicky_goal: a:2:{s:2:"id";s:0:"";s:5:"value";s:0:"";}
+  robotsmeta: index,follow
+  title: performance-csharp-miniprofiler
+  keywords: performance, miniprofiler, c#
+author:
+  login: paulo.ortins@gmail.com
+  email: paulo.ortins@gmail.com
+  display_name: paulo ortins
+  first_name: ''
+  last_name: ''
+---
+<p>No <a title="último post" href="http://pauloortins.wordpress.com/2013/04/23/performance-importa-e-muito/">último post</a> falei um pouco sobre a importância de se importar com a performance das nossas páginas, assim como, o quanto uma perfomance ruim impacta nos negócios das empresas. Nesse post vou falar como podemos estar mensurando a nossa performance.</p>
+<p><strong>MiniProfiler</strong></p>
+<p>O MiniProfiler é um framework desenvolvido pela equipe do <a title="Stack Overflow" href="http://stackoverflow.com/">Stack Overflow</a> e usando em produção tanto no Stack Overflow como no <a title="StackExchange" href="http://stackexchange.com/">StackExchange</a>. É leve, fácil de usar, e o melhor de tudo, é free e seu código está <a title="hospedado no GitHub :D" href="https://github.com/SamSaffron/MiniProfiler">hospedado no GitHub :D</a></p>
+<p><strong>Como funciona</strong></p>
+<p>O MiniProfiler não faz o profile automático de todos os métodos, ele teria que interagir com a CLR para observar quais métodos estão sendo executados, e isso é considerado pelo Core Team como muito invasivo.</p>
+<p>Ao contrário, nós temos que adicionar Steps ao nosso código indicando as áreas que iremos fazer o profile.</p>
+<p><strong>Usando o MiniProfiler</strong></p>
+<p>Para exemplificar o uso do MiniProfiler, vamos criar uma aplicação padrão ASP.NET MVC4 chamada TestandoMiniProfiler.</p>
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/04/criacao-aplicacao1.png"><img class="alignnone size-full wp-image-238" alt="Criacao Aplicacao" src="http://pauloortins.com/wp-content/uploads/2013/04/criacao-aplicacao1.png" width="710" height="432" /></a></p>
+<p>Para instalar o MiniProfiler basta executarmos o comando <em>Install-Package MiniProfiler.MVC3</em> no Package Manager Console.<br />
+Nota: a versão é MVC3 mesmo !</p>
+<p><a href="http://pauloortins.files.wordpress.com/2013/04/instalando.png"><img class="alignnone size-full wp-image-239" alt="Instalando" src="http://pauloortins.com/wp-content/uploads/2013/04/instalando1.png" width="710" height="382" /></a></p>
+<pre>
+@using StackExchange.Profiling @* Usando o MiniProfiler *@
+
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+   <header></header>
+   <footer></footer>
+
+   @Scripts.Render("~/bundles/jquery")
+   @RenderSection("scripts", required: false)
+
+   @* Renderizando CSS e Javascript*@
+   @MiniProfiler.RenderIncludes()
+</body>
+</html>
+</pre>
+<p>Adicionando os arquivos css e javascript ao final da tag <em>body</em> no arquivo <em>_Layout.shtml</em>.</p>
+<p>Por último vamos configurar alguns Steps para demonstração e pronto, temos o MiniProfiler funcionando !</p>
+<pre>
+public ActionResult Index()
+{
+   var profiler = MiniProfiler.Current; // it's ok if this is null
+   using (profiler.Step("Alterando Mensagem Inicial"))
+   {
+      ViewBag.Message = "Nova mensagem inicial";
+   }
+   using (profiler.Step("Sub-Steps"))
+   {
+      using (profiler.Step("Sleep 100ms"))
+      {
+         Thread.Sleep(100);
+      }
+      using (profiler.Step("Sleep 250ms"))
+      {
+         Thread.Sleep(250);
+      }
+   }
+
+   return View();
+}
+</pre>
+<p>Se tudo ocorreu bem, devemos ver uma tela parecida com essa, onde podemos ver o tempo de execução de cada parte do nosso código ! Rápido, fácil, e pronto pra produção !</p>
+<p><a href="http://pauloortins.com/wp-content/uploads/2013/04/results.png"><img class="alignnone size-full wp-image-250" alt="results" src="http://pauloortins.com/wp-content/uploads/2013/04/results.png" width="710" height="503" /></a></p>
+<p><strong>Recursos Utilizados:</strong></p>
+<p><a title="MiniProfiler.com" href="http://miniprofiler.com/">MiniProfiler.com</a><br />
+<a title="Blog do Scott Hanselman" href="http://www.hanselman.com/blog/NuGetPackageOfTheWeek9ASPNETMiniProfilerFromStackExchangeRocksYourWorld.aspx">Blog do Scott Hanselman</a></p>

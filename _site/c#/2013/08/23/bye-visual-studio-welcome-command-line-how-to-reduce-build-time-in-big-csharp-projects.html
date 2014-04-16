@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Bye Visual Studio, Welcome Command-Line (How to reduce build time in big C# projects) - Paulo Ortins</title>
+	<meta name="author" content="Paulo Ortins">
+
+	
+	<meta name="description" content="
+		
+	">
+	
+
+	<!-- http://t.co/dKP3o1e -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+	<link rel="canonical" href="/c%23/2013/08/23/bye-visual-studio-welcome-command-line-how-to-reduce-build-time-in-big-csharp-projects.html">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/css/main.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/css/syntax.css" type="text/css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	
+  	
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="left-col">
+      <div class="intrude-less">
+        <header id="header" class="inner"><div class="profilepic">
+	
+	<img src="http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160" alt="Profile Picture" style="width: 160px;" />
+	
+</div>
+<hgroup>
+  <h1><a href="/">Paulo Ortins</a></h1>
+  
+</hgroup>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/about/">about</a></li>
+  <li><a href="/archives">archives</a></li>
+</ul>
+
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		
+	</div>
+</nav></header>        
+      </div>
+    </div>
+    <div class="mid-col">
+      <div class="mid-col-container">
+        <div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Bye Visual Studio, Welcome Command-Line (How to reduce build time in big C# projects)</h1>	
+	<div class="entry-content" itemprop="articleBody"><p>If you read my previous posts, <a href="http://pauloortins.com/tdd-test-driven-development/" title="Intro to TDD – Test-Driven Development">Intro to TDD</a> and <a href="http://pauloortins.com/lessons-unit-tests/" title="12 Lessons I learned using unit tests/TDD">12 Lessons I learned using unit tests/TDD</a>, you will see that I'm a huge TDD fan and I try to apply it always I can, this methodology have been my favorite way to guarantee that the software I'm developing is working properly and the code has a good quality and is easy to maintain.</p>
+<p><br/></p>
+<hr>
+<strong>Build/Testing Time</strong></p>
+<p>Recently, I joined in a relatively big project (It has been developed for 2 years with 12-14 developers) and one thing started to bother me and disturb my TDD flow, the build/testing time. This project has a solution with 20+ projects and 660 tests that covers only 7% of the code, if it had more tests the performance would be even worst. My machine isn't a top machine, Core I3 with 4 GB running Windows 8,  but look at these times, they are not acceptable:</p>
+<p>- Build Time: <strong>3 minutes and 10 seconds</strong><br />
+- Build + Tests Time: <strong>5 minutes and 41 seconds</strong><br />
+- Init Debug: <strong>4 minutes and 9 seconds</strong></p>
+<p><br/></p>
+<hr>
+<strong>Losses</strong></p>
+<p>Let's do some math and we are going to discover the amount of losses that we have due to this slow build.<br />
+Suppose that me and my team, we are using TDD and we need to run our tests 10 times per work hour for each person, an acceptable number.</p>
+<p>For each work hour, we lose 56 minutes and 50 seconds building or running tests, we are reducing in almost 50% our productivity.</p>
+<p>But we are 4 people and we work 8 hours per day, so for each 32 work hours, we effectively work 16. <strong>We are losing 16 hours per day.</strong></p>
+<p>In an average month, in 30 days, we lose 480 hours.</p>
+<p>Now, let's talk about money, suppose that my employer pays $30 per hour for each person in my team.<br />
+<strong>So we lose 480 hours per month, more than $14000 IN A MONTH!</strong> What a waste of time and money!</p>
+<p><br/></p>
+<hr>
+<strong>Possible Solutions</strong></p>
+<p>After made these calculus, I started to search in the web for possible solutions to reduce this waste of time. The first two solutions were discarded, they were:</p>
+<p><strong>- Reduce the number of projects</strong></p>
+<p>The first solution is split code in folders instead in projects. It will reduce the number of projects that have to be compiled in each build, it will work, but I don't know how much it will help. This option was discarded because we entered in the project recently and we can't change the way that the other developers are working.</p>
+<p><strong>- Use NCrunch</strong></p>
+<p><a href="http://www.ncrunch.net/">NCrunch </a>is an automated test runner that runs tests in background and concurrently. It's a amazing tool, I used it during the trial period and I fall in love for this tool. At this time, we decided to not spend money with tools, so I will have to wait a little more to buy NCrunch.</p>
+<p><br/></p>
+<hr>
+<strong>The chosen solution</strong></p>
+<p>A lot of people gave the suggestion, that instead rely on Visual Studio to build the solution and run the tests, I could do it through PowerShell using MSBuild.exe and VSTestConsole.exe. I did it. Let's talk about these tools:</p>
+<p><strong>- MSBuild</strong></p>
+<p><a href="http://msdn.microsoft.com/en-us/library/vstudio/ms164311.aspx">MSBuild </a>is the a build tool that helps to automate the process of compiling, testing and deployment. In my case, I executed the following command:</p>
+<pre>
+MSBuild.exe myfolder/mysolution.sln /t:build /m:4 /nr:true /property:Config=Debug
+
+/*
+* /t: sets which targets/tasks will be executed
+* /m: sets the number of cores that will be executed
+* /nr: Enable or disable the re-use of MSBuild nodes.
+* /property: sets the build config
+*/
+</pre>
+<p><strong>- VSTestConsole</strong></p>
+<p><a href="http://msdn.microsoft.com/en-us/library/vstudio/jj155796.aspx">VSTestConsole </a>is, since VS2012, the default command-line application used to run tests. In my case, I created a .bat with these commands:</p>
+<pre>
+MSBuild.exe myfolder/mysolution.sln /t:build /m:4 /nr:true /p:OutputPath=c:\mydir
+VSTest.Console.exe C:\mydir\testproject1.dll C:\mydir\testproject2.dll C:\mydir\testproject3.dll
+</pre>
+<p><br/></p>
+<hr>
+<strong>Results</strong></p>
+<p>Build:<br />
+<strong>From 3 minutes and 10 seconds to 49s.</strong> 75.2% faster</p>
+<p>Build + Tests:<br />
+<strong>From 5 minutes and 41 seconds to 1 minute and 10 seconds.</strong> 79.4% faster</p>
+<p>Init Debug with building before from command-line:<br />
+<strong>From 4 minutes and 9 seconds to 1 minute and 8 seconds.</strong> 72.6% faster</p>
+<p>I'm very satisfied with these results right now. My development flow is faster and I'm being more productive. </p>
+<p><br/></p>
+<hr>
+<strong>Future Plans</strong></p>
+<p>I'm planning to write a Visual Studio Extension to use my script instead use default build and, of course, give it to the community. What you think about it? Is there anyone with the same problem? It would be useful?</p>
+</div>
+</article>
+
+<div data-type="ad" data-publisher="lqm.youvebeenhacked.site" data-zone="ron" data-format="728x90"></div>
+
+
+	
+
+
+<div id="page-navigation"> 
+        <div class="previous"> 
+         
+                <a href="/performance/2013/08/07/performance-matters-a-lot.html" title="Previous Post: 
+Performance Matters! A lot!">&laquo; Performance Matters! A lot!</a>
+         
+        </div>
+
+        <div class="next"> 
+         
+               <a href="/clojure/elixir/go/programming%20languages/2013/09/03/3-programming-languages-that-promising-for-the-next-years.html" title="next Post: 
+3 programming languages that are promising for the next years">3 programming languages that are promising for the next years &raquo; </a> 
+         
+        </div>
+</div> </div>
+      </div>
+      <footer id="footer" class="inner"><p>
+  Copyright &copy; 2014 - Paulo Ortins - Blog content under the Creative Commons <a href="http://creativecommons.org/licenses/by/2.5/">CC BY 2.5</a>
+</p>
+</footer>
+    </div>
+  </div>
+
+</body>
+</html>

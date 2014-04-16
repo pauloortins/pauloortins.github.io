@@ -1,0 +1,98 @@
+---
+layout: post
+title: Bye Visual Studio, Welcome Command-Line (How to reduce build time in big C#
+  projects)
+categories:
+- C#
+tags:
+- build
+- build time
+- msbuild
+- vstestconsole
+status: publish
+type: post
+published: true
+meta:
+  _wp_old_slug: bye-visual-studio-welcome-powershell-how-to-reduce-build-time-in-big-csharp-projects
+  _edit_last: '1'
+  robotsmeta: index,follow
+  Sidebar_value: 'on'
+  Nav_value: 'on'
+  snapEdIT: '1'
+  snapDL: s:211:"a:1:{i:0;a:7:{s:4:"doDL";s:1:"1";s:11:"SNAPformatT";s:7:"%TITLE%";s:10:"SNAPformat";s:9:"%EXCERPT%";s:11:"isPrePosted";s:1:"1";s:8:"isPosted";s:1:"1";s:4:"pgID";s:2:"DL";s:5:"pDate";s:19:"2013-08-24
+    01:04:07";}}";
+  _wpas_done_all: '1'
+  snap_isAutoPosted: '1'
+  snapSU: s:140:"a:1:{i:0;a:4:{s:4:"doSU";s:1:"1";s:7:"apSUCat";s:11:"Programming";s:10:"SNAPformat";s:19:"%TITLE%
+    - %EXCERPT%";s:11:"isPrePosted";s:1:"1";}}";
+  wp88_mc_campaign: '1'
+  _clicky_goal: a:2:{s:2:"id";N;s:5:"value";N;}
+author:
+  login: paulo.ortins@gmail.com
+  email: paulo.ortins@gmail.com
+  display_name: paulo ortins
+  first_name: ''
+  last_name: ''
+---
+<p>If you read my previous posts, <a href="http://pauloortins.com/tdd-test-driven-development/" title="Intro to TDD – Test-Driven Development">Intro to TDD</a> and <a href="http://pauloortins.com/lessons-unit-tests/" title="12 Lessons I learned using unit tests/TDD">12 Lessons I learned using unit tests/TDD</a>, you will see that I'm a huge TDD fan and I try to apply it always I can, this methodology have been my favorite way to guarantee that the software I'm developing is working properly and the code has a good quality and is easy to maintain.</p>
+<p><br/></p>
+<hr>
+<strong>Build/Testing Time</strong></p>
+<p>Recently, I joined in a relatively big project (It has been developed for 2 years with 12-14 developers) and one thing started to bother me and disturb my TDD flow, the build/testing time. This project has a solution with 20+ projects and 660 tests that covers only 7% of the code, if it had more tests the performance would be even worst. My machine isn't a top machine, Core I3 with 4 GB running Windows 8,  but look at these times, they are not acceptable:</p>
+<p>- Build Time: <strong>3 minutes and 10 seconds</strong><br />
+- Build + Tests Time: <strong>5 minutes and 41 seconds</strong><br />
+- Init Debug: <strong>4 minutes and 9 seconds</strong></p>
+<p><br/></p>
+<hr>
+<strong>Losses</strong></p>
+<p>Let's do some math and we are going to discover the amount of losses that we have due to this slow build.<br />
+Suppose that me and my team, we are using TDD and we need to run our tests 10 times per work hour for each person, an acceptable number.</p>
+<p>For each work hour, we lose 56 minutes and 50 seconds building or running tests, we are reducing in almost 50% our productivity.</p>
+<p>But we are 4 people and we work 8 hours per day, so for each 32 work hours, we effectively work 16. <strong>We are losing 16 hours per day.</strong></p>
+<p>In an average month, in 30 days, we lose 480 hours.</p>
+<p>Now, let's talk about money, suppose that my employer pays $30 per hour for each person in my team.<br />
+<strong>So we lose 480 hours per month, more than $14000 IN A MONTH!</strong> What a waste of time and money!</p>
+<p><br/></p>
+<hr>
+<strong>Possible Solutions</strong></p>
+<p>After made these calculus, I started to search in the web for possible solutions to reduce this waste of time. The first two solutions were discarded, they were:</p>
+<p><strong>- Reduce the number of projects</strong></p>
+<p>The first solution is split code in folders instead in projects. It will reduce the number of projects that have to be compiled in each build, it will work, but I don't know how much it will help. This option was discarded because we entered in the project recently and we can't change the way that the other developers are working.</p>
+<p><strong>- Use NCrunch</strong></p>
+<p><a href="http://www.ncrunch.net/">NCrunch </a>is an automated test runner that runs tests in background and concurrently. It's a amazing tool, I used it during the trial period and I fall in love for this tool. At this time, we decided to not spend money with tools, so I will have to wait a little more to buy NCrunch.</p>
+<p><br/></p>
+<hr>
+<strong>The chosen solution</strong></p>
+<p>A lot of people gave the suggestion, that instead rely on Visual Studio to build the solution and run the tests, I could do it through PowerShell using MSBuild.exe and VSTestConsole.exe. I did it. Let's talk about these tools:</p>
+<p><strong>- MSBuild</strong></p>
+<p><a href="http://msdn.microsoft.com/en-us/library/vstudio/ms164311.aspx">MSBuild </a>is the a build tool that helps to automate the process of compiling, testing and deployment. In my case, I executed the following command:</p>
+<pre>
+MSBuild.exe myfolder/mysolution.sln /t:build /m:4 /nr:true /property:Config=Debug
+
+/*
+* /t: sets which targets/tasks will be executed
+* /m: sets the number of cores that will be executed
+* /nr: Enable or disable the re-use of MSBuild nodes.
+* /property: sets the build config
+*/
+</pre>
+<p><strong>- VSTestConsole</strong></p>
+<p><a href="http://msdn.microsoft.com/en-us/library/vstudio/jj155796.aspx">VSTestConsole </a>is, since VS2012, the default command-line application used to run tests. In my case, I created a .bat with these commands:</p>
+<pre>
+MSBuild.exe myfolder/mysolution.sln /t:build /m:4 /nr:true /p:OutputPath=c:\mydir
+VSTest.Console.exe C:\mydir\testproject1.dll C:\mydir\testproject2.dll C:\mydir\testproject3.dll
+</pre>
+<p><br/></p>
+<hr>
+<strong>Results</strong></p>
+<p>Build:<br />
+<strong>From 3 minutes and 10 seconds to 49s.</strong> 75.2% faster</p>
+<p>Build + Tests:<br />
+<strong>From 5 minutes and 41 seconds to 1 minute and 10 seconds.</strong> 79.4% faster</p>
+<p>Init Debug with building before from command-line:<br />
+<strong>From 4 minutes and 9 seconds to 1 minute and 8 seconds.</strong> 72.6% faster</p>
+<p>I'm very satisfied with these results right now. My development flow is faster and I'm being more productive. </p>
+<p><br/></p>
+<hr>
+<strong>Future Plans</strong></p>
+<p>I'm planning to write a Visual Studio Extension to use my script instead use default build and, of course, give it to the community. What you think about it? Is there anyone with the same problem? It would be useful?</p>

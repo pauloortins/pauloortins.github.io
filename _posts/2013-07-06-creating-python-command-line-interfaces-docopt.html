@@ -1,0 +1,210 @@
+---
+layout: post
+title: Creating python command line applications with docopt
+categories:
+- Python
+tags:
+- command-line application
+- docopt
+- python
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  Sidebar_value: 'on'
+  Nav_value: 'on'
+  snapEdIT: '1'
+  description: Creating python command line applications with docopt
+  title: Creating python command line applications with docopt
+  keywords: docopt,  python, command line interfaces, command line application
+  _wpas_done_all: '1'
+  snap_isAutoPosted: '1'
+  snapDL: s:211:"a:1:{i:0;a:7:{s:4:"doDL";s:1:"1";s:11:"SNAPformatT";s:7:"%TITLE%";s:10:"SNAPformat";s:9:"%EXCERPT%";s:11:"isPrePosted";s:1:"1";s:8:"isPosted";s:1:"1";s:4:"pgID";s:2:"DL";s:5:"pDate";s:19:"2013-07-06
+    18:44:30";}}";
+  snapSU: s:226:"a:1:{i:0;a:7:{s:4:"doSU";s:1:"1";s:7:"apSUCat";s:11:"Programming";s:10:"SNAPformat";s:19:"%TITLE%
+    - %EXCERPT%";s:11:"isPrePosted";s:1:"1";s:8:"isPosted";s:1:"1";s:4:"pgID";s:6:"1lVYlQ";s:5:"pDate";s:19:"2013-07-06
+    18:44:34";}}";
+  _wp_old_slug: creating-python-command-line-docopt
+  wp88_mc_campaign: '1'
+  _clicky_goal: a:2:{s:2:"id";s:0:"";s:5:"value";s:0:"";}
+  robotsmeta: index,follow
+  _wpas_skip_1484748: '1'
+  _wpas_skip_946095: '1'
+author:
+  login: paulo.ortins@gmail.com
+  email: paulo.ortins@gmail.com
+  display_name: paulo ortins
+  first_name: ''
+  last_name: ''
+---
+<p><strong>Introduction</strong></p>
+<p>Few weeks ago I wrote a blog post showing how we can write command line applications using <a href="http://docs.python.org/dev/library/argparse.html">argparse</a>, you can check out it <a href="http://pauloortins.com/creating-python-command-line-applications/" title="Creating python command-line applications">here</a>. Some people suggested me to try <a href="https://github.com/docopt/docopt">docopt</a> and this post is a result from this experience.</p>
+<p><strong>Docopt, the Pythonic command line arguments parser, that will make you smile</strong></p>
+<p><iframe width="560" height="315" src="//www.youtube.com/embed/pXhcPJK5cMc?rel=0" frameborder="0" allowfullscreen></iframe></p>
+<p>What is it ?</p>
+<p>Docopt, like optparse and argparse, is a small library that simplifies the task to write command-line interfaces. But it came with a different idea.</p>
+<p>How optparse and argparse work ? You have to read the documentation and write code that will provide guidelines to parse args. A example of this approach is the code that I wrote in my previous post. And being honest, I looked the documentation several times, trying to understand how each method works.</p>
+<pre>
+parser = argparse.ArgumentParser()
+parser.add_argument("operation", help="mathematical operation that will be performed", 
+	choices=['add', 'subtract', 'multiply', 'divide'])
+parser.add_argument("num1", help="the first number", type=int)
+parser.add_argument("num2", help="the second number", type=int)
+args = parser.parse_args()
+</pre>
+<p>How docopt works ? When we are designing a command-line interface, we write or we should write, our application documentation, right ? Docopt uses this docstring to parse the args. Look at this example extracted from documentation:</p>
+<pre>
+"""Naval Fate.
+
+Usage:
+  naval_fate.py ship new <name>...
+  naval_fate.py ship <name> move <x> <y> [--speed=<kn>]
+  naval_fate.py ship shoot <x> <y>
+  naval_fate.py mine (set|remove) <x> <y> [--moored|--drifting]
+  naval_fate.py -h | --help
+  naval_fate.py --version
+
+Options:
+  -h --help     Show this screen.
+  --version     Show version.
+  --speed=<kn>  Speed in knots [default: 10].
+  --moored      Moored (anchored) mine.
+  --drifting    Drifting mine.
+
+"""
+from docopt import docopt
+
+
+if __name__ == '__main__':
+    arguments = docopt(__doc__, version='Naval Fate 2.0')
+    print(arguments)
+</pre>
+<p>When I saw it for the first time, I had a "holy shit" moment and said "It won't work", but it works! You will avoid to read documentation and to write parse code, all you have to do is writing your application documentation and instantly you have your application running with all options and help messages working properly!</p>
+<p><strong>Coming back to the calculator example</strong></p>
+<p>In my first post about command line interfaces I built two command calculators, one using python w/o libraries and other using argparse. So to compare these libraries, let's build another calculator, in this time, using docopt. This is our documentation:</p>
+<pre>
+/*
+We are going to create a command-line calculator. The calculator should be used in this way:
+
+python calc.py add 2 2
+> 4
+
+python calc.py subtract 2 2
+> 0
+
+python calc.py multiply 2 2
+> 4
+
+python calc.py divide 2 2
+> 1
+   
+*/
+</pre>
+<p>Let's transform it in the docopt pattern, that is the pattern of almost all command-line applications.</p>
+<pre>
+"""Calculator using docopt
+
+Usage:
+  calc_docopt.py operation <num1> <num2>
+  calc_docopt.py (-h | --help)
+
+Arguments
+  <operation> Math Operation
+  <num1> First Number
+  <num2> Second Number
+
+Options:
+  -h --help     Show this screen.
+
+"""
+</pre>
+<p>Now, let's add the docopt code, don't be afraid of that. With 3-4 lines of code our parser are done.</p>
+<pre>
+"""Calculator using docopt
+
+Usage:
+  calc_docopt.py operation <num1> <num2>
+  calc_docopt.py (-h | --help)
+
+Arguments
+  <operation> Math Operation
+  <num1> First Number
+  <num2> Second Number
+
+Options:
+  -h --help     Show this screen.
+
+"""
+from docopt import docopt
+
+if __name__ == '__main__':
+    arguments = docopt(__doc__, version='Calculator with docopt')
+    print(arguments)
+</pre>
+<p><strong>Help Messages</strong></p>
+<p>Let's see some of the messages that docopt provide for us.</p>
+<p>Help message</p>
+<pre>
+python calc_docopt.py -help
+>>> Calculator using docopt
+>>>
+>>> Usage:
+>>>   calc_docopt.py <operation> <num1> <num2>
+>>>   calc_docopt.py (-h | --help)
+>>> 
+>>> Arguments
+>>>   <operation> Math Operation
+>>>   <num1> First Number
+>>>   <num2> Second Number
+>>> 
+>>> Options:
+>>>   -h --help     Show this screen.
+</pre>
+<p>Invalid Arguments</p>
+<pre>
+python calc_docopt.py
+>>> Usage:
+>>>   calc_docopt.py <operation> <num1> <num2>
+>>>   calc_docopt.py (-h | --help)
+</pre>
+<p><strong>Operations</strong></p>
+<p>Our work right now is to coding the calculator operations. I will respect the <a href="http://en.wikipedia.org/wiki/Don't_repeat_yourself">DRY’s</a> gods and copy the operations from the other post.</p>
+<pre>
+"""Calculator using docopt
+
+Usage:
+  calc_docopt.py <operation> <num1> <num2>
+  calc_docopt.py (-h | --help)
+
+Arguments
+  num1 First Number
+  num2 Second Number
+
+Options:
+  -h --help     Show this screen.
+
+"""
+from docopt import docopt
+
+if __name__ == '__main__':
+    args = docopt(__doc__, version='Calculator with docopt')
+    functions = {
+        'add': lambda num1, num2: num1 + num2,
+        'subtract': lambda num1, num2: num1 - num2,
+        'multiply': lambda num1, num2: num1 * num2,
+        'divide': lambda num1, num2: num1 / num2
+    }
+
+    print functions[args['<operation>']](int(args['<num1>']), int(args['<num2>']))
+</pre>
+<p>Our calculator now performs math operations as we expect.</p>
+<p><strong>Input Validation</strong></p>
+<p>If you are a good observer, you will see that our calculator lacks type parse/checking and operation checking. It's easier to accomplish it with argparse. But docopt doesn't have built-in input validations.</p>
+<blockquote><p>
+docopt does one thing and does it well: it implements your command-line interface. However it does not validate the input data. On the other hand there are libraries like python schema which make validating data a breeze.<br />
+- docopt documentation
+</p></blockquote>
+<p>You can get more info about python schema <a href="https://github.com/halst/schema">here</a>.</p>
+<p><strong>Conclusion</strong></p>
+<p>Docopt is a new approach to write command apps. You can easily build apps. We can only appreciate <a href="http://keleshev.com">Vladimir Keleshev's</a> work and hope that it continues to improving and why not conquest a place in python core ?</p>
