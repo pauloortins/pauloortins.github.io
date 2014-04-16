@@ -10,7 +10,7 @@ sharing: false
 
 ## About me
 
-Hi guys, I’m Paulo Ortins, I’m 24 years old and I’m very passionate about coding.
+Hi guys, I’m Paulo Ortins, I’m 25 years old and I’m very passionate about coding.
 
 I started to programming in 2008, when I began the college. At this time, I was learning Pascal. After that I became a addicted to programming language , and I started to learn all the languages that appeared in front of me, Javascript, Java, Ruby, Scala, Python and my first language, C#, that I’m working with since 2010.
 
