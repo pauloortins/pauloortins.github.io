@@ -63,7 +63,6 @@ It’s a very controversy topic, and I know we can be less bureaucratic and more
 
 
 {% highlight c# %}
-    // A Javascript Code with dynamic typing
 
     // The same code now in C#, more bureaucratic but with type checking
     public class Student
