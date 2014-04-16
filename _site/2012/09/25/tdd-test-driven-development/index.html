@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Intro to TDD - Test-Driven Development - Paulo Ortins</title>
+	<meta name="author" content="Paulo Ortins">
+
+	
+	<meta name="description" content="
+		
+	">
+	
+
+	<!-- http://t.co/dKP3o1e -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+	<link rel="canonical" href="/2012/09/25/tdd-test-driven-development/">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/css/main.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/css/syntax.css" type="text/css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	
+  	
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="left-col">
+      <div class="intrude-less">
+        <header id="header" class="inner"><div class="profilepic">
+	
+	<img src="http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160" alt="Profile Picture" style="width: 160px;" />
+	
+</div>
+<hgroup>
+  <h1><a href="/">Paulo Ortins</a></h1>
+  
+</hgroup>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/about/">about</a></li>
+  <li><a href="/archives">archives</a></li>
+</ul>
+
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		
+	</div>
+</nav></header>        
+      </div>
+    </div>
+    <div class="mid-col">
+      <div class="mid-col-container">
+        <div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Intro to TDD - Test-Driven Development</h1>	
+	<div class="entry-content" itemprop="articleBody"><p><strong>Test-Driven Development</strong></p>
+<p>Created by <a href="http://en.wikipedia.org/wiki/Kent_Beck">Kent Beck</a> as part of <a href="http://en.wikipedia.org/wiki/Extreme_Programming">Xtreme Programming </a>in 2003.</p>
+<p>The TDD is a programming methodology that aims to break the software development in small cycles guided by <a href="http://en.wikipedia.org/wiki/Unit_testing">unit tests</a>.</p>
+<p>These cycles are made following this flow:</p>
+<ul>
+<li>Programmer choose a small piece from the software being developed</li>
+<li>Programmer writes a test that will indicate when a software piece is done</li>
+<li>Programmer writes the simpler code available to pass the test</li>
+<li>Programmer can/should do code refactoring</li>
+</ul>
+<p>The cycle is repeated any times until all the software is done.</p>
+<p><strong>TDD Benefits</strong></p>
+<p>So, what are the TDD Benefits ?</p>
+<p>Imagine that all our code was made following a TDD flow. The first benefit is your code reliability, all our funcionalities have unit tests testing them, so we should produce a few number of bugs.</p>
+<p>The TDD provide us a "Living Documentation", when we create unit tests, we are, also, writing documentation, we can anytime, look for our tests, and discover our requirements.</p>
+<p>If we write only the code that is necessary to pass our tests, we are also, positive influencing our application design, since we are not writing unnecessary code, neither taking any design decision for problems that we dont have yet. We are also reducing code coupling since that coupled code is harder to test.</p>
+<p>Finally, code with testes, increase our confident when changing our code. During our application life cycle our code will change for the following reasons:</p>
+<ul>
+<li>Team will know better the customer business</li>
+<li>The customer business can change</li>
+<li>We have to add more funcionalities</li>
+</ul>
+<p>TDD will permit us to embrace the changes without worry about introduce bugs, and more, it provide to the programmers the capacity to refactoring code made by others, at the end of the day, we will have a collective code base with a awesome quality !.</p>
+<p><strong>Problems with TDD</strong></p>
+<p>During my experience doing TDD, i had the following problems:</p>
+<p>The TDD flow is not hard to understand, we can learn it during a <a href="http://pauloortins.com/coding-dojo-practice-programming/" title="Coding Dojo – Practice programming is important !">Coding Dojo</a> easily, but develop a software using TDD all time, requires a big change in our mindset as developers. The learning curve is high, and we are tempted all the time to cheat and write production code before our tests, or worst, we are tempted to stop writing tests when it becomes difficult. It's common see teams stopping to use TDD, because a short deadline or for the reduction in productivity in the beginning.</p>
+<p>Apply TDD properly depends on our Software Architecture, in some projects we will see that apply TDD is impossible due to the code coupling. The main goal here, is design the software taking into account the use of unit testing.</p>
+<p>Finally, is easy to write bad tests, tests should help in the software maintenance, i cant be a problem. Many times we can afraid to change our code, cause will be hard to change our code tests, in this case, we have to rethink about the way we are creating our tests. It's also easy to create tests that are testing nothing, obviously, they are useless.</p>
+<p><strong>Metrics related to unit tests</strong></p>
+<p>There are some metrics that we use as a guide in our TDD Flow. I will talk about two of them:</p>
+<p><a href="http://en.wikipedia.org/wiki/Code_coverage">Code Coverage</a>, is the percentage of our production code that is covered by tests, e.g. if my application code coverage is 80%, it means that for each one hundred code lines, 80 are executed when i run my tests. What is the goal ? In theory, 100%, if we only write code that is tested, all the code should be covered by tests, but, it doesn't work. It's hard to test efficiently framework interactions and related. But, in some areas, covering 100% is ok, for example in our Domain Classes. One thing that we have to think, is that code coverage is not related to test quality, we can achieve a high code coverage without test efficiently. This metric works better showing us areas in our software that we are failing to write tests.</p>
+<p>The second metric is <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity">cyclomatic complexity</a>, and it's calculated using the number of possible paths that our software can run, e.g.:</p>
+<p>If (age &gt;= 21) return “adult” else return “child”</p>
+<p>In the code above, our cyclomatic complexity is 2, the person that we are analyzing can be a adult or a child. How is it related with tests ? If the cyclomatic complexity counts the number of execution paths that our software has, and i have to cover all my code with tests, we can think that the number of tests that a method will have will be, at minimum, equals to the method CC.</p>
+<p><strong>Conclusion</strong></p>
+<p>TDD, today, is a required skill to any professional developer. It worths the initial overhead in the development flow. Devs, please use TDD in your software, and companies, dont accept code without tests, they will make your lives better.</p>
+<p><strong>Interesting Links</strong></p>
+<p><a href="http://www.amazon.com/gp/product/0321146530/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0321146530&linkCode=as2&tag=paulorti-20">Test Driven Development: By Example</a></p>
+<p><a href="http://www.amazon.com/gp/product/0321503627/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0321503627&linkCode=as2&tag=paulorti-20">Growing Object-Oriented Software, Guided by Tests</a></p>
+<p><a href="http://www.amazon.com/gp/product/047064320X/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=047064320X&linkCode=as2&tag=paulorti-20">Professional Test Driven Development with C#: Developing Real World Applications with TDD</a></p>
+<p>See you soon :D</p>
+</div>
+</article>
+
+<div data-type="ad" data-publisher="lqm.youvebeenhacked.site" data-zone="ron" data-format="728x90"></div>
+
+
+	
+
+
+<div id="page-navigation"> 
+        <div class="previous"> 
+         
+                <a href="/2011/11/27/coding-dojo-practice-programming/" title="Previous Post: 
+Coding Dojo - Practice programming is important !">&laquo; Coding Dojo - Practice programming is important !</a>
+         
+        </div>
+
+        <div class="next"> 
+         
+               <a href="/2013/04/16/mapreduce-com-python-utilizando-mincemeat-py/" title="next Post: 
+MapReduce com python utilizando mincemeat.py">MapReduce com python utilizando mincemeat.py &raquo; </a> 
+         
+        </div>
+</div> </div>
+      </div>
+      <footer id="footer" class="inner"><p>
+  Copyright &copy; 2014 - Paulo Ortins - Blog content under the Creative Commons <a href="http://creativecommons.org/licenses/by/2.5/">CC BY 2.5</a>
+</p>
+</footer>
+    </div>
+  </div>
+
+</body>
+</html>

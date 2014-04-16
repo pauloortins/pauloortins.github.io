@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>NoSQL Databases, why we should use, and which one we should choose - Paulo Ortins</title>
+	<meta name="author" content="Paulo Ortins">
+
+	
+	<meta name="description" content="
+		
+	">
+	
+
+	<!-- http://t.co/dKP3o1e -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+	<link rel="canonical" href="/2013/07/22/nosql-databases-why-we-should-use-and-which-one-we-should-choose/">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/css/main.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/css/syntax.css" type="text/css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	
+  	
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="left-col">
+      <div class="intrude-less">
+        <header id="header" class="inner"><div class="profilepic">
+	
+	<img src="http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160" alt="Profile Picture" style="width: 160px;" />
+	
+</div>
+<hgroup>
+  <h1><a href="/">Paulo Ortins</a></h1>
+  
+</hgroup>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/about/">about</a></li>
+  <li><a href="/archives">archives</a></li>
+</ul>
+
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		
+	</div>
+</nav></header>        
+      </div>
+    </div>
+    <div class="mid-col">
+      <div class="mid-col-container">
+        <div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">NoSQL Databases, why we should use, and which one we should choose</h1>	
+	<div class="entry-content" itemprop="articleBody"><p><strong>Introduction</strong></p>
+<p>In the last years, relational databases have been the only option when we talk about data persistence. Our unique choice have been which database we should use. Should we use a SQL Server? Should we use a MySql? Oracle? Even in these cases, some choices come by default. E.g. if we are using .NET, we almost always work with Sql Servers, if we are using Java we almost always use Oracle, ruby-mysql, python-mysql/postgre and so on.</p>
+<p>The reason is obvious, relational databases are in the field for decades, they proved to be robust for most of the applications. We can rely on them to take care of concurrency, transactions and so on. But if relational databases are reliable as I’m saying why they are losing market to NoSQL databases? Relational Databases have some problems that NoSQL Databases are resolving.</p>
+<p><br/><br />
+<strong>Problems with Relational Databases</strong></p>
+<p><br/><br />
+<strong>Impedance Mismatch</strong></p>
+<p>We use to write software using Python, Ruby, Java, .NET. What they have in common? <strong>They are object-oriented languages.</strong> But we persist the data using MySQL, Postgre, Oracle and SQL Server. What they have in common? <strong>They are relational databases.</strong> Can you spot the difference? Impedance Mismatch is the name we gave to this difference. Our memory structures are object-oriented and our databases are relational, every time we need to save or retrieve data we need to make a conversion. ORM (Object Relational Mapping) Frameworkds, like Hibernate, Entity Framework, make easier to map objects and relational databases but it’s still a issue, principally when we need high performance queries.</p>
+<p><br/><br />
+<strong>Applications are getting bigger</strong></p>
+<p>Web applications are increasing in scale. <strong>We have to store more data, we have to serve more users and we need more computing capability.</strong> To handle this scenario we have to scale. We can scale in two ways. We can scale up, that is buying better machines, more disk, more memory and so on. Or we can scale out, that is buy a lot of small machines and use them in a cluster. In big applications scale up is not an option. <strong>Bigger machines are more expensive and they have a limit, we don’t have a machine that can handle the traffic from Google or Facebook.</strong> Given this context, we need new databases, since relational database are not designed to run on clusters. Yes, you have clustered relational databases, but they work sharing a disk, that isn’t the scenario we want to have when we’re building a cluster. Some of the companies who needs to handle a lot of traffic like Google, Facebook, Amazon started to develop databases that are designed to run on clusters and this was the beginning of NoSQL era.</p>
+<p><br/><br />
+<strong>NoSQL Era</strong></p>
+<p>Nowadays, there are a lot of NoSQL databases, MongoDB, Redis, Riak, HBase, Cassandra and so on. And each one has at least one of these characteristics.</p>
+<ul>
+<li>NoSQL databases don't use SQL, some of the has query languages like MongoDB and Cassandra</li>
+<li>Usually they are open-source projects</li>
+<li>They we're built to run on clusters</li>
+<li>Schemaless, you don't have rigid schema defining the data structure</li>
+</ul>
+<p><br/><br />
+<strong>Types of NoSQL</strong></p>
+<p>NoSQL databases can be divided in 4 types. <strong>Key-value</strong>, <strong>Document-Oriented</strong>, <strong>Column-Family Databases</strong> and <strong>Graph-Oriented Databases</strong>. Let's see what are each one of these types, his characteristics and where we should be using them.</p>
+<p><br/><br />
+<strong>Key-Value Databases</strong></p>
+<p><strong>What are:</strong> A key-value store works like a simple hashtable that we are used to use in traditional languages. You can add, retrieve and delete data through keys. Since they use primary key access they tend to have a good performance and are easily scalable.</p>
+<p><strong>Examples:</strong> Riak, Redis, Memcached, Amazon's Dynamo, Project Voldemort</p>
+<p><strong>Who's using:</strong> GitHub (Riak), BestBuy (Riak), Twitter (Redis and Memcached), StackOverFlow (Redis), Instagram (Redis), Youtube (Memcached), Wikipedia (Memcached).</p>
+<p><strong>When we should use:</strong> </p>
+<ul>
+<li><strong>To store user information, like Session, Profiles, Preferences, Shopping Cart and so on.</strong> These info are often associated to a id(key). This case is exactly the best scenario to use a key-value database.</li>
+</ul>
+<p><strong>When we shouldn't use:</strong></p>
+<ul>
+<li><strong>If we need to query the data by value instead by keys.</strong> There is no way to query a key-value database by value.</li>
+<li><strong>If we need to save relationship between data.</strong> We can't relate data between two or more keys in a key-value database.</li>
+<li><strong>If we need transactions.</strong> In a key-value database, we can't roll back a operation if a failure occurs.</li>
+</ul>
+<p><br/><br />
+<strong>Document-Oriented Databases</strong></p>
+<p><strong>What are:</strong> Document-Oriented databases store data as documents. Documents can be defined as a set of maps, collections and scalar values. Documents are like rows, but unlike rows that have to have the same schema, documents can be totally different between themselves. These documents can be stored using XML, JSON or JSONB.</p>
+<p><strong>Examples:</strong> MongoDB, CouchDB, RavenDB</p>
+<p><strong>Who's using:</strong> SAP (MongoDB), Codecademy (MongoDB), Foursquare (MongoDB), NBC News (RavenDB)</p>
+<p><strong>When we should use:</strong></p>
+<ul>
+<li><strong>Logging.</strong> In a enterprise environment, each application has different logging info. Document-oriented databases don't have a fixed schema. So we can use them to store all these different info.</li>
+<li><strong>Analytics.</strong> Since they are schemaless, we can store different metrics and new metrics can be added without schema changes.</li>
+</ul>
+<p><strong>When we shouldn't use:</strong></p>
+<ul>
+<li><strong>If we need to have transactions between documents.</strong> Document-oriented databases don't support transaction between documents, if we need it, we shouldn't use a document database.</li>
+</ul>
+<p><br/><br />
+<strong>Column-Family Databases</strong></p>
+<p><strong>What are:</strong> Column-Family databases store data in column families. A column family can be defined as groups of related data that are often queried together. Let me give a example. When we have a Person class we often access their name and age together but not his salary. In this case, name and age belong to one column-family and salary belongs to another one.</p>
+<p><strong>Examples:</strong> Cassandra, HBase</p>
+<p><strong>Who's using:</strong> Ebay (Cassandra), Instagram (Cassandra), NASA (Cassandra), Twitter (Cassandra and HBase), Facebook (HBase), Yahoo!(HBase)</p>
+<p><strong>When we should use:</strong></p>
+<ul>
+<li><strong>Logging.</strong> Since we can store data with different columns, each application can write their info with their own column families.</li>
+<li><strong>Blogging Platforms.</strong> We can store each info in different column families. For example, tags in one family, categories in another one, posts in another one and so on.</li>
+</ul>
+<p><strong>When we shouldn't use:</strong></p>
+<ul>
+<li><strong>If we need ACID transactions.</strong> Cassandra doesn't support transactions.</li>
+<li><strong>Prototyping.</strong> If we analyze the Cassandra data structure, we can see that this structure is based in the pattern we expect to retrieve the data. When we are designing a prototype, we can't predict how will be the query pattern and once it changes we will have to change the column families design.</li>
+</ul>
+<p><br/><br />
+<strong>Graph-Oriented Databases</strong></p>
+<p><strong>What are:</strong> Graph databases allow us to store data as graphs. Entities can be represented as vertices and the relationships between these entities can be represented as edges. In a example, we could have 3 entities. Steve Jobs, Apple and Next. And two edges called "Founded by" that relate Apple to Steve Jobs and Next to Steve Jobs.</p>
+<p><strong>Examples:</strong> Neo4J, Infinite Graph, OrientDB</p>
+<p><strong>Who's using:</strong> Adobe (Neo4J), Cisco (Neo4J), T-Mobile (Neo4J)</p>
+<p><strong>When we should use:</strong></p>
+<ul>
+<li><strong>Connected Data.</strong> If we have data that are connected through relationship, we have a good case to use a graph database, the vertices can be people, cities, companies and edges can be "lives in", "employed by" and so on.</li>
+<li><strong>Recommendation Engines.</strong> If we represent data in graph databases, they can be used to make recommendations like "people who bought this item also bought these items" like Amazon and Netflix.</li>
+</ul>
+<p><strong>When we shouldn't use:</strong></p>
+<ul>
+<li><strong>Data model not suitable.</strong> Most of the cases are not suitable for graph databases since operations involving the whole graph are not trivial.</li>
+</ul>
+</div>
+</article>
+
+<div data-type="ad" data-publisher="lqm.youvebeenhacked.site" data-zone="ron" data-format="728x90"></div>
+
+
+	
+
+
+<div id="page-navigation"> 
+        <div class="previous"> 
+         
+                <a href="/2013/07/18/understanding-a-csharp-program/" title="Previous Post: 
+Getting CSharper #2: Understanding a C# Program">&laquo; Getting CSharper #2: Understanding a C# Program</a>
+         
+        </div>
+
+        <div class="next"> 
+         
+               <a href="/2013/08/04/getting-csharper-3-understanding-csharp-types/" title="next Post: 
+Getting CSharper #3: Understanding C# Types">Getting CSharper #3: Understanding C# Types &raquo; </a> 
+         
+        </div>
+</div> </div>
+      </div>
+      <footer id="footer" class="inner"><p>
+  Copyright &copy; 2014 - Paulo Ortins - Blog content under the Creative Commons <a href="http://creativecommons.org/licenses/by/2.5/">CC BY 2.5</a>
+</p>
+</footer>
+    </div>
+  </div>
+
+</body>
+</html>

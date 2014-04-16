@@ -6,3 +6,5 @@ paginate: 20
 name: Your New Jekyll Site
 markdown: kramdown
 pygments: true
+
+permalink: /:year/:month/:day/:title/

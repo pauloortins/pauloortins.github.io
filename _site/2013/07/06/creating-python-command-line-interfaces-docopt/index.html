@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Creating python command line applications with docopt - Paulo Ortins</title>
+	<meta name="author" content="Paulo Ortins">
+
+	
+	<meta name="description" content="
+		
+	">
+	
+
+	<!-- http://t.co/dKP3o1e -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+	<link rel="canonical" href="/2013/07/06/creating-python-command-line-interfaces-docopt/">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/css/main.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/css/syntax.css" type="text/css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	
+  	
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="left-col">
+      <div class="intrude-less">
+        <header id="header" class="inner"><div class="profilepic">
+	
+	<img src="http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png?s=160" alt="Profile Picture" style="width: 160px;" />
+	
+</div>
+<hgroup>
+  <h1><a href="/">Paulo Ortins</a></h1>
+  
+</hgroup>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/about/">about</a></li>
+  <li><a href="/archives">archives</a></li>
+</ul>
+
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		
+	</div>
+</nav></header>        
+      </div>
+    </div>
+    <div class="mid-col">
+      <div class="mid-col-container">
+        <div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Creating python command line applications with docopt</h1>	
+	<div class="entry-content" itemprop="articleBody"><p><strong>Introduction</strong></p>
+<p>Few weeks ago I wrote a blog post showing how we can write command line applications using <a href="http://docs.python.org/dev/library/argparse.html">argparse</a>, you can check out it <a href="http://pauloortins.com/creating-python-command-line-applications/" title="Creating python command-line applications">here</a>. Some people suggested me to try <a href="https://github.com/docopt/docopt">docopt</a> and this post is a result from this experience.</p>
+<p><strong>Docopt, the Pythonic command line arguments parser, that will make you smile</strong></p>
+<p><iframe width="560" height="315" src="//www.youtube.com/embed/pXhcPJK5cMc?rel=0" frameborder="0" allowfullscreen></iframe></p>
+<p>What is it ?</p>
+<p>Docopt, like optparse and argparse, is a small library that simplifies the task to write command-line interfaces. But it came with a different idea.</p>
+<p>How optparse and argparse work ? You have to read the documentation and write code that will provide guidelines to parse args. A example of this approach is the code that I wrote in my previous post. And being honest, I looked the documentation several times, trying to understand how each method works.</p>
+<pre>
+parser = argparse.ArgumentParser()
+parser.add_argument("operation", help="mathematical operation that will be performed", 
+	choices=['add', 'subtract', 'multiply', 'divide'])
+parser.add_argument("num1", help="the first number", type=int)
+parser.add_argument("num2", help="the second number", type=int)
+args = parser.parse_args()
+</pre>
+<p>How docopt works ? When we are designing a command-line interface, we write or we should write, our application documentation, right ? Docopt uses this docstring to parse the args. Look at this example extracted from documentation:</p>
+<pre>
+"""Naval Fate.
+
+Usage:
+  naval_fate.py ship new <name>...
+  naval_fate.py ship <name> move <x> <y> [--speed=<kn>]
+  naval_fate.py ship shoot <x> <y>
+  naval_fate.py mine (set|remove) <x> <y> [--moored|--drifting]
+  naval_fate.py -h | --help
+  naval_fate.py --version
+
+Options:
+  -h --help     Show this screen.
+  --version     Show version.
+  --speed=<kn>  Speed in knots [default: 10].
+  --moored      Moored (anchored) mine.
+  --drifting    Drifting mine.
+
+"""
+from docopt import docopt
+
+
+if __name__ == '__main__':
+    arguments = docopt(__doc__, version='Naval Fate 2.0')
+    print(arguments)
+</pre>
+<p>When I saw it for the first time, I had a "holy shit" moment and said "It won't work", but it works! You will avoid to read documentation and to write parse code, all you have to do is writing your application documentation and instantly you have your application running with all options and help messages working properly!</p>
+<p><strong>Coming back to the calculator example</strong></p>
+<p>In my first post about command line interfaces I built two command calculators, one using python w/o libraries and other using argparse. So to compare these libraries, let's build another calculator, in this time, using docopt. This is our documentation:</p>
+<pre>
+/*
+We are going to create a command-line calculator. The calculator should be used in this way:
+
+python calc.py add 2 2
+> 4
+
+python calc.py subtract 2 2
+> 0
+
+python calc.py multiply 2 2
+> 4
+
+python calc.py divide 2 2
+> 1
+   
+*/
+</pre>
+<p>Let's transform it in the docopt pattern, that is the pattern of almost all command-line applications.</p>
+<pre>
+"""Calculator using docopt
+
+Usage:
+  calc_docopt.py operation <num1> <num2>
+  calc_docopt.py (-h | --help)
+
+Arguments
+  <operation> Math Operation
+  <num1> First Number
+  <num2> Second Number
+
+Options:
+  -h --help     Show this screen.
+
+"""
+</pre>
+<p>Now, let's add the docopt code, don't be afraid of that. With 3-4 lines of code our parser are done.</p>
+<pre>
+"""Calculator using docopt
+
+Usage:
+  calc_docopt.py operation <num1> <num2>
+  calc_docopt.py (-h | --help)
+
+Arguments
+  <operation> Math Operation
+  <num1> First Number
+  <num2> Second Number
+
+Options:
+  -h --help     Show this screen.
+
+"""
+from docopt import docopt
+
+if __name__ == '__main__':
+    arguments = docopt(__doc__, version='Calculator with docopt')
+    print(arguments)
+</pre>
+<p><strong>Help Messages</strong></p>
+<p>Let's see some of the messages that docopt provide for us.</p>
+<p>Help message</p>
+<pre>
+python calc_docopt.py -help
+>>> Calculator using docopt
+>>>
+>>> Usage:
+>>>   calc_docopt.py <operation> <num1> <num2>
+>>>   calc_docopt.py (-h | --help)
+>>> 
+>>> Arguments
+>>>   <operation> Math Operation
+>>>   <num1> First Number
+>>>   <num2> Second Number
+>>> 
+>>> Options:
+>>>   -h --help     Show this screen.
+</pre>
+<p>Invalid Arguments</p>
+<pre>
+python calc_docopt.py
+>>> Usage:
+>>>   calc_docopt.py <operation> <num1> <num2>
+>>>   calc_docopt.py (-h | --help)
+</pre>
+<p><strong>Operations</strong></p>
+<p>Our work right now is to coding the calculator operations. I will respect the <a href="http://en.wikipedia.org/wiki/Don't_repeat_yourself">DRY’s</a> gods and copy the operations from the other post.</p>
+<pre>
+"""Calculator using docopt
+
+Usage:
+  calc_docopt.py <operation> <num1> <num2>
+  calc_docopt.py (-h | --help)
+
+Arguments
+  num1 First Number
+  num2 Second Number
+
+Options:
+  -h --help     Show this screen.
+
+"""
+from docopt import docopt
+
+if __name__ == '__main__':
+    args = docopt(__doc__, version='Calculator with docopt')
+    functions = {
+        'add': lambda num1, num2: num1 + num2,
+        'subtract': lambda num1, num2: num1 - num2,
+        'multiply': lambda num1, num2: num1 * num2,
+        'divide': lambda num1, num2: num1 / num2
+    }
+
+    print functions[args['<operation>']](int(args['<num1>']), int(args['<num2>']))
+</pre>
+<p>Our calculator now performs math operations as we expect.</p>
+<p><strong>Input Validation</strong></p>
+<p>If you are a good observer, you will see that our calculator lacks type parse/checking and operation checking. It's easier to accomplish it with argparse. But docopt doesn't have built-in input validations.</p>
+<blockquote><p>
+docopt does one thing and does it well: it implements your command-line interface. However it does not validate the input data. On the other hand there are libraries like python schema which make validating data a breeze.<br />
+- docopt documentation
+</p></blockquote>
+<p>You can get more info about python schema <a href="https://github.com/halst/schema">here</a>.</p>
+<p><strong>Conclusion</strong></p>
+<p>Docopt is a new approach to write command apps. You can easily build apps. We can only appreciate <a href="http://keleshev.com">Vladimir Keleshev's</a> work and hope that it continues to improving and why not conquest a place in python core ?</p>
+</div>
+</article>
+
+<div data-type="ad" data-publisher="lqm.youvebeenhacked.site" data-zone="ron" data-format="728x90"></div>
+
+
+	
+
+
+<div id="page-navigation"> 
+        <div class="previous"> 
+         
+                <a href="/2013/07/01/most-influential-programming-books/" title="Previous Post: 
+The Most Influential Programming Books to Me as Developer">&laquo; The Most Influential Programming Books to Me as Developer</a>
+         
+        </div>
+
+        <div class="next"> 
+         
+               <a href="/2013/07/07/what-are-code-smells/" title="next Post: 
+What are Code Smells ?">What are Code Smells ? &raquo; </a> 
+         
+        </div>
+</div> </div>
+      </div>
+      <footer id="footer" class="inner"><p>
+  Copyright &copy; 2014 - Paulo Ortins - Blog content under the Creative Commons <a href="http://creativecommons.org/licenses/by/2.5/">CC BY 2.5</a>
+</p>
+</footer>
+    </div>
+  </div>
+
+</body>
+</html>
