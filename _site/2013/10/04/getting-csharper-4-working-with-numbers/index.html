@@ -67,109 +67,151 @@
 	<h1 class="title" itemprop="name">Getting CSharper #4: Working with numbers</h1>	
 	<div class="entry-content" itemprop="articleBody"><p>Continuing our road through C#, that already covered a <a href="http://pauloortins.com/understanding-a-csharp-program/" title="Getting CSharper #2: Understanding a C# Program">basic C# program</a> and <a href="http://pauloortins.com/getting-csharper-3-understanding-csharp-types/" title="Getting CSharper #3: Understanding C# Types">how types are used in C#</a>, now we will work with numeric types that, together with string and arrays, are the most used types in C#.</p>
 <p><br/></p>
-<hr>
 <h2>Built-in numeric types</h2>
 <p>We saw in the last post that C# has some predefined types to represent numbers. To represent integers, C# has 8 types, sbyte, short, int, long and their respective unsigned versions, byte, ushort, uint and ulong. They can be used to represent numbers in the following sizes, 8 bits(<code>sbyte</code>), 16 bits(<code>short</code>), 32 bits(<code>int</code>) and 64 bits(<code>long</code>). When we need represent real numbers, C# gives to us 3 options. <code>Float</code> and <code>double</code> are normally used for scientific calculations while <code>decimal</code> is normally used for financial calculations. The table below describes each one of these types, their sizes and their ranges.</p>
-<p>[table id=1 /]</p>
+
+<table id="tablepress-1" class="tablepress tablepress-id-1">
+<thead>
+<tr class="row-1 odd">
+	<th class="column-1"><div>Type</div></th><th class="column-2"><div>Size (bits)</div></th><th class="column-3"><div>Range</div></th>
+</tr>
+</thead>
+<tbody class="row-hover">
+<tr class="row-2 even">
+	<td class="column-1">sbyte</td><td class="column-2">8</td><td class="column-3">-2^7 to 2^7 - 1</td>
+</tr>
+<tr class="row-3 odd">
+	<td class="column-1">byte</td><td class="column-2">8</td><td class="column-3">0 to 2^8 - 1</td>
+</tr>
+<tr class="row-4 even">
+	<td class="column-1">short</td><td class="column-2">16</td><td class="column-3">-2^15 to 2^15 - 1</td>
+</tr>
+<tr class="row-5 odd">
+	<td class="column-1">ushort</td><td class="column-2">16</td><td class="column-3">0 to 2^16 - 1</td>
+</tr>
+<tr class="row-6 even">
+	<td class="column-1">int</td><td class="column-2">32</td><td class="column-3">-2^31 to 2^31 - 1</td>
+</tr>
+<tr class="row-7 odd">
+	<td class="column-1">uint</td><td class="column-2">32</td><td class="column-3">0 to 2^32 - 1</td>
+</tr>
+<tr class="row-8 even">
+	<td class="column-1">long</td><td class="column-2">64</td><td class="column-3">-2^63 to 2^63 - 1</td>
+</tr>
+<tr class="row-9 odd">
+	<td class="column-1">ulong</td><td class="column-2">64</td><td class="column-3">0 to 2^64 - 1</td>
+</tr>
+<tr class="row-10 even">
+	<td class="column-1">float</td><td class="column-2">32</td><td class="column-3">-3.4 x 10^38 to 3.4 x 10^38</td>
+</tr>
+<tr class="row-11 odd">
+	<td class="column-1">double</td><td class="column-2">64</td><td class="column-3">±5.0 × 10 ^ −324 to ±1.7 × 10 ^ 308</td>
+</tr>
+<tr class="row-12 even">
+	<td class="column-1">decimal</td><td class="column-2">128</td><td class="column-3">-7.9 x 10^28 to 7.9 x 10^28</td>
+</tr>
+</tbody>
+</table>
+
 <p><br/></p>
-<hr>
 <h2>Declaring Numbers</h2>
 <p>Numbers in C# can be declared using decimal, hexadecimal or exponential notation.</p>
-<pre>
-int decimalNotation = 10; // 10
-int hexadecimalNotation = 0xA; // 10
-double exponentialNotation = 1E2; // 100
-</pre>
+
+<br/>
+<div class="highlight"><pre><code class="c#"><span class="kt">int</span> <span class="n">decimalNotation</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span> <span class="c1">// 10</span>
+<span class="kt">int</span> <span class="n">hexadecimalNotation</span> <span class="p">=</span> <span class="m">0</span><span class="n">xA</span><span class="p">;</span> <span class="c1">// 10</span>
+<span class="kt">double</span> <span class="n">exponentialNotation</span> <span class="p">=</span> <span class="m">1</span><span class="n">E2</span><span class="p">;</span> <span class="c1">// 100</span>
+</code></pre></div>
 <p><br/></p>
-<hr>
 <h2>Type Inference</h2>
 <p>When we are declaring a number, the compiler always tries to infer the type of a given number is. If a given number contains a decimal point or an exponential notation (E), the given number is a <code>double</code>. Otherwise, the compiler tries to find a integer type that can represent the given number, the following order is used: <code>int</code>, <code>uint</code>, <code>long</code> and <code>ulong</code>.</p>
-<pre>
-1.0                  // double
-1.25                 // double
-1E2                  // double
-1                    // int
-10000000000000000000 // ulong
-</pre>
+
+<br/>
+<div class="highlight"><pre><code class="c#"><span class="m">1.0</span>                  <span class="c1">// double</span>
+<span class="m">1.25</span>                 <span class="c1">// double</span>
+<span class="m">1</span><span class="n">E2</span>                  <span class="c1">// doubl</span>
+<span class="m">1</span>                    <span class="c1">// int</span>
+<span class="m">10000000000000000000</span> <span class="c1">// ulong</span>
+</code></pre></div>
 <p>When declaring a number, we can also use numeric suffixes (U, L, UL, F, D, M) to force the compiler to infer a given type.</p>
-<pre>
-1U // uint
-1L // long
-1UL // ulong
-1F // float
-1D // double
-1M // decimal
-</pre>
+
+<br/>
+<div class="highlight"><pre><code class="c#"><span class="m">1</span><span class="n">U</span> <span class="c1">// uint</span>
+<span class="m">1L</span> <span class="c1">// long</span>
+<span class="m">1</span><span class="n">UL</span> <span class="c1">// ulong</span>
+<span class="m">1F</span> <span class="c1">// float</span>
+<span class="m">1D</span> <span class="c1">// double</span>
+<span class="m">1</span><span class="n">M</span> <span class="c1">// decimal</span>
+</code></pre></div>
 <p><br/></p>
-<hr>
 <h2>Type Conversions</h2>
 <p>Numeric conversions in C# can be implicit or explicit. If the destination type can represent all the possible values that a given type can, an implicit conversion can be executed. Otherwise, if a given type can represent more values that the destination type a cast (explicit conversion) have to be performed. </p>
 <p>For example, when converting from <code>short</code> to <code>int</code>, we can make an implicit conversion, since an <code>int</code> can represents all the possible values that a <code>short</code> can represent. Otherwise, when converting from <code>long</code> to <code>int</code>, an explicit conversion is required, with possible losses, since a <code>long</code> can represent more values that an <code>int</code>. </p>
 <p>Between <code>float</code> and <code>double</code> the same thing happens, you can make an implicit conversion from a <code>float</code> to a <code>double</code>, and have to make an explicit conversion when converting from a <code>double</code> to a <code>float</code>.</p>
 <p>When converting to a <code>decimal</code>, an exception exists, all integer values can be converted implicitly to a <code>decimal</code>. Otherwise, a explicit conversion is required.</p>
-<pre>
-short shortNum = 1;
-int intNum = 1;
-long bigLongNum = 1100000000000000000;
-long smallLongNum = 1;
 
-intNum = shortNum;                 // 1 - implicit conversion
-intNum = (int)smallLongNum;        // 1 - explicit conversion
-intNum = (int)bigLongNum;          // 82706432 - explicit conversion with loss
+<br/>
+<div class="highlight"><pre><code class="c#"><span class="kt">short</span> <span class="n">shortNum</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">intNum</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+<span class="kt">long</span> <span class="n">bigLongNum</span> <span class="p">=</span> <span class="m">1100000000000000000</span><span class="p">;</span>
+<span class="kt">long</span> <span class="n">smallLongNum</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
 
-float floatNum = 1.0F; 
-double smallDoubleNum = 2.0;
-double bigDoubleNum = 10E200;
+<span class="n">intNum</span> <span class="p">=</span> <span class="n">shortNum</span><span class="p">;</span>                 <span class="c1">// 1 - implicit conversion</span>
+<span class="n">intNum</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">smallLongNum</span><span class="p">;</span>        <span class="c1">// 1 - explicit conversion</span>
+<span class="n">intNum</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">bigLongNum</span><span class="p">;</span>          <span class="c1">// 82706432 - explicit conversion with loss</span>
 
-smallDoubleNum = floatNum;         // 1.0 - implicit conversion
-floatNum = (float)smallDoubleNum;  // 1.0 - explicit conversion
-floatNum = (float)bigDoubleNum;    // +infinite - explicit conversion with loss
+<span class="kt">float</span> <span class="n">floatNum</span> <span class="p">=</span> <span class="m">1.0F</span><span class="p">;</span> 
+<span class="kt">double</span> <span class="n">smallDoubleNum</span> <span class="p">=</span> <span class="m">2.0</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">bigDoubleNum</span> <span class="p">=</span> <span class="m">10</span><span class="n">E200</span><span class="p">;</span>
 
-decimal decimalNum = 0;
+<span class="n">smallDoubleNum</span> <span class="p">=</span> <span class="n">floatNum</span><span class="p">;</span>         <span class="c1">// 1.0 - implicit conversion</span>
+<span class="n">floatNum</span> <span class="p">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">smallDoubleNum</span><span class="p">;</span>  <span class="c1">// 1.0 - explicit conversion</span>
+<span class="n">floatNum</span> <span class="p">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">bigDoubleNum</span><span class="p">;</span>    <span class="c1">// +infinite - explicit conversion with loss</span>
 
-decimalNum = 1U;                   // 1
-decimalNum = 1;                    // 1
-decimalNum = 1L;                   // 1
-decimalNum = 1UL;                  // 1
-decimalNum = (decimal) 1F;         // 1
-decimalNum = (decimal) 1D;         // 1
+<span class="kt">decimal</span> <span class="n">decimalNum</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
 
-</pre>
+<span class="n">decimalNum</span> <span class="p">=</span> <span class="m">1</span><span class="n">U</span><span class="p">;</span>                   <span class="c1">// 1</span>
+<span class="n">decimalNum</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>                    <span class="c1">// 1</span>
+<span class="n">decimalNum</span> <span class="p">=</span> <span class="m">1L</span><span class="p">;</span>                   <span class="c1">// 1</span>
+<span class="n">decimalNum</span> <span class="p">=</span> <span class="m">1</span><span class="n">UL</span><span class="p">;</span>                  <span class="c1">// 1</span>
+<span class="n">decimalNum</span> <span class="p">=</span> <span class="p">(</span><span class="kt">decimal</span><span class="p">)</span> <span class="m">1F</span><span class="p">;</span>         <span class="c1">// 1</span>
+<span class="n">decimalNum</span> <span class="p">=</span> <span class="p">(</span><span class="kt">decimal</span><span class="p">)</span> <span class="m">1D</span><span class="p">;</span>         <span class="c1">// 1</span>
+</code></pre></div>
+
 <p><br/></p>
-<hr/>
 <h2>Operators</h2>
 <p>C# has the same basic operators than other languages (<code>+</code>,<code>-</code>,<code>/</code>,<code>*</code>) and due to being a C-Like, it also has unary operators with before and after increments/decrements.</p>
-<pre>
-int a = 3, b = 2;
 
-Console.WriteLine(a + b); // 5
-Console.WriteLine(a - b); // 1
-Console.WriteLine(a/b);   // 1 - divisions between integers are truncated
-Console.WriteLine(a*b);   // 6
-Console.WriteLine(a++);   // 3 - increment after to print the number
-Console.WriteLine(++a);   // 5 - increment before to print the number
-Console.WriteLine(b--);   // 2 - decrement after to print the number
-Console.WriteLine(--b);   // 0 - decrement before to print the number
-</pre>
+<br/>
+<div class="highlight"><pre><code class="c#"><span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">b</span> <span class="p">=</span> <span class="m">2</span><span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">a</span> <span class="p">+</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// 5</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">a</span> <span class="p">-</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// 1</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">a</span><span class="p">/</span><span class="n">b</span><span class="p">);</span>   <span class="c1">// 1 - divisions between integers are truncated</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">a</span><span class="p">*</span><span class="n">b</span><span class="p">);</span>   <span class="c1">// 6</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">a</span><span class="p">++);</span>   <span class="c1">// 3 - increment after to print the number</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(++</span><span class="n">a</span><span class="p">);</span>   <span class="c1">// 5 - increment before to print the number</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">b</span><span class="p">--);</span>   <span class="c1">// 2 - decrement after to print the number</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(--</span><span class="n">b</span><span class="p">);</span>   <span class="c1">// 0 - decrement before to print the number</span>
+</code></pre></div>
 <p><br/></p>
-<hr>
 <h2>Double or Decimal</h2>
 <p><code>Decimal</code> should be used when accuracy is important, money for example. Otherwise, we can use <code>double</code> or <code>float</code>. A common mistake when learning C# is to use <code>double</code> to represent financial values, there is a reason to avoid it, <code>float</code> and <code>double</code> are represented internally in base 2, that is, it can only represent precisely base 2 numbers, while <code>decimal</code> is represented in base 10, that is, it can represent floating point numbers more precisely but there is a cost, performance.</p>
-<pre>
-double doubleA = 0.1F;
-double doubleB = 1F;
 
-Console.WriteLine(doubleB - 10 * doubleA);   // -1,49011611938477E-08
-Console.WriteLine(doubleB + 10 * doubleA);   // 2,00000001490116
+<br/>
+<div class="highlight"><pre><code class="c#"><span class="kt">double</span> <span class="n">doubleA</span> <span class="p">=</span> <span class="m">0.1F</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">doubleB</span> <span class="p">=</span> <span class="m">1F</span><span class="p">;</span>
 
-decimal decimalA = 0.1M;
-decimal decimalB = 1M;
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">doubleB</span> <span class="p">-</span> <span class="m">10</span> <span class="p">*</span> <span class="n">doubleA</span><span class="p">);</span>   <span class="c1">// -1,49011611938477E-08</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">doubleB</span> <span class="p">+</span> <span class="m">10</span> <span class="p">*</span> <span class="n">doubleA</span><span class="p">);</span>   <span class="c1">// 2,00000001490116</span>
 
-Console.WriteLine(decimalB - 10 * decimalA); // 0,0
-Console.WriteLine(decimalB + 10 * decimalA); // 2,0
-</pre>
+<span class="kt">decimal</span> <span class="n">decimalA</span> <span class="p">=</span> <span class="m">0.1</span><span class="n">M</span><span class="p">;</span>
+<span class="kt">decimal</span> <span class="n">decimalB</span> <span class="p">=</span> <span class="m">1</span><span class="n">M</span><span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">decimalB</span> <span class="p">-</span> <span class="m">10</span> <span class="p">*</span> <span class="n">decimalA</span><span class="p">);</span> <span class="c1">// 0,0</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">decimalB</span> <span class="p">+</span> <span class="m">10</span> <span class="p">*</span> <span class="n">decimalA</span><span class="p">);</span> <span class="c1">// 2,0</span>
+</code></pre></div>
 <p><br/></p>
-<hr>
 <h2>See also other posts from this series</h2>
 <p><a href="http://pauloortins.com/getting-csharper-1-a-short-introduction-to-csharp/" title="Getting CSharper #1: A short introduction to C#">Getting CSharper #1: A short introduction to C#</a><br />
 <a href="http://pauloortins.com/understanding-a-csharp-program/" title="Getting CSharper #2: Understanding a C# Program">Getting CSharper #2: Understanding a C# Program</a><br />
