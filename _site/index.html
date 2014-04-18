@@ -953,11 +953,9 @@ Deploying from TFS's git repository to Windows Azure is not yet supported. It is
 </p></blockquote>
 <p>We can’t (until today) configure our Azure Website to deploy from a Git repository through Azure’s Portal. We end up, through the help of others blogs , configuring a trigger on team foundation service to publish our project after an successful commit. Community is all about share what we learn, so I decided to write a step by step tutorial that maybe can help someone with the same difficulties that we had or maybe we can receive more feedback and we improve even more our solution.</p>
 <p><br/></p>
-<hr>
 <h2>Tutorial</h2>
 <p>First of all, I will assume that you already have a Team Foundation Service Account and an Azure Account, if you don't have yet, you can create them at <a href="http://tfs.visualstudio.com/">TFS</a> and at <a href="http://www.windowsazure.com/en-us/">Azure</a>.</p>
 <p><br/></p>
-<hr>
 <h2>1. Creating a Team Foundation Service + Git project.</h2>
 <p>1.1 - Logged in your TFS Account. Click in "New Team Project + Git" button.</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/09/tfs-account.png"><img src="http://pauloortins.com/wp-content/uploads/2013/09/tfs-account.png" alt="tfs-account" width="811" height="223" class="alignnone size-full wp-image-1025" /></a></p>
@@ -968,7 +966,6 @@ Deploying from TFS's git repository to Windows Azure is not yet supported. It is
 1.3 - Click on "Navigate to project" and you will see your project info.</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/09/project-created.png"><img src="http://pauloortins.com/wp-content/uploads/2013/09/project-created.png" alt="project-created" width="761" height="391" class="alignnone size-full wp-image-1031" /></a></p>
 <p><br/></p>
-<hr>
 <h2>2. Creating a WebApp</h2>
 <p>2.1 - Click on "Open new instance of Visual Studio" to open an Visual Studio instance linked to your project.</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/09/open-new-instance.png"><img src="http://pauloortins.com/wp-content/uploads/2013/09/open-new-instance.png" alt="open-new-instance" width="272" height="200" class="alignnone size-full wp-image-1035" /></a></p>
@@ -984,7 +981,6 @@ Deploying from TFS's git repository to Windows Azure is not yet supported. It is
 2.4 - Commit it. Now we have a deployable project. The next step is to create our Azure WebSite.</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/09/commit-webapp.png"><img src="http://pauloortins.com/wp-content/uploads/2013/09/commit-webapp.png" alt="commit-webapp" width="318" height="525" class="alignnone size-full wp-image-1043" /></a></p>
 <p><br/></p>
-<hr>
 <h2>3 - Creating the Azure WebSite</h2>
 <p>3.1 - Logged in your Azure Portal, create a new azure website.</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/09/creating-web-site.png"><img src="http://pauloortins.com/wp-content/uploads/2013/09/creating-web-site.png" alt="creating-web-site" width="935" height="536" class="alignnone size-full wp-image-1045" /></a></p>
@@ -992,7 +988,6 @@ Deploying from TFS's git repository to Windows Azure is not yet supported. It is
 3.2 - Download the publish profile.</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/09/download-publish-profile.png"><img src="http://pauloortins.com/wp-content/uploads/2013/09/download-publish-profile.png" alt="download-publish-profile" width="685" height="547" class="alignnone size-full wp-image-1047" /></a></p>
 <p><br/></p>
-<hr>
 <h2>4 - Configuring the automated deploy</h2>
 <p>4.1 - Import the publish profile that we downloaded. It will create a publish profile folder in our MVC project.</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/09/importing-publish-profile.png"><img src="http://pauloortins.com/wp-content/uploads/2013/09/importing-publish-profile.png" alt="importing-publish-profile" width="1105" height="589" class="alignnone size-full wp-image-1048" /></a></p>
@@ -1015,7 +1010,6 @@ Deploying from TFS's git repository to Windows Azure is not yet supported. It is
 <p>On your TFS Account -> Build Section, you need to add the build services to your account in the following section.</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/09/enable-build.png"><img src="http://pauloortins.com/wp-content/uploads/2013/09/enable-build.png" alt="enable-build" width="633" height="236" class="alignnone size-full wp-image-1053" /></a></p>
 <p><br/></p>
-<hr>
 <h2>5 - Testing the happy path</h2>
 <p>5.1 - Let's make a change in one of our files, Index.cshtml.</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/09/change.png"><img src="http://pauloortins.com/wp-content/uploads/2013/09/change.png" alt="change" width="976" height="376" class="alignnone size-full wp-image-1059" /></a></p>
@@ -1031,7 +1025,6 @@ Deploying from TFS's git repository to Windows Azure is not yet supported. It is
 5.4 - After the build the finished, the WebApp was deployed automatically.</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/09/website.png"><img src="http://pauloortins.com/wp-content/uploads/2013/09/website.png" alt="website" width="1125" height="384" class="alignnone size-full wp-image-1063" /></a></p>
 <p><br/></p>
-<hr>
 <h2>Conclusion</h2>
 <p>This is it. I hope this post might help someone. You can also feel free to suggest an improvement in this process!</p>
 
