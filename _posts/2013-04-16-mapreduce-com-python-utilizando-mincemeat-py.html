@@ -26,7 +26,7 @@ Após a fase de Reduce, os dados são sumarizados e disponibilizados.</li>
 <p><strong>Mincemeat.py</strong></p>
 <p>O Mincemeat.py é uma implementação lightweight do MapReduce (apenas 1 arquivo com menos de 20kb) na linguagem python. Ele é open source e pode ser encontrado no GitHub (https://github.com/michaelfairley/mincemeatpy).</p>
 <p><strong>Exemplo de aplicação usando o Mincemeat.py</strong></p>
-<pre language="python">
+{% highlight python %} 
 import mincemeat
 data = ["Humpty Dumpty sat on a wall",
  "Humpty Dumpty had a great fall";,
@@ -51,7 +51,7 @@ s.reducefn = reducefn
 
 results = s.run_server(password=&quot;changeme&quot;)
 print results
-</pre>
+{% endhighlight %}
 <p>O exemplo acima é um programa que tem como objetivo contar o número de vezes em que cada palavra se repete.</p>
 <p>O exemplo utiliza a funcão mapfn que irá transformar os dados em um modelo de dados intermediário composto de chave/valor, onde a chave é a palavra e o valor será igual a 1.</p>
 <p>Após isso a função de reduce irá somar o número de aparições de cada palavra somando os valores que compartilham a mesma chave.</p>

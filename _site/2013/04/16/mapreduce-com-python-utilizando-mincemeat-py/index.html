@@ -87,32 +87,32 @@ Após a fase de Reduce, os dados são sumarizados e disponibilizados.</li>
 <p><strong>Mincemeat.py</strong></p>
 <p>O Mincemeat.py é uma implementação lightweight do MapReduce (apenas 1 arquivo com menos de 20kb) na linguagem python. Ele é open source e pode ser encontrado no GitHub (https://github.com/michaelfairley/mincemeatpy).</p>
 <p><strong>Exemplo de aplicação usando o Mincemeat.py</strong></p>
-<pre language="python">
-import mincemeat
-data = ["Humpty Dumpty sat on a wall",
- "Humpty Dumpty had a great fall";,
- "All the King's horses and all the King's men",
- "Couldn't put Humpty together again",
- ]
-# The data source can be any dictionary-like object
-datasource = dict(enumerate(data))
+<div class="highlight"><pre><code class="python"> 
+<span class="kn">import</span> <span class="nn">mincemeat</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Humpty Dumpty sat on a wall&quot;</span><span class="p">,</span>
+ <span class="s">&quot;Humpty Dumpty had a great fall&quot;</span><span class="p">;,</span>
+ <span class="s">&quot;All the King&#39;s horses and all the King&#39;s men&quot;</span><span class="p">,</span>
+ <span class="s">&quot;Couldn&#39;t put Humpty together again&quot;</span><span class="p">,</span>
+ <span class="p">]</span>
+<span class="c"># The data source can be any dictionary-like object</span>
+<span class="n">datasource</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 
-def mapfn(k, v):
- for w in v.split():
- yield w, 1
+<span class="k">def</span> <span class="nf">mapfn</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+ <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+ <span class="k">yield</span> <span class="n">w</span><span class="p">,</span> <span class="mi">1</span>
 
-def reducefn(k, vs):
- result = sum(vs)
- return result
+<span class="k">def</span> <span class="nf">reducefn</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">vs</span><span class="p">):</span>
+ <span class="n">result</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">vs</span><span class="p">)</span>
+ <span class="k">return</span> <span class="n">result</span>
 
-s = mincemeat.Server()
-s.datasource = datasource
-s.mapfn = mapfn
-s.reducefn = reducefn
+<span class="n">s</span> <span class="o">=</span> <span class="n">mincemeat</span><span class="o">.</span><span class="n">Server</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">datasource</span> <span class="o">=</span> <span class="n">datasource</span>
+<span class="n">s</span><span class="o">.</span><span class="n">mapfn</span> <span class="o">=</span> <span class="n">mapfn</span>
+<span class="n">s</span><span class="o">.</span><span class="n">reducefn</span> <span class="o">=</span> <span class="n">reducefn</span>
 
-results = s.run_server(password=&quot;changeme&quot;)
-print results
-</pre>
+<span class="n">results</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">password</span><span class="o">=&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">changeme</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;)</span>
+<span class="k">print</span> <span class="n">results</span>
+</code></pre></div>
 <p>O exemplo acima é um programa que tem como objetivo contar o número de vezes em que cada palavra se repete.</p>
 <p>O exemplo utiliza a funcão mapfn que irá transformar os dados em um modelo de dados intermediário composto de chave/valor, onde a chave é a palavra e o valor será igual a 1.</p>
 <p>Após isso a função de reduce irá somar o número de aparições de cada palavra somando os valores que compartilham a mesma chave.</p>
