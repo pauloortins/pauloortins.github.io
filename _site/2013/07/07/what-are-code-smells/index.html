@@ -65,7 +65,7 @@
       <div class="mid-col-container">
         <div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name">What are Code Smells ?</h1>	
-	<div class="entry-content" itemprop="articleBody"><p><strong>What are Code Smells ?</strong></p>
+	<div class="entry-content" itemprop="articleBody"><p><h2>What are Code Smells ?</h2></p>
 <blockquote><p>
 The notion describing the "when" we should apply refactoring techniques in our code.<br />
 - Kent Beck
@@ -81,7 +81,7 @@ A code smell is a surface indication that usually corresponds to a deeper proble
  Code smells are screams from our code trying to tell us that we should stop and think better in what we're doing.<br />
 - Myself
 </p></blockquote>
-<p><strong>Code smells can ruin our project</strong></p>
+<p><h2>Code smells can ruin our project</h2></p>
 <ul>
 <li>Code smells will slow down the team.</li>
 <li>Code smells will increase the risk of bugs.</li>
@@ -90,7 +90,7 @@ A code smell is a surface indication that usually corresponds to a deeper proble
 <li>Code smells will make more difficulty to programmers to make changes and consequently generate value for our clients.</li>
 <li>Code smells, sometimes, can make the project be cancelled.</li>
 </ul>
-<p><strong>How can I discover a code smell ?</strong></p>
+<p><h2>How can I discover a code smell ?</h2></p>
 <p>Several programmers and writers have been talking about code smells since 90s when Kent Beck invented this concept. A lot of lists were created to catalog and be used as guidelines to fight against code smells in our projects. Below I made my list with the worst code smells in my opinion.</p>
 <p><strong>Duplicated Code</strong></p>
 <p>It's probably the most seen code smell. If you see the same code block twice, it's already a signal that you should stop and do a refactoring.</p>
@@ -118,55 +118,53 @@ them relevant. Names are too important to treat carelessly.<br />
 - Robert C. Martin aka Uncle Bob</p></blockquote>
 <p>Names plays a important role in software development. We spent more time reading code than writing code so we should care about our code readability, we should care about the names that we are giving to our variables, functions, classes and so on. Below are some name guidelines that we can use to achieve a better code.</p>
 <p><strong>Choose descriptive names.</strong> Look at this code below. What it does ? What is the software domain ? We know nothing about it. For me, it’s only a bunch of non-sense code.</p>
-<pre>
-public String getWinner(String p1, String p2) {
-    if (p1 == 'r' && p2 == 's') {
-        return 'r';
-    }
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="n">String</span> <span class="nf">getWinner</span><span class="o">(</span><span class="n">String</span> <span class="n">p1</span><span class="o">,</span> <span class="n">String</span> <span class="n">p2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">p1</span> <span class="o">==</span> <span class="sc">&#39;r&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">p2</span> <span class="o">==</span> <span class="sc">&#39;s&#39;</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="sc">&#39;r&#39;</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    if (p1 == 's' && p2 == 'p') {
-        return 's';
-    }
+    <span class="k">if</span> <span class="o">(</span><span class="n">p1</span> <span class="o">==</span> <span class="sc">&#39;s&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">p2</span> <span class="o">==</span> <span class="sc">&#39;p&#39;</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="sc">&#39;s&#39;</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    if (p1 == 'p' && p2 == 'r') {
-        return 'p'
-    }
+    <span class="k">if</span> <span class="o">(</span><span class="n">p1</span> <span class="o">==</span> <span class="sc">&#39;p&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">p2</span> <span class="o">==</span> <span class="sc">&#39;r&#39;</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="sc">&#39;p&#39;</span>
+    <span class="o">}</span>
 
-    return 'd'
-}
-</pre>
+    <span class="k">return</span> <span class="sc">&#39;d&#39;</span>
+<span class="o">}</span>
+</code></pre></div>
 <p>Now look at this code below. It’s exactly the same code but with better names. Now, we know what the code does and it's easier to evolve and maintain.</p>
-<pre>
-/*
-Changed the code to adopt best practices - 07/07/2013.
-*/
+<div class="highlight"><pre><code class="java"><span class="cm">/*</span>
+<span class="cm">Changed the code to adopt best practices - 07/07/2013.</span>
+<span class="cm">*/</span>
 
-public enum PlaysTypes
-{
-    ROCK,PAPER, SCISSOR;
-}
+<span class="kd">public</span> <span class="kd">enum</span> <span class="n">PlaysTypes</span>
+<span class="o">{</span>
+    <span class="n">ROCK</span><span class="o">,</span><span class="n">PAPER</span><span class="o">,</span> <span class="n">SCISSOR</span><span class="o">;</span>
+<span class="o">}</span>
 
-public enum WinnersTypes
-{
-    ROCK,PAPER, SCISSOR, DRAW;   
-}      
+<span class="kd">public</span> <span class="kd">enum</span> <span class="n">WinnersTypes</span>
+<span class="o">{</span>
+    <span class="n">ROCK</span><span class="o">,</span><span class="n">PAPER</span><span class="o">,</span> <span class="n">SCISSOR</span><span class="o">,</span> <span class="n">DRAW</span><span class="o">;</span>   
+<span class="o">}</span>      
 
-public WinnersTypes judgeWinner(PlaysTypes play1, PlaysTypes play2) {
-    if (play1 == PlaysTypes.ROCK && play2 == PlaysTypes.SCISSOR) {
-        return WinnersTypes.ROCK;
-    }
+<span class="kd">public</span> <span class="n">WinnersTypes</span> <span class="nf">judgeWinner</span><span class="o">(</span><span class="n">PlaysTypes</span> <span class="n">play1</span><span class="o">,</span> <span class="n">PlaysTypes</span> <span class="n">play2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">play1</span> <span class="o">==</span> <span class="n">PlaysTypes</span><span class="o">.</span><span class="na">ROCK</span> <span class="o">&amp;&amp;</span> <span class="n">play2</span> <span class="o">==</span> <span class="n">PlaysTypes</span><span class="o">.</span><span class="na">SCISSOR</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">WinnersTypes</span><span class="o">.</span><span class="na">ROCK</span><span class="o">;</span>
+    <span class="o">}</span>
     
-    if (play1 == PlaysTypes.SCISSOR && play2 == PlaysTypes.PAPER) {
-        return WinnersTypes.SCISSOR;
-    }
+    <span class="k">if</span> <span class="o">(</span><span class="n">play1</span> <span class="o">==</span> <span class="n">PlaysTypes</span><span class="o">.</span><span class="na">SCISSOR</span> <span class="o">&amp;&amp;</span> <span class="n">play2</span> <span class="o">==</span> <span class="n">PlaysTypes</span><span class="o">.</span><span class="na">PAPER</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">WinnersTypes</span><span class="o">.</span><span class="na">SCISSOR</span><span class="o">;</span>
+    <span class="o">}</span>
     
-    if (play1 == PlaysTypes.PAPER && play2 == PlaysTypes.ROCK) {
-        return WinnersTypes.PAPER;
-    }
+    <span class="k">if</span> <span class="o">(</span><span class="n">play1</span> <span class="o">==</span> <span class="n">PlaysTypes</span><span class="o">.</span><span class="na">PAPER</span> <span class="o">&amp;&amp;</span> <span class="n">play2</span> <span class="o">==</span> <span class="n">PlaysTypes</span><span class="o">.</span><span class="na">ROCK</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">WinnersTypes</span><span class="o">.</span><span class="na">PAPER</span><span class="o">;</span>
+    <span class="o">}</span>
             
-    return WinnersTypes.DRAW;
-}
-</pre>
+    <span class="k">return</span> <span class="n">WinnersTypes</span><span class="o">.</span><span class="na">DRAW</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div>
 <p><strong>Use standard names when possible.</strong> It's easier to understand names that are based in conventions or standards. If you are using a MVC architecture, we should name our controllers in this way <em>xxxController</em>. If we are applying some design pattern, is good to give names like <em>xxxxSingleton </em>or <em>xxxAdapter</em>.<br />
 Your own project should have some standards. Let's respect them.</p>
 <p><strong>Avoid encoding and Hungarian Notation.</strong> Once I was working in a project where we should use the following convention:</p>
@@ -184,21 +182,20 @@ Pint_age
 </pre>
 <p>Today's environments provide us all the info that we need. We can rely on them.</p>
 <p><strong>Names should describe everything that a code does.</strong> Don't use simple names for functions that do more than one thing. Look at the code below.</p>
-<pre>
-public Connection getConnection() {
-    if (connection == null) {
-        connection = new Connection();
-    }
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="n">Connection</span> <span class="nf">getConnection</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">connection</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">connection</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Connection</span><span class="o">();</span>
+    <span class="o">}</span>
 
-    return connection;
-}
-</pre>
+    <span class="k">return</span> <span class="n">connection</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div>
 <p>This function does more than only get a connection. If connection is null, it also creates a connection. A better name could be <em>createOrReturnConnection</em>.</p>
-<p><strong>Code Smell's Lists</strong></p>
+<p><h2>Code Smell's Lists</h2></p>
 <p>Other people also shared their smells list. You can check out the lists below.</p>
 <p><a href="http://www.codinghorror.com/blog/2006/05/code-smells.html">Jeff Atwood's List</a><br />
 <a href="http://c2.com/cgi/wiki?CodeSmell">Cunningham's List</a></p>
-<p><strong>Books that cover Code Smells and Code Refactoring</strong></p>
+<p><h2>Books that cover Code Smells and Code Refactoring</h2></p>
 <p><a href="http://www.amazon.com/gp/product/0201485672/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0201485672&linkCode=as2&tag=paulorti-20">Refactoring: Improving the Design of Existing Code</a><br />
 <a href="http://www.amazon.com/gp/product/0132350882/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0132350882&linkCode=as2&tag=paulorti-20">Clean Code: A Handbook of Agile Software Craftsmanship</a></p>
 </div>
