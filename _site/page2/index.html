@@ -501,49 +501,47 @@ In the next post, I will show how to use <strong>Jasmine</strong> in practice, c
 <p>Para instalar o MiniProfiler basta executarmos o comando <em>Install-Package MiniProfiler.MVC3</em> no Package Manager Console.<br />
 Nota: a versão é MVC3 mesmo !</p>
 <p><a href="http://pauloortins.files.wordpress.com/2013/04/instalando.png"><img class="alignnone size-full wp-image-239" alt="Instalando" src="http://pauloortins.com/wp-content/uploads/2013/04/instalando1.png" width="710" height="382" /></a></p>
-<pre>
-@using StackExchange.Profiling @* Usando o MiniProfiler *@
+<div class="highlight"><pre><code class="html">@using StackExchange.Profiling @* Usando o MiniProfiler *@
 
-<!DOCTYPE html>
-<html>
-<head></head>
-<body>
-   <header></header>
-   <footer></footer>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+   <span class="nt">&lt;header&gt;&lt;/header&gt;</span>
+   <span class="nt">&lt;footer&gt;&lt;/footer&gt;</span>
 
-   @Scripts.Render("~/bundles/jquery")
-   @RenderSection("scripts", required: false)
+   @Scripts.Render(&quot;~/bundles/jquery&quot;)
+   @RenderSection(&quot;scripts&quot;, required: false)
 
    @* Renderizando CSS e Javascript*@
    @MiniProfiler.RenderIncludes()
-</body>
-</html>
-</pre>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
 <p>Adicionando os arquivos css e javascript ao final da tag <em>body</em> no arquivo <em>_Layout.shtml</em>.</p>
 <p>Por último vamos configurar alguns Steps para demonstração e pronto, temos o MiniProfiler funcionando !</p>
-<pre>
-public ActionResult Index()
-{
-   var profiler = MiniProfiler.Current; // it's ok if this is null
-   using (profiler.Step("Alterando Mensagem Inicial"))
-   {
-      ViewBag.Message = "Nova mensagem inicial";
-   }
-   using (profiler.Step("Sub-Steps"))
-   {
-      using (profiler.Step("Sleep 100ms"))
-      {
-         Thread.Sleep(100);
-      }
-      using (profiler.Step("Sleep 250ms"))
-      {
-         Thread.Sleep(250);
-      }
-   }
+<div class="highlight"><pre><code class="c#"><span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Index</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="kt">var</span> <span class="n">profiler</span> <span class="p">=</span> <span class="n">MiniProfiler</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span> <span class="c1">// it&#39;s ok if this is null</span>
+   <span class="k">using</span> <span class="p">(</span><span class="n">profiler</span><span class="p">.</span><span class="n">Step</span><span class="p">(</span><span class="s">&quot;Alterando Mensagem Inicial&quot;</span><span class="p">))</span>
+   <span class="p">{</span>
+      <span class="n">ViewBag</span><span class="p">.</span><span class="n">Message</span> <span class="p">=</span> <span class="s">&quot;Nova mensagem inicial&quot;</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="k">using</span> <span class="p">(</span><span class="n">profiler</span><span class="p">.</span><span class="n">Step</span><span class="p">(</span><span class="s">&quot;Sub-Steps&quot;</span><span class="p">))</span>
+   <span class="p">{</span>
+      <span class="k">using</span> <span class="p">(</span><span class="n">profiler</span><span class="p">.</span><span class="n">Step</span><span class="p">(</span><span class="s">&quot;Sleep 100ms&quot;</span><span class="p">))</span>
+      <span class="p">{</span>
+         <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">using</span> <span class="p">(</span><span class="n">profiler</span><span class="p">.</span><span class="n">Step</span><span class="p">(</span><span class="s">&quot;Sleep 250ms&quot;</span><span class="p">))</span>
+      <span class="p">{</span>
+         <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">250</span><span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
 
-   return View();
-}
-</pre>
+   <span class="k">return</span> <span class="nf">View</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Se tudo ocorreu bem, devemos ver uma tela parecida com essa, onde podemos ver o tempo de execução de cada parte do nosso código ! Rápido, fácil, e pronto pra produção !</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/04/results.png"><img class="alignnone size-full wp-image-250" alt="results" src="http://pauloortins.com/wp-content/uploads/2013/04/results.png" width="710" height="503" /></a></p>
 <p><strong>Recursos Utilizados:</strong></p>

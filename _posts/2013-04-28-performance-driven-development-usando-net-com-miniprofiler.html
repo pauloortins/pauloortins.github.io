@@ -16,7 +16,7 @@ date: 2013-04-28
 <p>Para instalar o MiniProfiler basta executarmos o comando <em>Install-Package MiniProfiler.MVC3</em> no Package Manager Console.<br />
 Nota: a versão é MVC3 mesmo !</p>
 <p><a href="http://pauloortins.files.wordpress.com/2013/04/instalando.png"><img class="alignnone size-full wp-image-239" alt="Instalando" src="http://pauloortins.com/wp-content/uploads/2013/04/instalando1.png" width="710" height="382" /></a></p>
-<pre>
+{% highlight html %}
 @using StackExchange.Profiling @* Usando o MiniProfiler *@
 
 <!DOCTYPE html>
@@ -33,10 +33,10 @@ Nota: a versão é MVC3 mesmo !</p>
    @MiniProfiler.RenderIncludes()
 </body>
 </html>
-</pre>
+{% endhighlight %}
 <p>Adicionando os arquivos css e javascript ao final da tag <em>body</em> no arquivo <em>_Layout.shtml</em>.</p>
 <p>Por último vamos configurar alguns Steps para demonstração e pronto, temos o MiniProfiler funcionando !</p>
-<pre>
+{% highlight c# %}
 public ActionResult Index()
 {
    var profiler = MiniProfiler.Current; // it's ok if this is null
@@ -58,7 +58,7 @@ public ActionResult Index()
 
    return View();
 }
-</pre>
+{% endhighlight %}
 <p>Se tudo ocorreu bem, devemos ver uma tela parecida com essa, onde podemos ver o tempo de execução de cada parte do nosso código ! Rápido, fácil, e pronto pra produção !</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/04/results.png"><img class="alignnone size-full wp-image-250" alt="results" src="http://pauloortins.com/wp-content/uploads/2013/04/results.png" width="710" height="503" /></a></p>
 <p><strong>Recursos Utilizados:</strong></p>
