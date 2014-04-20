@@ -22,13 +22,13 @@ date: 2013-05-06
 <p><strong>How Jasmine works</strong></p>
 <p><em>Describe</em></p>
 <p>A Jasmine test suite starts with a <em>describe</em> declaration that is a function that receive two parameters, the test suite name, and another function that will implement the tests.</p>
-<pre>
+{% highlight javascript %}
 describe("My test suite", function() {});
-</pre>
+{% endhighlight %}
 <p><br/><br />
 <em>It</em></p>
 <p>The tests are implemented by the <em>It</em> function, that as <em>describe</em>, receive two parameters, the test name, and the function that represents the test.</p>
-<pre>
+{% highlight javascript %}
 describe("My test suite", function() {
   
   it("testing a positive case", function() {
@@ -38,11 +38,11 @@ describe("My test suite", function() {
   });
 
 });
-</pre>
+{% endhighlight %}
 <p><br/><br />
 <em>Expect/Matchers</em></p>
 <p>The <em>expects</em> in jasmine are made by the <em>matchers</em>, that will compare the actual value with the expected value. The matchers can execute a negative assert using the <em>not</em> operator.</p>
-<pre>
+{% highlight javascript %}
 describe("My test suite", function() {
   
   it("testing a positive case", function() {
@@ -54,10 +54,10 @@ describe("My test suite", function() {
   });
 
 });
-</pre>
+{% endhighlight %}
 <p><br/></p>
 <p>The Jasmine by default has a lot of <em>matchers</em>, but it's extensible, new <em>matchers</em> can be added to <em>framework</em>.</p>
-<pre>
+{% highlight javascript %}
 
 beforeEach(function() {
   this.addMatchers({
@@ -67,11 +67,11 @@ beforeEach(function() {
   });
 });
 
-</pre>
+{% endhighlight %}
 <p><br/><br />
 <em>Setup/Teardown</em></p>
 <p>Jasmine has support to <em>Setup</em> (functions that will be executed <strong>before</strong> each test) and to the <em>Teardown</em> (functions that will be executed <strong>after</strong> each test).</p>
-<pre>
+{% highlight javascript %}
 
 describe("My test suite", function() {
   var foo;
@@ -86,12 +86,12 @@ describe("My test suite", function() {
 
 });
 
-</pre>
+{% endhighlight %}
 <p><br/><br />
 <em>Spies</em></p>
 <p>Jasmine has support to <em>Mocks</em> using <em>Spies</em>, and also provide some custom matchers to make asserts using spies.</p>
 <p><em>toHaveBeenCalled</em>, will return true if the spy was called</p>
-<pre>
+{% highlight javascript %}
 
 describe("My suite test", function() {
   var student, grade;
@@ -113,10 +113,10 @@ describe("My suite test", function() {
   });
 });
 
-</pre>
+{% endhighlight %}
 <p><br/><br />
 <em>andReturn</em>, will mock a object, and all calls will return the same value</p>
-<pre>
+{% highlight javascript %}
 
 describe("A spy, when faking a return value", function() {
   var student, grade;
@@ -139,7 +139,7 @@ describe("A spy, when faking a return value", function() {
   });
 });
 
-</pre>
+{% endhighlight %}
 <p><br/><br />
 In the next post, I will show how to use <strong>Jasmine</strong> in practice, creating a <em>Code Kata</em> using BDD and Jasmine :)</p>
 <p>For more info, I recommend the Jasmine page:</p>

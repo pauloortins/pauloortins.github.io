@@ -377,124 +377,109 @@ Kata.prototype.calculateSequenceLength = function(list) {
 <p><strong>How Jasmine works</strong></p>
 <p><em>Describe</em></p>
 <p>A Jasmine test suite starts with a <em>describe</em> declaration that is a function that receive two parameters, the test suite name, and another function that will implement the tests.</p>
-<pre>
-describe("My test suite", function() {});
-</pre>
+<div class="highlight"><pre><code class="javascript"><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;My test suite&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{});</span>
+</code></pre></div>
 <p><br/><br />
 <em>It</em></p>
 <p>The tests are implemented by the <em>It</em> function, that as <em>describe</em>, receive two parameters, the test name, and the function that represents the test.</p>
-<pre>
-describe("My test suite", function() {
+<div class="highlight"><pre><code class="javascript"><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;My test suite&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   
-  it("testing a positive case", function() {
-  });
+  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;testing a positive case&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">});</span>
 
-  it("testing a negative case", function() {
-  });
+  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;testing a negative case&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">});</span>
 
-});
-</pre>
+<span class="p">});</span>
+</code></pre></div>
 <p><br/><br />
 <em>Expect/Matchers</em></p>
 <p>The <em>expects</em> in jasmine are made by the <em>matchers</em>, that will compare the actual value with the expected value. The matchers can execute a negative assert using the <em>not</em> operator.</p>
-<pre>
-describe("My test suite", function() {
+<div class="highlight"><pre><code class="javascript"><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;My test suite&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   
-  it("testing a positive case", function() {
-     expect(true).toBe(true);
-  });
+  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;testing a positive case&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+     <span class="nx">expect</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+  <span class="p">});</span>
   
-  it("testing a negative case", function() {
-     expect(true).not.toBe(false);
-  });
+  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;testing a negative case&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+     <span class="nx">expect</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="p">});</span>
 
-});
-</pre>
+<span class="p">});</span>
+</code></pre></div>
 <p><br/></p>
 <p>The Jasmine by default has a lot of <em>matchers</em>, but it's extensible, new <em>matchers</em> can be added to <em>framework</em>.</p>
-<pre>
-
-beforeEach(function() {
-  this.addMatchers({
-    shouldBeLessThan: function(expected) {
-      return this.actual < expected;
-    }
-  });
-});
-
-</pre>
+<div class="highlight"><pre><code class="javascript"><span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">addMatchers</span><span class="p">({</span>
+    <span class="nx">shouldBeLessThan</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">expected</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">actual</span> <span class="o">&lt;</span> <span class="nx">expected</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
 <p><br/><br />
 <em>Setup/Teardown</em></p>
 <p>Jasmine has support to <em>Setup</em> (functions that will be executed <strong>before</strong> each test) and to the <em>Teardown</em> (functions that will be executed <strong>after</strong> each test).</p>
-<pre>
+<div class="highlight"><pre><code class="javascript"><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;My test suite&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">foo</span><span class="p">;</span>
 
-describe("My test suite", function() {
-  var foo;
+  <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+     <span class="c1">// Function that will be executed BEFORE each test</span>
+  <span class="p">});</span>
 
-  beforeEach(function() {
-     // Function that will be executed BEFORE each test
-  });
+  <span class="nx">afterEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+     <span class="c1">// Function that will be executed AFTER each test</span>
+  <span class="p">});</span>
 
-  afterEach(function() {
-     // Function that will be executed AFTER each test
-  });
-
-});
-
-</pre>
+<span class="p">});</span>
+</code></pre></div>
 <p><br/><br />
 <em>Spies</em></p>
 <p>Jasmine has support to <em>Mocks</em> using <em>Spies</em>, and also provide some custom matchers to make asserts using spies.</p>
 <p><em>toHaveBeenCalled</em>, will return true if the spy was called</p>
-<pre>
+<div class="highlight"><pre><code class="javascript"><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;My suite test&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">student</span><span class="p">,</span> <span class="nx">grade</span><span class="p">;</span>
 
-describe("My suite test", function() {
-  var student, grade;
+  <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">student</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">setGrade</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">grade</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
 
-  beforeEach(function() {
-    student = {
-      setGrade: function(value) {
-        grade = value;
-      }
-    };
+    <span class="nx">spyOn</span><span class="p">(</span><span class="nx">student</span><span class="p">,</span> <span class="s1">&#39;setGrade&#39;</span><span class="p">);</span>
 
-    spyOn(student, 'setGrade');
+    <span class="nx">student</span><span class="p">.</span><span class="nx">setGrade</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+  <span class="p">});</span>
 
-    student.setGrade(9);
-  });
-
-  it("verify if setGrade was called", function() {
-    expect(student.setGrade).toHaveBeenCalled();
-  });
-});
-
-</pre>
+  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;verify if setGrade was called&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">student</span><span class="p">.</span><span class="nx">setGrade</span><span class="p">).</span><span class="nx">toHaveBeenCalled</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
 <p><br/><br />
 <em>andReturn</em>, will mock a object, and all calls will return the same value</p>
-<pre>
+<div class="highlight"><pre><code class="javascript"><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;A spy, when faking a return value&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">student</span><span class="p">,</span> <span class="nx">grade</span><span class="p">;</span>
 
-describe("A spy, when faking a return value", function() {
-  var student, grade;
+  <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">student</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">setGrade</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">grade</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+      <span class="p">},</span>
+      <span class="nx">getGrade</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">grade</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
 
-  beforeEach(function() {
-    student = {
-      setGrade: function(value) {
-        grade = value;
-      },
-      getGrade: function() {
-        return grade;
-      }
-    };
+    <span class="nx">spyOn</span><span class="p">(</span><span class="nx">student</span><span class="p">,</span> <span class="s1">&#39;getGrade&#39;</span><span class="p">).</span><span class="nx">andReturn</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+  <span class="p">});</span>
 
-    spyOn(student, 'getGrade').andReturn(8);
-  });
-
-  it("verify if it is the mocked grade", function() {
-    expect(student.getGrade()).toEqual(8);
-  });
-});
-
-</pre>
+  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;verify if it is the mocked grade&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">student</span><span class="p">.</span><span class="nx">getGrade</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
 <p><br/><br />
 In the next post, I will show how to use <strong>Jasmine</strong> in practice, creating a <em>Code Kata</em> using BDD and Jasmine :)</p>
 <p>For more info, I recommend the Jasmine page:</p>
