@@ -1309,27 +1309,27 @@ VSTest.Console.exe C:\mydir\testproject1.dll C:\mydir\testproject2.dll C:\mydir\
 	<div class="entry-content" itemprop="articleBody">
 		<p>In my <a href="http://pauloortins.com/understanding-a-csharp-program/" title="Getting CSharper #2: Understanding a C# Program">previous post</a>, we saw our first C# program, we covered how it was built and what kind of structures we should use and so on. In this post, we will talk about the types that we can use when we are building a program.</p>
 <p><br/></p>
-<hr>
-<strong>What is a Type ?</strong></p>
+<h2>What is a Type ?</h2></p>
 <p>Type, in programming, can be defined as a data classification that determines the possible values for a data, the operations that can be performed and how it will be stored.</p>
-<pre>
-static void Main()
-{
-    string firstName = "Paulo";
-    string lastName = "Ortins";
-    int age = 23;
-    int salary = 100;
 
-    Console.WriteLine(firstName + lastName); // PauloOrtins
-    Console.WriteLine(age + salary); // 123
-    Console.WriteLine(firstName.ToUpper()); // PAULO
-    Console.WriteLine(salary.ToUpper());
-}                                    
-</pre>
+<div class="highlight"><pre><code class="c#"><span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">string</span> <span class="n">firstName</span> <span class="p">=</span> <span class="s">&quot;Paulo&quot;</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="n">lastName</span> <span class="p">=</span> <span class="s">&quot;Ortins&quot;</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">age</span> <span class="p">=</span> <span class="m">23</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">salary</span> <span class="p">=</span> <span class="m">100</span><span class="p">;</span>
+
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">firstName</span> <span class="p">+</span> <span class="n">lastName</span><span class="p">);</span> <span class="c1">// PauloOrtins</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">age</span> <span class="p">+</span> <span class="n">salary</span><span class="p">);</span> <span class="c1">// 123</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">firstName</span><span class="p">.</span><span class="n">ToUpper</span><span class="p">());</span> <span class="c1">// PAULO</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">salary</span><span class="p">.</span><span class="n">ToUpper</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
 <p>In the example above, we are declaring four variables, two of them are variable of type <em>string</em>, and the others are of type <em>int</em>. Note that, in both cases we are defining what we can store in each variable, and how we can manipulate them. When we sum two <em>strings</em>, we are doing a concatenation, on the other hand, when we sum two integers we are performing a math operation. We can capitalize every letter in a string with the <em>ToUpper </em>method, but this method doesn't exist in type <em>int</em>.</p>
 <p><br/></p>
-<hr>
-<strong>Built-in Types</strong></p>
+<h2>Built-in Types</h2></p>
 <p><strong>Built-in types</strong> are types that are specially supported by the compiler. They are also known as <strong>primitive types</strong>, we can group them to build other types. Below is a list of C# built-in types and how we can use each one.</p>
 <table>
 <tr>
@@ -1547,42 +1547,40 @@ decimal val = 1.23M;
 </tr>
 </table>
 <p><br/></p>
-<hr>
-<strong>Custom Types</strong></p>
+<h2>Custom Types</h2></p>
 <p>In C#, and in every language, we can combine primitive types to build our own types. For example, let's create a type called Person, that has two attributes, a variable of <em>int </em>type called age and a variable of <em>string </em>type called name.</p>
-<pre>
-class Person
-{
-    string name;
-    int age;
-    public Person(string paramName, int paramAge)
-    {
-        name = paramName;
-        age = paramAge;
-    }
-}
-</pre>
+
+<div class="highlight"><pre><code class="c#"><span class="k">class</span> <span class="nc">Person</span>
+<span class="p">{</span>
+    <span class="kt">string</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nf">Person</span><span class="p">(</span><span class="kt">string</span> <span class="n">paramName</span><span class="p">,</span> <span class="kt">int</span> <span class="n">paramAge</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">name</span> <span class="p">=</span> <span class="n">paramName</span><span class="p">;</span>
+        <span class="n">age</span> <span class="p">=</span> <span class="n">paramAge</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><br/></p>
-<hr>
-<strong>Initializing Data</strong></p>
-<pre>
-string firstName = "Paulo";
-int age = 23;
-Person person = new Person("Paulo", 23);
-</pre>
+<h2>Initializing Data</h2></p>
+
+<div class="highlight"><pre><code class="c#"><span class="kt">string</span> <span class="n">firstName</span> <span class="p">=</span> <span class="s">&quot;Paulo&quot;</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">age</span> <span class="p">=</span> <span class="m">23</span><span class="p">;</span>
+<span class="n">Person</span> <span class="n">person</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Paulo&quot;</span><span class="p">,</span> <span class="m">23</span><span class="p">);</span>
+</code></pre></div>
+
 <p>Types are models for data. When we are creating data, we need to instantiate a type. Predefined types are specially supported by the compiler, so we can create data just assigning a value for them. In the other hand, for custom types, we have to use the new operator. The new operator trigger a constructor call, that is like a method used to build a instance for a given type. If you look carefully to our custom type Person, we can find a constructor with two parameters, that is called when a new Person is created.</p>
+
 <p><br/></p>
-<hr>
-<strong>Conversions</strong></p>
+<h2>Conversions</h2></p>
 <p>Normally, we will have situations where we can store a value of one type in a variable of another type. It's called a conversion. Conversions can be implicit or explicit. Implicit conversions are conversions where the compiler can guarantee that it will succeed and no information will lost in the conversion. Conversely, explicit conversions are conversions where the compiler cannot guarantee that it will succeed and information can be lost during conversion.</p>
-<pre>
-int x = 123; // 32-bit integer
-long y = x; // Long are 64-bit so it can store a int 
-int z = (int) y; // Long is bigger than int, so an explicit conversion is required
-</pre>
+
+<div class="highlight"><pre><code class="c#"><span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="m">123</span><span class="p">;</span> <span class="c1">// 32-bit integer</span>
+<span class="kt">long</span> <span class="n">y</span> <span class="p">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// Long are 64-bit so it can store a int </span>
+<span class="kt">int</span> <span class="n">z</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">y</span><span class="p">;</span> <span class="c1">// Long is bigger than int, so an explicit conversion is required</span>
+</code></pre></div>
 <p><br/></p>
-<hr>
-<strong>Value Types x Reference Types</strong></p>
+<h2>Value Types x Reference Types</h2></p>
 <p>Types in C# can be:</p>
 <ul>
 <li>Value Types</li>
@@ -1591,35 +1589,35 @@ int z = (int) y; // Long is bigger than int, so an explicit conversion is requir
 <p>Value types comprises almost all built-in types, like <em>char</em>, <em>bool</em>, <em>int</em>, <em>short</em>, <em>long </em>and so on.<br />
 Reference types comprises all <em>custom types</em>, <em>classes</em>, <em>interfaces </em>and <em>arrays</em>.</p>
 <p>They're are different by the way they are handled in memory. <strong>A variable of a value type stores a value</strong>, for example, a <em>int </em>variable stores a 32-bit data. <strong>Conversely, a variable of a reference type stores two values, a object value, and reference for that object</strong>. When we assign a value to a value type, we are modifying his value, but when we assign reference type, we are modifying a reference for an object. Let's play with these differences.</p>
-<pre>
-Person person = new Person("Paulo",23); // Person is a reference type
-int age = 23; // int is a value type
 
-Console.WriteLine(person.name); // Paulo
-Console.WriteLine(age); // 23
+<div class="highlight"><pre><code class="c#"><span class="n">Person</span> <span class="n">person</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Paulo&quot;</span><span class="p">,</span><span class="m">23</span><span class="p">);</span> <span class="c1">// Person is a reference type</span>
+<span class="kt">int</span> <span class="n">age</span> <span class="p">=</span> <span class="m">23</span><span class="p">;</span> <span class="c1">// int is a value type</span>
 
-int age2 = age;   // We are creating a new variable in memory with a value of 23
-Person person2 = person; /* We are creating a new reference for a memory position,
-                          * now both variable point for the same place 
-                          */
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">name</span><span class="p">);</span> <span class="c1">// Paulo</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">age</span><span class="p">);</span> <span class="c1">// 23</span>
 
-age2 = age2 + 1;
+<span class="kt">int</span> <span class="n">age2</span> <span class="p">=</span> <span class="n">age</span><span class="p">;</span>   <span class="c1">// We are creating a new variable in memory with a value of 23</span>
+<span class="n">Person</span> <span class="n">person2</span> <span class="p">=</span> <span class="n">person</span><span class="p">;</span> <span class="cm">/* We are creating a new reference for a memory position,</span>
+<span class="cm">                          * now both variable point for the same place </span>
+<span class="cm">                          */</span>
 
-// age and age2 are two different values
+<span class="n">age2</span> <span class="p">=</span> <span class="n">age2</span> <span class="p">+</span> <span class="m">1</span><span class="p">;</span>
 
-Console.WriteLine(age); // 23
-Console.WriteLine(age2); // 24
+<span class="c1">// age and age2 are two different values</span>
 
-person2.name = person.name + "123";
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">age</span><span class="p">);</span> <span class="c1">// 23</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">age2</span><span class="p">);</span> <span class="c1">// 24</span>
 
-// person and person2 are references for a same memory position
+<span class="n">person2</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">person</span><span class="p">.</span><span class="n">name</span> <span class="p">+</span> <span class="s">&quot;123&quot;</span><span class="p">;</span>
 
-Console.WriteLine(person.name); // Paulo123
-Console.WriteLine(person2.name); // Paulo123
-</pre>
+<span class="c1">// person and person2 are references for a same memory position</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">name</span><span class="p">);</span> <span class="c1">// Paulo123</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">person2</span><span class="p">.</span><span class="n">name</span><span class="p">);</span> <span class="c1">// Paulo123</span>
+</code></pre></div>
+
 <p><br/></p>
-<hr>
-<strong>More Resources</strong></p>
+<h2>More Resources</h2></p>
 <ul>
 <li><a href="http://en.wikipedia.org/wiki/Data_type">Data Type</a></li>
 <li><a href="http://msdn.microsoft.com/en-us/library/s6938f28.aspx">Passing Reference-Type Parameters</a></li>
