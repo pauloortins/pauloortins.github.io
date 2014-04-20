@@ -2105,175 +2105,169 @@ Pint_age
         
 	<h1 class="title" itemprop="name"><a href="/2013/07/06/creating-python-command-line-interfaces-docopt/" itemprop="url">Creating python command line applications with docopt</a></h1>	
 	<div class="entry-content" itemprop="articleBody">
-		<p><strong>Introduction</strong></p>
+		<p><h2>Introduction</h2></p>
 <p>Few weeks ago I wrote a blog post showing how we can write command line applications using <a href="http://docs.python.org/dev/library/argparse.html">argparse</a>, you can check out it <a href="http://pauloortins.com/creating-python-command-line-applications/" title="Creating python command-line applications">here</a>. Some people suggested me to try <a href="https://github.com/docopt/docopt">docopt</a> and this post is a result from this experience.</p>
-<p><strong>Docopt, the Pythonic command line arguments parser, that will make you smile</strong></p>
+<p><h2>Docopt, the Pythonic command line arguments parser, that will make you smile</h2></p>
 <p><iframe width="560" height="315" src="//www.youtube.com/embed/pXhcPJK5cMc?rel=0" frameborder="0" allowfullscreen></iframe></p>
-<p>What is it ?</p>
+<p><h2>What is it ?</h2></p>
 <p>Docopt, like optparse and argparse, is a small library that simplifies the task to write command-line interfaces. But it came with a different idea.</p>
 <p>How optparse and argparse work ? You have to read the documentation and write code that will provide guidelines to parse args. A example of this approach is the code that I wrote in my previous post. And being honest, I looked the documentation several times, trying to understand how each method works.</p>
-<pre>
-parser = argparse.ArgumentParser()
-parser.add_argument("operation", help="mathematical operation that will be performed", 
-	choices=['add', 'subtract', 'multiply', 'divide'])
-parser.add_argument("num1", help="the first number", type=int)
-parser.add_argument("num2", help="the second number", type=int)
-args = parser.parse_args()
-</pre>
+<div class="highlight"><pre><code class="python"><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;operation&quot;</span><span class="p">,</span> 
+	<span class="n">help</span><span class="o">=</span><span class="s">&quot;mathematical operation that will be performed&quot;</span><span class="p">,</span> 
+	<span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;add&#39;</span><span class="p">,</span> <span class="s">&#39;subtract&#39;</span><span class="p">,</span> <span class="s">&#39;multiply&#39;</span><span class="p">,</span> <span class="s">&#39;divide&#39;</span><span class="p">])</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;num1&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;the first number&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;num2&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;the second number&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</code></pre></div>
 <p>How docopt works ? When we are designing a command-line interface, we write or we should write, our application documentation, right ? Docopt uses this docstring to parse the args. Look at this example extracted from documentation:</p>
-<pre>
-"""Naval Fate.
+<div class="highlight"><pre><code class="python"><span class="sd">&quot;&quot;&quot;Naval Fate.</span>
 
-Usage:
-  naval_fate.py ship new <name>...
-  naval_fate.py ship <name> move <x> <y> [--speed=<kn>]
-  naval_fate.py ship shoot <x> <y>
-  naval_fate.py mine (set|remove) <x> <y> [--moored|--drifting]
-  naval_fate.py -h | --help
-  naval_fate.py --version
+<span class="sd">Usage:</span>
+<span class="sd">  naval_fate.py ship new &lt;name&gt;...</span>
+<span class="sd">  naval_fate.py ship &lt;name&gt; move &lt;x&gt; &lt;y&gt; [--speed=&lt;kn&gt;]</span>
+<span class="sd">  naval_fate.py ship shoot &lt;x&gt; &lt;y&gt;</span>
+<span class="sd">  naval_fate.py mine (set|remove) &lt;x&gt; &lt;y&gt; [--moored|--drifting]</span>
+<span class="sd">  naval_fate.py -h | --help</span>
+<span class="sd">  naval_fate.py --version</span>
 
-Options:
-  -h --help     Show this screen.
-  --version     Show version.
-  --speed=<kn>  Speed in knots [default: 10].
-  --moored      Moored (anchored) mine.
-  --drifting    Drifting mine.
+<span class="sd">Options:</span>
+<span class="sd">  -h --help     Show this screen.</span>
+<span class="sd">  --version     Show version.</span>
+<span class="sd">  --speed=&lt;kn&gt;  Speed in knots [default: 10].</span>
+<span class="sd">  --moored      Moored (anchored) mine.</span>
+<span class="sd">  --drifting    Drifting mine.</span>
 
-"""
-from docopt import docopt
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">docopt</span> <span class="kn">import</span> <span class="n">docopt</span>
 
 
-if __name__ == '__main__':
-    arguments = docopt(__doc__, version='Naval Fate 2.0')
-    print(arguments)
-</pre>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">arguments</span> <span class="o">=</span> <span class="n">docopt</span><span class="p">(</span><span class="n">__doc__</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s">&#39;Naval Fate 2.0&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
+</code></pre></div>
 <p>When I saw it for the first time, I had a "holy shit" moment and said "It won't work", but it works! You will avoid to read documentation and to write parse code, all you have to do is writing your application documentation and instantly you have your application running with all options and help messages working properly!</p>
-<p><strong>Coming back to the calculator example</strong></p>
+<p><h2>Coming back to the calculator example</h2></p>
 <p>In my first post about command line interfaces I built two command calculators, one using python w/o libraries and other using argparse. So to compare these libraries, let's build another calculator, in this time, using docopt. This is our documentation:</p>
-<pre>
-/*
-We are going to create a command-line calculator. The calculator should be used in this way:
+<div class="highlight"><pre><code class="python"><span class="o">/*</span>
+<span class="n">We</span> <span class="n">are</span> <span class="n">going</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">command</span><span class="o">-</span><span class="n">line</span> <span class="n">calculator</span><span class="o">.</span> 
+<span class="n">The</span> <span class="n">calculator</span> <span class="n">should</span> <span class="n">be</span> <span class="n">used</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">way</span><span class="p">:</span>
 
-python calc.py add 2 2
-> 4
+<span class="n">python</span> <span class="n">calc</span><span class="o">.</span><span class="n">py</span> <span class="n">add</span> <span class="mi">2</span> <span class="mi">2</span>
+<span class="o">&gt;</span> <span class="mi">4</span>
 
-python calc.py subtract 2 2
-> 0
+<span class="n">python</span> <span class="n">calc</span><span class="o">.</span><span class="n">py</span> <span class="n">subtract</span> <span class="mi">2</span> <span class="mi">2</span>
+<span class="o">&gt;</span> <span class="mi">0</span>
 
-python calc.py multiply 2 2
-> 4
+<span class="n">python</span> <span class="n">calc</span><span class="o">.</span><span class="n">py</span> <span class="n">multiply</span> <span class="mi">2</span> <span class="mi">2</span>
+<span class="o">&gt;</span> <span class="mi">4</span>
 
-python calc.py divide 2 2
-> 1
+<span class="n">python</span> <span class="n">calc</span><span class="o">.</span><span class="n">py</span> <span class="n">divide</span> <span class="mi">2</span> <span class="mi">2</span>
+<span class="o">&gt;</span> <span class="mi">1</span>
    
-*/
-</pre>
+<span class="o">*/</span>
+</code></pre></div>
 <p>Let's transform it in the docopt pattern, that is the pattern of almost all command-line applications.</p>
-<pre>
-"""Calculator using docopt
+<div class="highlight"><pre><code class="python"><span class="sd">&quot;&quot;&quot;Calculator using docopt</span>
 
-Usage:
-  calc_docopt.py operation <num1> <num2>
-  calc_docopt.py (-h | --help)
+<span class="sd">Usage:</span>
+<span class="sd">  calc_docopt.py operation &lt;num1&gt; &lt;num2&gt;</span>
+<span class="sd">  calc_docopt.py (-h | --help)</span>
 
-Arguments
-  <operation> Math Operation
-  <num1> First Number
-  <num2> Second Number
+<span class="sd">Arguments</span>
+<span class="sd">  &lt;operation&gt; Math Operation</span>
+<span class="sd">  &lt;num1&gt; First Number</span>
+<span class="sd">  &lt;num2&gt; Second Number</span>
 
-Options:
-  -h --help     Show this screen.
+<span class="sd">Options:</span>
+<span class="sd">  -h --help     Show this screen.</span>
 
-"""
-</pre>
+<span class="sd">&quot;&quot;&quot;</span>
+</code></pre></div>
 <p>Now, let's add the docopt code, don't be afraid of that. With 3-4 lines of code our parser are done.</p>
-<pre>
-"""Calculator using docopt
+<div class="highlight"><pre><code class="python"><span class="sd">&quot;&quot;&quot;Calculator using docopt</span>
 
-Usage:
-  calc_docopt.py operation <num1> <num2>
-  calc_docopt.py (-h | --help)
+<span class="sd">Usage:</span>
+<span class="sd">  calc_docopt.py operation &lt;num1&gt; &lt;num2&gt;</span>
+<span class="sd">  calc_docopt.py (-h | --help)</span>
 
-Arguments
-  <operation> Math Operation
-  <num1> First Number
-  <num2> Second Number
+<span class="sd">Arguments</span>
+<span class="sd">  &lt;operation&gt; Math Operation</span>
+<span class="sd">  &lt;num1&gt; First Number</span>
+<span class="sd">  &lt;num2&gt; Second Number</span>
 
-Options:
-  -h --help     Show this screen.
+<span class="sd">Options:</span>
+<span class="sd">  -h --help     Show this screen.</span>
 
-"""
-from docopt import docopt
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">docopt</span> <span class="kn">import</span> <span class="n">docopt</span>
 
-if __name__ == '__main__':
-    arguments = docopt(__doc__, version='Calculator with docopt')
-    print(arguments)
-</pre>
-<p><strong>Help Messages</strong></p>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">arguments</span> <span class="o">=</span> <span class="n">docopt</span><span class="p">(</span><span class="n">__doc__</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s">&#39;Calculator with docopt&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
+</code></pre></div>
+<p><h2>Help Messages</h2></p>
 <p>Let's see some of the messages that docopt provide for us.</p>
 <p>Help message</p>
-<pre>
-python calc_docopt.py -help
->>> Calculator using docopt
->>>
->>> Usage:
->>>   calc_docopt.py <operation> <num1> <num2>
->>>   calc_docopt.py (-h | --help)
->>> 
->>> Arguments
->>>   <operation> Math Operation
->>>   <num1> First Number
->>>   <num2> Second Number
->>> 
->>> Options:
->>>   -h --help     Show this screen.
-</pre>
+<div class="highlight"><pre><code class="python"><span class="n">python</span> <span class="n">calc_docopt</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">help</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Calculator</span> <span class="n">using</span> <span class="n">docopt</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Usage</span><span class="p">:</span>
+<span class="o">&gt;&gt;&gt;</span>   <span class="n">calc_docopt</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span><span class="n">operation</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">num1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">num2</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span>   <span class="n">calc_docopt</span><span class="o">.</span><span class="n">py</span> <span class="p">(</span><span class="o">-</span><span class="n">h</span> <span class="o">|</span> <span class="o">--</span><span class="n">help</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Arguments</span>
+<span class="o">&gt;&gt;&gt;</span>   <span class="o">&lt;</span><span class="n">operation</span><span class="o">&gt;</span> <span class="n">Math</span> <span class="n">Operation</span>
+<span class="o">&gt;&gt;&gt;</span>   <span class="o">&lt;</span><span class="n">num1</span><span class="o">&gt;</span> <span class="n">First</span> <span class="n">Number</span>
+<span class="o">&gt;&gt;&gt;</span>   <span class="o">&lt;</span><span class="n">num2</span><span class="o">&gt;</span> <span class="n">Second</span> <span class="n">Number</span>
+<span class="o">&gt;&gt;&gt;</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Options</span><span class="p">:</span>
+<span class="o">&gt;&gt;&gt;</span>   <span class="o">-</span><span class="n">h</span> <span class="o">--</span><span class="n">help</span>     <span class="n">Show</span> <span class="n">this</span> <span class="n">screen</span><span class="o">.</span>
+</code></pre></div>
 <p>Invalid Arguments</p>
-<pre>
-python calc_docopt.py
->>> Usage:
->>>   calc_docopt.py <operation> <num1> <num2>
->>>   calc_docopt.py (-h | --help)
-</pre>
-<p><strong>Operations</strong></p>
+<div class="highlight"><pre><code class="python"><span class="n">python</span> <span class="n">calc_docopt</span><span class="o">.</span><span class="n">py</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Usage</span><span class="p">:</span>
+<span class="o">&gt;&gt;&gt;</span>   <span class="n">calc_docopt</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span><span class="n">operation</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">num1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">num2</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span>   <span class="n">calc_docopt</span><span class="o">.</span><span class="n">py</span> <span class="p">(</span><span class="o">-</span><span class="n">h</span> <span class="o">|</span> <span class="o">--</span><span class="n">help</span><span class="p">)</span>
+</code></pre></div>
+<p><h2>Operations</h2></p>
 <p>Our work right now is to coding the calculator operations. I will respect the <a href="http://en.wikipedia.org/wiki/Don't_repeat_yourself">DRY’s</a> gods and copy the operations from the other post.</p>
-<pre>
-"""Calculator using docopt
+<div class="highlight"><pre><code class="python"><span class="sd">&quot;&quot;&quot;Calculator using docopt</span>
 
-Usage:
-  calc_docopt.py <operation> <num1> <num2>
-  calc_docopt.py (-h | --help)
+<span class="sd">Usage:</span>
+<span class="sd">  calc_docopt.py &lt;operation&gt; &lt;num1&gt; &lt;num2&gt;</span>
+<span class="sd">  calc_docopt.py (-h | --help)</span>
 
-Arguments
-  num1 First Number
-  num2 Second Number
+<span class="sd">Arguments</span>
+<span class="sd">  num1 First Number</span>
+<span class="sd">  num2 Second Number</span>
 
-Options:
-  -h --help     Show this screen.
+<span class="sd">Options:</span>
+<span class="sd">  -h --help     Show this screen.</span>
 
-"""
-from docopt import docopt
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">docopt</span> <span class="kn">import</span> <span class="n">docopt</span>
 
-if __name__ == '__main__':
-    args = docopt(__doc__, version='Calculator with docopt')
-    functions = {
-        'add': lambda num1, num2: num1 + num2,
-        'subtract': lambda num1, num2: num1 - num2,
-        'multiply': lambda num1, num2: num1 * num2,
-        'divide': lambda num1, num2: num1 / num2
-    }
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">docopt</span><span class="p">(</span><span class="n">__doc__</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s">&#39;Calculator with docopt&#39;</span><span class="p">)</span>
+    <span class="n">functions</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;add&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">:</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="p">,</span>
+        <span class="s">&#39;subtract&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">:</span> <span class="n">num1</span> <span class="o">-</span> <span class="n">num2</span><span class="p">,</span>
+        <span class="s">&#39;multiply&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">:</span> <span class="n">num1</span> <span class="o">*</span> <span class="n">num2</span><span class="p">,</span>
+        <span class="s">&#39;divide&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">:</span> <span class="n">num1</span> <span class="o">/</span> <span class="n">num2</span>
+    <span class="p">}</span>
 
-    print functions[args['<operation>']](int(args['<num1>']), int(args['<num2>']))
-</pre>
+    <span class="k">print</span> <span class="n">functions</span><span class="p">[</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;&lt;operation&gt;&#39;</span><span class="p">]](</span><span class="nb">int</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;&lt;num1&gt;&#39;</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;&lt;num2&gt;&#39;</span><span class="p">]))</span>
+</code></pre></div>
 <p>Our calculator now performs math operations as we expect.</p>
-<p><strong>Input Validation</strong></p>
+<p><h2>Input Validation</h2></p>
 <p>If you are a good observer, you will see that our calculator lacks type parse/checking and operation checking. It's easier to accomplish it with argparse. But docopt doesn't have built-in input validations.</p>
 <blockquote><p>
 docopt does one thing and does it well: it implements your command-line interface. However it does not validate the input data. On the other hand there are libraries like python schema which make validating data a breeze.<br />
 - docopt documentation
 </p></blockquote>
 <p>You can get more info about python schema <a href="https://github.com/halst/schema">here</a>.</p>
-<p><strong>Conclusion</strong></p>
+<p><h2>Conclusion</h2></p>
 <p>Docopt is a new approach to write command apps. You can easily build apps. We can only appreciate <a href="http://keleshev.com">Vladimir Keleshev's</a> work and hope that it continues to improving and why not conquest a place in python core ?</p>
 
 		
