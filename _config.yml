@@ -8,3 +8,5 @@ markdown: kramdown
 pygments: true
 
 permalink: /:year/:month/:day/:title/
+
+excerpt_separator: ""

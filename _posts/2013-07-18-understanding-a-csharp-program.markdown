@@ -5,8 +5,10 @@ categories: C# Getting CSharper
 date: 2013-07-18
 ---
 <p>In the <a href="http://pauloortins.com/getting-csharper-1-a-short-introduction-to-csharp/" title="Getting CSharper #1: A short introduction to C#">previous post</a> we talked about C# history, how it’s evolving and some of his characteristics. Now, we will start to see code. We are going to see the C# keywords, blocks, how a C# program is structured and so on.</p>
-<h3><strong>Understanding our First C# Program</strong></h3>
-<pre>
+<h2>Understanding our First C# Program</h2>
+
+<br/>
+{% highlight c# %}
 using System; // Using declaration
 
 namespace ConsoleApplication1 // Namespace declaration
@@ -25,37 +27,44 @@ namespace ConsoleApplication1 // Namespace declaration
             string name2 = "Roger";   // Statement/Variable Declaration
             int age2;                 // Statement/Variable Attribution
             age2 = age1 + 10;
-            Console.WriteLine(CreatePhrase(name1, age1)); // Statement/Method Call
-            Console.WriteLine(CreatePhrase(name2, age2)); // Statement/Method Call
+            
+	    Console.WriteLine(CreatePhrase(name1, age1)); 
+	    // Statement/Method Call
+            
+	    Console.WriteLine(CreatePhrase(name2, age2)); 
+	    // Statement/Method Call
         }
 
-        static string CreatePhrase(string name, int age) // Method Declaration           
+	// Method Declaration           
+        static string CreatePhrase(string name, int age) 
         {
-            return string.Format("Hi {0}, you are {1} years old.", name, age); // Statement/Return
+            return string.Format("Hi {0}, you are {1} years old.", name, age); 
+	    // Statement/Return
         }
     }
 }
-</pre>
+
+{% endhighlight %}
 <p>What this program does? It prints a welcome message to two people. Now, let's using a bottom-up approach to figure out what each part means.</p>
-<p><strong>Statements</strong></p>
+<p><h2>Statements</h2></p>
 <p><strong>Statements </strong>are the smallest element in a language. A program is formed by a sequence of one or more statements. If you look to our program we will see that we have 7 statements, statements can be classified by type. <strong>Declaration Statements</strong> are statements used to declare a variable. <strong>Attribution Statements</strong> are used to assign a value to a variable. <strong>Call Statements</strong> are statements used to call a method (we see more about it soon). The last statement that we are using in our program is the <strong>Return Statement</strong> that we use to finish a method and return a value.</p>
-<p><strong>Methods</strong></p>
+<p><h2>Methods</h2></p>
 <p>Sometimes, to break our program in subroutines that we can reuse latter, or to simplify our code, <strong>we can group statements in methods</strong>. <strong>Methods </strong>can receive one or more input data aka <strong>parameters </strong>and can return, or not, data to the caller. Our <strong>method </strong><em>CreatePhrase </em>receive two parameters name and age and return a welcome message. <em>Main </em>method, when we are executing a <strong>console application </strong>(our program is a console application), the C# recognizes a <strong>method </strong>called <em>Main </em>as an entry point of execution and this <strong>method </strong>will be called to run the program.</p>
-<p><strong>Classes</strong></p>
+<p><h2>Classes</h2></p>
 <p>In our example, we have a <strong>class </strong>called <em>Program</em>. A <strong>class </strong>is a unit of code who has state (data field members) and behaviors (methods). Our <em>Program </em>class has two <strong>methods</strong>, <em>Main</em> and <em>CreatePhrase</em>. A <strong>class </strong>is a kind of type and we can combine some of them to design our programs.</p>
-<p><strong>Namespaces</strong></p>
+<p><h2>Namespaces</h2></p>
 <p>When our project is getting large, we feel the need to organize these types in other structures. They are called <strong>namespaces</strong>, and they are sets of types (class is a type, interface is a type and so on). In our program, we are declaring a <strong>namespace </strong>called <em>ConsoleApplication1 </em>which has only one <strong>class </strong><em>Program</em>. Now look at the <em>Console.WriteLine</em> statement. Sometimes in our program we need to use types that were already created by other people, it's a good practice, we don't have to reinvent the wheel every time. To reuse a type already created we can import a <strong>namespace </strong>and we do it through the <strong>using statement</strong>. In our example, we are using a <strong>class </strong>called <em>Console </em>who belongs to a <strong>namespace </strong>called <em>System</em>. The using is there for convenience, without it, we should type the fully qualified name '<em>System.Console.WriteLine</em>' to call the <strong>method </strong><em>WriteLine</em>.</p>
-<h3><strong>Syntax</strong></h3>
+<h2>Syntax</h2>
 <p>C# <strong>syntax </strong>is inspired by C, C++ and Java.</p>
-<p><strong>Identifiers</strong></p>
+<p><h2>Identifiers</h2></p>
 <p><strong>Identifiers </strong>are names that we, programmers, choose for our types (variables, methods, classes, namespaces and so on). In our program we are using the following identifiers: <em>ConsoleApplication1</em>, <em>Program</em>, <em>Main</em>, <em>name1</em>, <em>age1</em>, <em>name2</em>, <em>age2</em>, <em>CreatePhrase</em>. And the .NET Framework is using these: <em>System</em>, <em>Console</em>, <em>WriteLine</em>, <em>string</em>, <em>Format</em>. Identifiers in C# must be a whole word, formed by numbers, letters and underscore. By convention, <strong>parameters</strong>, <strong>local variables</strong>, and <strong>private fields</strong> should be in <strong>camel case</strong> (e.g. <em>personName</em>) and all other identifiers (<strong>namespaces</strong>, <strong>classes</strong>, <strong>methods</strong>) should be in <strong>pascal case</strong> (e.g. <em>WriteLine</em>, <em>Console</em>, <em>System</em>).</p>
-<p><strong>Keywords</strong></p>
+<p><h2>Keywords</h2></p>
 <p><strong>Keywords </strong>are names reserved by the language, you can't use them as identifiers. In our program, using, <strong>class</strong>, <strong>namespace</strong>, <strong>static </strong>are example of keywords.<br />
 Below there is a list of C# keywords:</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/07/keywords.png"><img src="http://pauloortins.com/wp-content/uploads/2013/07/keywords.png" alt="keywords" width="428" height="462" class="aligncenter size-full wp-image-705" /></a></p>
-<p><strong>Braces and Semicolons</strong></p>
+<p><h2>Braces and Semicolons</h2></p>
 <p>Like C, C++ and Java, C# uses braces to delimit statements blocks and semicolons to mark the end of the line.</p>
-<p><strong>Comments</strong></p>
+<p><h2>Comments</h2></p>
 <p>C# has support for two different types of code comments. Single-line comments and multi-line comments. A <strong>single-line comment</strong> starts with '//' and it continues until the end of the line. If we look at our program we will perceive that most of our program comments are single line comments. And there are the <strong>multiline comments</strong>, that start with '/*' and ends with '*/' and can contain one or more comment lines.</p>
-<p><strong>Conclusion</strong></p>
+<p><h2>Conclusion</h2></p>
 <p>I think that we cover a little bit about C# strutures and syntax. In the next posts we will start to go deep in the language. There are a lot of ground to cover!</p>
