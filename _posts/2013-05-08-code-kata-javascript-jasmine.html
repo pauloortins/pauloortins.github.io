@@ -5,23 +5,25 @@ categories: Jasmine Javascript Test-Driven Development
 date: 2013-05-08
 ---
 <p>In <a href="http://pauloortins.com/jasmine-javascript-unit-tests/" title="Jasmine, you have to write javascript unit tests !">my last post</a>, we saw how jasmine works, how we can create tests, make asserts and so on. In this post, I propose that we do a practice named <em>Code Kata</em>. The name <em>Kata</em> came from martial arts, where it means a series of moviments that focus on skills improvement. So a Code Kata is a series of programming exercises that focus on programming skills improvement. To this post, I chose the following kata:</p>
-<pre>
+{% highlight javascript %}
 /*
-Your task is process a integer sequence to determine the following statistics:
+Your task is process a integer sequence to determine the 
+following statistics:
 
    Minimum Value
    Maximum Value
    Sequence Length
    Average Value
 
-E.g. For a integer sequence "6, 9, 15, -2, 92, 11" we have the following answers:
+E.g. For a integer sequence "6, 9, 15, -2, 92, 11" we have the 
+following answers:
 
    Minimum Value: -2
    Maximum Value: 92
    Sequence Length: 6
    Average Value: 18.1666666
 */
-</pre>
+{% endhighlight %}
 <p><br/><br />
 <strong>Hands on! Downloading Jasmine!</strong></p>
 <p>Click <a href="https://github.com/pivotal/jasmine/downloads">here</a> to download the most recent Jasmine version. Extracting zip file, we will find the following folder structure:</p>
@@ -34,17 +36,17 @@ E.g. For a integer sequence "6, 9, 15, -2, 92, 11" we have the following answers
 <p>We can notice that default project comes with a bunch of tests, if we run <em>SpecRunner.html</em>, we will see the tests being executed.</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.28.02-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.28.02-PM.png" alt="Screen Shot 2013-05-14 at 9.28.02 PM" width="441" height="262" class="alignnone size-full wp-image-370" /></a></p>
 <p>For our example, let's remove these files and add our own tests.</p>
-<pre>
+{% highlight javascript %}
 <!-- include source files here... -->
 <script type="text/javascript" src="src/Kata.js"></script>
 
 <!-- include spec files here... -->
 <script type="text/javascript" src="spec/KataSpec.js"></script>
-</pre>
+{% endhighlight %}
 <p><br/><br />
 <strong>Requirement 1:</strong></p>
 <p>Our first requirement is find the minimum value in a list, remember that we are running <a href="http://pauloortins.com/tdd-test-driven-development/" title="Intro to TDD – Test-Driven Development">TDD</a>, so let's write our first test, and we will see our test fail.</p>
-<pre>
+{% highlight javascript %}
 // KataSpec.js
 
 describe("Calculating Statistics", function() {
@@ -61,10 +63,10 @@ describe("Calculating Statistics", function() {
       expect(minimumValue).toEqual(-2);
    });
 });
-</pre>
+{% endhighlight %}
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.41.43-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.41.43-PM.png" alt="Screen Shot 2013-05-14 at 9.41.43 PM" width="474" height="276" class="alignnone size-full wp-image-372" /></a></p>
 <p>Obviously, our test will fail, because we don't create our Kata class yet, let's write it!</p>
-<pre>
+{% highlight javascript %}
 // Kata.js
 
 function Kata() {
@@ -74,11 +76,11 @@ function Kata() {
 Kata.prototype.calculateMinimumValue = function(list) {
    return 0;
 };
-</pre>
+{% endhighlight %}
 <p>And now, we have a different error, the function isn't implemented properly.</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.44.33-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.44.33-PM.png" alt="Screen Shot 2013-05-14 at 9.44.33 PM" width="467" height="225" class="alignnone size-full wp-image-374" /></a></p>
 <p>Let's implement the code that will make our first test pass.</p>
-<pre>
+{% highlight javascript %}
 // Kata.js
 
 function Kata() {
@@ -89,12 +91,12 @@ Kata.prototype.calculateMinimumValue = function(list) {
    list.sort();
    return list[0];
 };
-</pre>
+{% endhighlight %}
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.45.19-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.45.19-PM.png" alt="Screen Shot 2013-05-14 at 9.45.19 PM" width="322" height="157" class="alignnone size-full wp-image-375" /></a></p>
 <p>It's all green! Our first test passed, now we can move to the second requirement.</p>
 <p><strong>Requirement 2:</strong></p>
 <p>Our second requirement is to find the maximum value in a list. Let's write our second test and a fail implementation.</p>
-<pre>
+{% highlight javascript %}
 // KataSpec.js
 
 describe("Calculating Statistics", function() {
@@ -116,8 +118,8 @@ describe("Calculating Statistics", function() {
       expect(maximumValue).toEqual(92);
    });
 });
-</pre>
-<pre>
+{% endhighlight %}
+{% highlight javascript %}
 // Kata.js
 
 function Kata() {
@@ -132,10 +134,10 @@ Kata.prototype.calculateMinimumValue = function(list) {
 Kata.prototype.calculateMaximumValue = function(list) {
    return 0;
 };
-</pre>
+{% endhighlight %}
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.48.04-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.48.04-PM.png" alt="Screen Shot 2013-05-14 at 9.48.04 PM" width="474" height="250" class="alignnone size-full wp-image-376" /></a></p>
 <p>Let's move to our next implementation. This one will make our second test pass.</p>
-<pre>
+{% highlight javascript %}
 // Kata.js
 
 function Kata() {
@@ -151,12 +153,12 @@ Kata.prototype.calculateMaximumValue = function(list) {
    list.sort();
    return list[list.length-1];
 };
-</pre>
+{% endhighlight %}
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.48.37-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.48.37-PM.png" alt="Screen Shot 2013-05-14 at 9.48.37 PM" width="436" height="218" class="alignnone size-full wp-image-377" /></a></p>
 <p>Now, we learned how the flow works, so let's write the third requirement.</p>
 <p><strong>Requirement 3:</strong></p>
 <p>We should calculate the sequence length. Let's write a test one more time.</p>
-<pre>
+{% highlight javascript %}
 // KataSpec.js
 
 describe("Calculating Statistics", function() {
@@ -183,8 +185,8 @@ describe("Calculating Statistics", function() {
       expect(sequenceLength).toEqual(6);
    });	
 });
-</pre>
-<pre>
+{% endhighlight %}
+{% highlight javascript %}
 // Kata.js
 
 function Kata() {
@@ -204,11 +206,11 @@ Kata.prototype.calculateMaximumValue = function(list) {
 Kata.prototype.calculateSequenceLength = function(list) {
    return 0;
 };
-</pre>
+{% endhighlight %}
 <p>As expected, the test is failing</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.49.26-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.49.26-PM.png" alt="Screen Shot 2013-05-14 at 9.49.26 PM" width="481" height="230" class="alignnone size-full wp-image-378" /></a></p>
 <p>Let's write the implementation.</p>
-<pre>
+{% highlight javascript %}
 // Kata.js
 
 function Kata() {
@@ -228,7 +230,7 @@ Kata.prototype.calculateMaximumValue = function(list) {
 Kata.prototype.calculateSequenceLength = function(list) {
    return list.length;
 };
-</pre>
+{% endhighlight %}
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.50.07-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.50.07-PM.png" alt="Screen Shot 2013-05-14 at 9.50.07 PM" width="431" height="208" class="alignnone size-full wp-image-379" /></a></p>
 <p>Our tests are green again! The last test will be the reader's homework :D</p>
 <p>Test in javascript is as easy as in others language, there are a lot of frameworks available. My objectives with this post was show a little bit about using TDD and javascript and show how we can improve our programming skills using Code Kata. I love to do Kata, if you know a good Code Kata site, let me know!</p>

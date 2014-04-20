@@ -112,23 +112,24 @@
 	<h1 class="title" itemprop="name"><a href="/2013/05/08/code-kata-javascript-jasmine/" itemprop="url">Practicing programming with Code Kata and Javascript/Jasmine</a></h1>	
 	<div class="entry-content" itemprop="articleBody">
 		<p>In <a href="http://pauloortins.com/jasmine-javascript-unit-tests/" title="Jasmine, you have to write javascript unit tests !">my last post</a>, we saw how jasmine works, how we can create tests, make asserts and so on. In this post, I propose that we do a practice named <em>Code Kata</em>. The name <em>Kata</em> came from martial arts, where it means a series of moviments that focus on skills improvement. So a Code Kata is a series of programming exercises that focus on programming skills improvement. To this post, I chose the following kata:</p>
-<pre>
-/*
-Your task is process a integer sequence to determine the following statistics:
+<div class="highlight"><pre><code class="javascript"><span class="cm">/*</span>
+<span class="cm">Your task is process a integer sequence to determine the </span>
+<span class="cm">following statistics:</span>
 
-   Minimum Value
-   Maximum Value
-   Sequence Length
-   Average Value
+<span class="cm">   Minimum Value</span>
+<span class="cm">   Maximum Value</span>
+<span class="cm">   Sequence Length</span>
+<span class="cm">   Average Value</span>
 
-E.g. For a integer sequence "6, 9, 15, -2, 92, 11" we have the following answers:
+<span class="cm">E.g. For a integer sequence &quot;6, 9, 15, -2, 92, 11&quot; we have the </span>
+<span class="cm">following answers:</span>
 
-   Minimum Value: -2
-   Maximum Value: 92
-   Sequence Length: 6
-   Average Value: 18.1666666
-*/
-</pre>
+<span class="cm">   Minimum Value: -2</span>
+<span class="cm">   Maximum Value: 92</span>
+<span class="cm">   Sequence Length: 6</span>
+<span class="cm">   Average Value: 18.1666666</span>
+<span class="cm">*/</span>
+</code></pre></div>
 <p><br/><br />
 <strong>Hands on! Downloading Jasmine!</strong></p>
 <p>Click <a href="https://github.com/pivotal/jasmine/downloads">here</a> to download the most recent Jasmine version. Extracting zip file, we will find the following folder structure:</p>
@@ -141,201 +142,191 @@ E.g. For a integer sequence "6, 9, 15, -2, 92, 11" we have the following answers
 <p>We can notice that default project comes with a bunch of tests, if we run <em>SpecRunner.html</em>, we will see the tests being executed.</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.28.02-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.28.02-PM.png" alt="Screen Shot 2013-05-14 at 9.28.02 PM" width="441" height="262" class="alignnone size-full wp-image-370" /></a></p>
 <p>For our example, let's remove these files and add our own tests.</p>
-<pre>
-<!-- include source files here... -->
-<script type="text/javascript" src="src/Kata.js"></script>
+<div class="highlight"><pre><code class="javascript"><span class="c">&lt;!--</span> <span class="nx">include</span> <span class="nx">source</span> <span class="nx">files</span> <span class="nx">here</span><span class="p">...</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;src/Kata.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
 
-<!-- include spec files here... -->
-<script type="text/javascript" src="spec/KataSpec.js"></script>
-</pre>
+<span class="c">&lt;!--</span> <span class="nx">include</span> <span class="nx">spec</span> <span class="nx">files</span> <span class="nx">here</span><span class="p">...</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;spec/KataSpec.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+</code></pre></div>
 <p><br/><br />
 <strong>Requirement 1:</strong></p>
 <p>Our first requirement is find the minimum value in a list, remember that we are running <a href="http://pauloortins.com/tdd-test-driven-development/" title="Intro to TDD – Test-Driven Development">TDD</a>, so let's write our first test, and we will see our test fail.</p>
-<pre>
-// KataSpec.js
+<div class="highlight"><pre><code class="javascript"><span class="c1">// KataSpec.js</span>
 
-describe("Calculating Statistics", function() {
-   var kata;
-   var list;
+<span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Calculating Statistics&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="kd">var</span> <span class="nx">kata</span><span class="p">;</span>
+   <span class="kd">var</span> <span class="nx">list</span><span class="p">;</span>
 
-   beforeEach(function() {
-      kata = new Kata();
-      list = [6, 9, 15, -2, 92, 11];
-   });
+   <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">kata</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Kata</span><span class="p">();</span>
+      <span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">11</span><span class="p">];</span>
+   <span class="p">});</span>
 
-   it('should calculate minimum value properly', function() {
-      var minimumValue = kata.calculateMinimumValue(list);
-      expect(minimumValue).toEqual(-2);
-   });
-});
-</pre>
+   <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should calculate minimum value properly&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">minimumValue</span> <span class="o">=</span> <span class="nx">kata</span><span class="p">.</span><span class="nx">calculateMinimumValue</span><span class="p">(</span><span class="nx">list</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">minimumValue</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+   <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.41.43-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.41.43-PM.png" alt="Screen Shot 2013-05-14 at 9.41.43 PM" width="474" height="276" class="alignnone size-full wp-image-372" /></a></p>
 <p>Obviously, our test will fail, because we don't create our Kata class yet, let's write it!</p>
-<pre>
-// Kata.js
+<div class="highlight"><pre><code class="javascript"><span class="c1">// Kata.js</span>
 
-function Kata() {
+<span class="kd">function</span> <span class="nx">Kata</span><span class="p">()</span> <span class="p">{</span>
 
-}
+<span class="p">}</span>
 
-Kata.prototype.calculateMinimumValue = function(list) {
-   return 0;
-};
-</pre>
+<span class="nx">Kata</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calculateMinimumValue</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
 <p>And now, we have a different error, the function isn't implemented properly.</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.44.33-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.44.33-PM.png" alt="Screen Shot 2013-05-14 at 9.44.33 PM" width="467" height="225" class="alignnone size-full wp-image-374" /></a></p>
 <p>Let's implement the code that will make our first test pass.</p>
-<pre>
-// Kata.js
+<div class="highlight"><pre><code class="javascript"><span class="c1">// Kata.js</span>
 
-function Kata() {
+<span class="kd">function</span> <span class="nx">Kata</span><span class="p">()</span> <span class="p">{</span>
 
-}
+<span class="p">}</span>
 
-Kata.prototype.calculateMinimumValue = function(list) {
-   list.sort();
-   return list[0];
-};
-</pre>
+<span class="nx">Kata</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calculateMinimumValue</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">list</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
+   <span class="k">return</span> <span class="nx">list</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">};</span>
+</code></pre></div>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.45.19-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.45.19-PM.png" alt="Screen Shot 2013-05-14 at 9.45.19 PM" width="322" height="157" class="alignnone size-full wp-image-375" /></a></p>
 <p>It's all green! Our first test passed, now we can move to the second requirement.</p>
 <p><strong>Requirement 2:</strong></p>
 <p>Our second requirement is to find the maximum value in a list. Let's write our second test and a fail implementation.</p>
-<pre>
-// KataSpec.js
+<div class="highlight"><pre><code class="javascript"><span class="c1">// KataSpec.js</span>
 
-describe("Calculating Statistics", function() {
-   var kata;
-   var list;
+<span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Calculating Statistics&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="kd">var</span> <span class="nx">kata</span><span class="p">;</span>
+   <span class="kd">var</span> <span class="nx">list</span><span class="p">;</span>
 
-   beforeEach(function() {
-      kata = new Kata();
-      list = [6, 9, 15, -2, 92, 11];
-   });
+   <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">kata</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Kata</span><span class="p">();</span>
+      <span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">11</span><span class="p">];</span>
+   <span class="p">});</span>
 
-   it('should calculate minimum value properly', function() {
-      var minimumValue = kata.calculateMinimumValue(list);
-      expect(minimumValue).toEqual(-2);
-   });
+   <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should calculate minimum value properly&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">minimumValue</span> <span class="o">=</span> <span class="nx">kata</span><span class="p">.</span><span class="nx">calculateMinimumValue</span><span class="p">(</span><span class="nx">list</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">minimumValue</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+   <span class="p">});</span>
 
-   it('should calculate maximum value properly', function() {
-      var maximumValue = kata.calculateMaximumValue(list);
-      expect(maximumValue).toEqual(92);
-   });
-});
-</pre>
-<pre>
-// Kata.js
+   <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should calculate maximum value properly&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">maximumValue</span> <span class="o">=</span> <span class="nx">kata</span><span class="p">.</span><span class="nx">calculateMaximumValue</span><span class="p">(</span><span class="nx">list</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">maximumValue</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">92</span><span class="p">);</span>
+   <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="javascript"><span class="c1">// Kata.js</span>
 
-function Kata() {
+<span class="kd">function</span> <span class="nx">Kata</span><span class="p">()</span> <span class="p">{</span>
 
-}
+<span class="p">}</span>
 
-Kata.prototype.calculateMinimumValue = function(list) {
-   list.sort();
-   return list[0];
-};
+<span class="nx">Kata</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calculateMinimumValue</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">list</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
+   <span class="k">return</span> <span class="nx">list</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">};</span>
 
-Kata.prototype.calculateMaximumValue = function(list) {
-   return 0;
-};
-</pre>
+<span class="nx">Kata</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calculateMaximumValue</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.48.04-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.48.04-PM.png" alt="Screen Shot 2013-05-14 at 9.48.04 PM" width="474" height="250" class="alignnone size-full wp-image-376" /></a></p>
 <p>Let's move to our next implementation. This one will make our second test pass.</p>
-<pre>
-// Kata.js
+<div class="highlight"><pre><code class="javascript"><span class="c1">// Kata.js</span>
 
-function Kata() {
+<span class="kd">function</span> <span class="nx">Kata</span><span class="p">()</span> <span class="p">{</span>
 
-}
+<span class="p">}</span>
 
-Kata.prototype.calculateMinimumValue = function(list) {
-   list.sort();
-   return list[0];
-};
+<span class="nx">Kata</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calculateMinimumValue</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">list</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
+   <span class="k">return</span> <span class="nx">list</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">};</span>
 
-Kata.prototype.calculateMaximumValue = function(list) {
-   list.sort();
-   return list[list.length-1];
-};
-</pre>
+<span class="nx">Kata</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calculateMaximumValue</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">list</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
+   <span class="k">return</span> <span class="nx">list</span><span class="p">[</span><span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+<span class="p">};</span>
+</code></pre></div>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.48.37-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.48.37-PM.png" alt="Screen Shot 2013-05-14 at 9.48.37 PM" width="436" height="218" class="alignnone size-full wp-image-377" /></a></p>
 <p>Now, we learned how the flow works, so let's write the third requirement.</p>
 <p><strong>Requirement 3:</strong></p>
 <p>We should calculate the sequence length. Let's write a test one more time.</p>
-<pre>
-// KataSpec.js
+<div class="highlight"><pre><code class="javascript"><span class="c1">// KataSpec.js</span>
 
-describe("Calculating Statistics", function() {
-   var kata;
-   var list;
+<span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Calculating Statistics&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="kd">var</span> <span class="nx">kata</span><span class="p">;</span>
+   <span class="kd">var</span> <span class="nx">list</span><span class="p">;</span>
 
-   beforeEach(function() {
-      kata = new Kata();
-      list = [6, 9, 15, -2, 92, 11];
-   });
+   <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">kata</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Kata</span><span class="p">();</span>
+      <span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">11</span><span class="p">];</span>
+   <span class="p">});</span>
 
-   it('should calculate minimum value properly', function() {
-      var minimumValue = kata.calculateMinimumValue(list);
-      expect(minimumValue).toEqual(-2);
-   });
+   <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should calculate minimum value properly&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">minimumValue</span> <span class="o">=</span> <span class="nx">kata</span><span class="p">.</span><span class="nx">calculateMinimumValue</span><span class="p">(</span><span class="nx">list</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">minimumValue</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+   <span class="p">});</span>
 
-   it('should calculate maximum value properly', function() {
-      var maximumValue = kata.calculateMaximumValue(list);
-      expect(maximumValue).toEqual(92);
-   });
+   <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should calculate maximum value properly&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">maximumValue</span> <span class="o">=</span> <span class="nx">kata</span><span class="p">.</span><span class="nx">calculateMaximumValue</span><span class="p">(</span><span class="nx">list</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">maximumValue</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">92</span><span class="p">);</span>
+   <span class="p">});</span>
 
-   it('should calculate sequence length properly', function() {
-      var sequenceLength = kata.calculateSequenceLength(list);
-      expect(sequenceLength).toEqual(6);
-   });	
-});
-</pre>
-<pre>
-// Kata.js
+   <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should calculate sequence length properly&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">sequenceLength</span> <span class="o">=</span> <span class="nx">kata</span><span class="p">.</span><span class="nx">calculateSequenceLength</span><span class="p">(</span><span class="nx">list</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">sequenceLength</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+   <span class="p">});</span>	
+<span class="p">});</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="javascript"><span class="c1">// Kata.js</span>
 
-function Kata() {
+<span class="kd">function</span> <span class="nx">Kata</span><span class="p">()</span> <span class="p">{</span>
 
-}
+<span class="p">}</span>
 
-Kata.prototype.calculateMinimumValue = function(list) {
-   list.sort();
-   return list[0];
-};
+<span class="nx">Kata</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calculateMinimumValue</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">list</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
+   <span class="k">return</span> <span class="nx">list</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">};</span>
 
-Kata.prototype.calculateMaximumValue = function(list) {
-   list.sort();
-   return list[list.length-1];
-};
+<span class="nx">Kata</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calculateMaximumValue</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">list</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
+   <span class="k">return</span> <span class="nx">list</span><span class="p">[</span><span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+<span class="p">};</span>
 
-Kata.prototype.calculateSequenceLength = function(list) {
-   return 0;
-};
-</pre>
+<span class="nx">Kata</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calculateSequenceLength</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
 <p>As expected, the test is failing</p>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.49.26-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.49.26-PM.png" alt="Screen Shot 2013-05-14 at 9.49.26 PM" width="481" height="230" class="alignnone size-full wp-image-378" /></a></p>
 <p>Let's write the implementation.</p>
-<pre>
-// Kata.js
+<div class="highlight"><pre><code class="javascript"><span class="c1">// Kata.js</span>
 
-function Kata() {
+<span class="kd">function</span> <span class="nx">Kata</span><span class="p">()</span> <span class="p">{</span>
 
-}
+<span class="p">}</span>
 
-Kata.prototype.calculateMinimumValue = function(list) {
-   list.sort();
-   return list[0];
-};
+<span class="nx">Kata</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calculateMinimumValue</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">list</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
+   <span class="k">return</span> <span class="nx">list</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">};</span>
 
-Kata.prototype.calculateMaximumValue = function(list) {
-   list.sort();
-   return list[list.length-1];
-};
+<span class="nx">Kata</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calculateMaximumValue</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">list</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
+   <span class="k">return</span> <span class="nx">list</span><span class="p">[</span><span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+<span class="p">};</span>
 
-Kata.prototype.calculateSequenceLength = function(list) {
-   return list.length;
-};
-</pre>
+<span class="nx">Kata</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">calculateSequenceLength</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
 <p><a href="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.50.07-PM.png"><img src="http://pauloortins.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-14-at-9.50.07-PM.png" alt="Screen Shot 2013-05-14 at 9.50.07 PM" width="431" height="208" class="alignnone size-full wp-image-379" /></a></p>
 <p>Our tests are green again! The last test will be the reader's homework :D</p>
 <p>Test in javascript is as easy as in others language, there are a lot of frameworks available. My objectives with this post was show a little bit about using TDD and javascript and show how we can improve our programming skills using Code Kata. I love to do Kata, if you know a good Code Kata site, let me know!</p>
