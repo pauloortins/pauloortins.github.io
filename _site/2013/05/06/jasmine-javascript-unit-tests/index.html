@@ -65,6 +65,30 @@
       <div class="mid-col-container">
         <div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name">Jasmine, you have to write javascript unit tests!</h1>	
+	<div class="meta">
+	<span class="date">
+
+
+
+  
+
+<time datetime="2013-05-06T00:00:00+00:00"  itemprop="datePublished">May  6, 2013</time></span>
+	
+		
+  
+
+
+<span class="comments"><a href="#disqus_thread">comments</a></span>
+
+	
+	<span class="edit">
+  
+
+
+<a href="https://github.com/pauloortins/pauloortins.github.io/blob/master/_posts/2013-05-06-jasmine-javascript-unit-tests.html">edit</a>
+</span>
+</div>
+
 	<div class="entry-content" itemprop="articleBody"><p>Some time ago I wrote about how important is to write unit tests for our code, you can read it <a href="http://pauloortins.com/tdd-test-driven-development/" title="Intro to TDD – Test-Driven Development">here</a>.</p>
 <p>Today, I have seen a lot of developers talking about unit tests, but the majority of these efforts are focused to backend. My team is a example, we have a good coverage on our backend code but we leave the javascript code to be tested by the browser tests. Is it wrong ?</p>
 <p>IMO, YES ! First of all, browser tests are slow, and they don't fail beautiful, we have less fail information in a acceptance tests than we would have in a unit test, and second, javascript is the language of the moment, jQuery, became interactive applications creation easier, and a lot of javascript frameworks have been created in the recent years, e.g. <a href="http://nodejs.org/">node.js</a>, <a href="http://backbonejs.org/">backbone.js</a>, <a href="http://angularjs.org/">angular.js</a>, <a href="http://emberjs.com/">ember.js</a> and so on. It's not a surprise that javascript is the most used language in <a href="https://github.com/languages">GitHub</a>.</p>
@@ -191,6 +215,7 @@ In the next post, I will show how to use <strong>Jasmine</strong> in practice, c
 <p>For more info, I recommend the Jasmine page:</p>
 <p><a href="http://pivotal.github.io/jasmine/">Jasmine</a></p>
 </div>
+
 </article>
 
 <div data-type="ad" data-publisher="lqm.youvebeenhacked.site" data-zone="ron" data-format="728x90"></div>
@@ -234,8 +259,7 @@ Practicing programming with Code Kata and Javascript/Jasmine">Practicing program
  <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
         var disqus_shortname = 'pauloortins'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
+	/* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
