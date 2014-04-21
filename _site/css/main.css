@@ -445,10 +445,10 @@ a {
 				  margin-right: 30px;
 			  }
 		  }
-		  .meta .date:before { content: "\f073" }
+		  /*.meta .date:before { content: "\f073" }
 		  .meta .tags:before { content: "\f02c" }
 		  .meta .comments:before { content: "\f075" }
-		  .meta .edit:before { content: "\f044" }
+		  .meta .edit:before { content: "\f044" }*/
 		  #content article .entry-content .archives { font-family: "Open Sans" }
 		  #content article .entry-content .archives .year { font-size: 1.1em }
 		  #content article .entry-content .archives h3.title {

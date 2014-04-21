@@ -1,7 +1,5 @@
 <div class="meta">
 	<span class="date">{% include date.html %}{{ time }}</span>
-	{% if site.disqus_short_name and site.disqus_show_comment_count == true %}
-		{% include comments_link.html %}
-	{% endif %}
+	<span>|</span>
 	<span class="edit">{% include edit.html %}</span>
 </div>
