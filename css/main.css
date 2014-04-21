@@ -88,7 +88,7 @@ a {
 #header h1 {
 	font-family: ; '"Open Sans", "Microsoft YaHei", "Hiragino Sans GB", "Hiragino Sans GB W3", "微软雅黑", "Helvetica Neue", Arial, sans-serif;';
 	font-weight: 100;
-	font-size: 4em;
+	font-size: 2.5em;
 	line-height: 0.9;
 	float: left;
 	width: 100%;
@@ -204,6 +204,10 @@ a {
 		    transition: 0.3s;
 	    }
 	    #sub-nav .social a:hover { opacity: 1 }
+	    #sub-nav .social a.email {
+		    background: url('/images/social/email.png?1385702818') center no-repeat #fc8d8d;
+		    border: 1px solid #fc8d8d;
+	    }
 	    #sub-nav .social a.twitter {
 		    background: url('/images/social/twitter.png?1385702818') center no-repeat #55cff8;
 		    border: 1px solid #55CFF8;
@@ -532,7 +536,7 @@ a {
 		  .left-col { width: 23%;position:fixed;height:100% }
 		  .left-col .intrude-less { width: 80% }
 		  .left-col #header { width: 100%;padding:20% 0% 0% 15% }
-		  .left-col #header #main-nav { margin-top: 30px;font-size:1.5em }
+		  .left-col #header #main-nav { margin-top: 30px;font-size:1.5em; margin-bottom: 100px }
 		  .left-col #header .profilepic img { border-radius: 50%;-moz-border-radius:50%;-webkit-border-radius:50% }
 		  .left-col #header a { text-shadow: 0 1px #333 }
 		  .left-col #header #sub-nav { margin-top: 10px }

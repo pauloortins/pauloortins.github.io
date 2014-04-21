@@ -17,3 +17,11 @@ disqus_show_comment_count: true
 
 #github user
 github_repo_url: https://github.com/pauloortins/pauloortins.github.io/
+
+#social
+email: paulo.ortins@gmail.com
+twitter_user: pauloortins
+github_user: pauloortins
+
+#analytics
+google_analytics_tracking_id: 40530191
