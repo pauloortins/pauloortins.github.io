@@ -10,3 +10,7 @@ pygments: true
 permalink: /:year/:month/:day/:title/
 
 excerpt_separator: ""
+
+# Disqus Comments
+disqus_short_name: pauloortins
+disqus_show_comment_count: true
