@@ -3,6 +3,7 @@ layout: post
 title: "Where, when and how Apache's Commits are made"
 categories: Open Source Source Mining
 date: 2013-10-12
+comments: true
 ---
 <p>Six months ago, I started my master's degree where I'm researching about software engineering and mining of code repositories. In the next months I pretend to, besides write about C#, Javascript and programming in general, also write about subjects that I'm researching, tools that I'm developing, and papers that I'm reading. In this post, I will talk about the results that I had through mining and gathering information from Apache Httpd repository.</p>
 <p><br/></p>

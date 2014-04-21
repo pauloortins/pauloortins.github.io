@@ -3,6 +3,7 @@ layout: post
 title: 3 programming languages that are promising for the next years
 categories: Clojure Elixir Go Programming Languages
 date: 2013-09-03
+comments: true
 ---
 <p>As every addicted for programming languages, I feel myself excited when I see new programming languages. In the last years I did at least a toy project in C#, Java, Javascript, Ruby, Python, Scala and Objective-C. Recently, I made a search for new and exciting programming languages. Below is the the languages that I think more interesting and are promising more in the next years. They are open source and focused on writing concurrency software. I will definitively give a try to one of them. The problem is choose which one!</p>
 <p><br/></p>

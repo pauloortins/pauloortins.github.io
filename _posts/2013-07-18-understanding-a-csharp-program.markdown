@@ -3,6 +3,7 @@ layout: post
 title: 'Getting CSharper #2: Understanding a C# Program'
 categories: C# Getting CSharper
 date: 2013-07-18
+comments: true
 ---
 <p>In the <a href="http://pauloortins.com/getting-csharper-1-a-short-introduction-to-csharp/" title="Getting CSharper #1: A short introduction to C#">previous post</a> we talked about C# history, how it’s evolving and some of his characteristics. Now, we will start to see code. We are going to see the C# keywords, blocks, how a C# program is structured and so on.</p>
 <h2>Understanding our First C# Program</h2>
