@@ -590,7 +590,7 @@ a {
 		  ul.categories span.size { font-size: 0.7em }
 		  a:hover { -webkit-transition: color 0.3s;-moz-transition:color 0.3s;-o-transition:color 0.3s;transition:color 0.3s;color:#4466c5 }
 		  #content article h1.title a:hover,
-		  .left-col a:hover { color: #4466c5 }
+		  .left-col a:hover { color: #f25e5e}
 		  #page-navigation {
 			  font-family: arial;
 			  width: 100%;
