@@ -240,8 +240,7 @@ a {
 	    }
 	    #pagenavi .prev:before {
 		    content: "\f060";
-		    font: 1.3em FontAwesome;
-		    position: absolute;
+		    font: 1.3em FontAwesome;0		    position: absolute;
 		    left: 0;
 	    }
 	    #pagenavi .next {
@@ -399,6 +398,27 @@ a {
 		    height: 100%;
 		    margin-top: 0;
 	    }
+        
+        article .entry-content ul {
+            list-style: none;
+            padding:0;
+            margin:0;
+        }
+
+        article .entry-content li { 
+            padding-left: 1em; 
+            text-indent: -.7em;
+        }
+
+        article .entry-content li:before {
+            content: "• ";
+            color: brown; /* or whatever color you prefer */        
+        }
+
+        #content article .entry-content div.highlight {
+            margin-top: 30px;
+        }
+
 	    .share {
 		    padding: 15px 0;
 		    border-top: 1px solid #fff;
@@ -521,6 +541,8 @@ a {
 		  #content article .entry-content .more-link { padding-left: 0px }
 		  #content article .entry-content h2 { font-size: 1.3em;margin-top:30px;margin-bottom:-20px;font-weight:200; color: brown}
 		  #content article .entry-content h3 { font-size: 1.2em;margin-top:30px;margin-bottom:-20px;font-weight:200; color: brown}
+		  #content article .entry-content h4 { font-size: 1.1em;margin-top:30px;margin-bottom:-20px;font-weight:200; color: brown}
+		  #content article .entry-content h5 { font-size: 1.0em;margin-top:30px;margin-bottom:-20px;font-weight:200; color: brown}
 		  #content article .entry-content h2::before { border-bottom: none }
 		  #content article .entry-content h2::before { border-bottom: none }
 		  #content article .entry-content blockquote { border-left: 5px solid #4466c5;background:#F7F7F7 }
@@ -529,7 +551,7 @@ a {
 		  #content article .entry-content table td { text-align: left }
 		  #content article .meta { color: #999;font-family:"Open Sans";font-weight:100;font-size:1.2em }
 		  #content article .meta .date { display: inline }
-		  #content article h1.title { color: brown; font-family: "Open Sans", "Microsoft YaHei", "Hiragino Sans GB", "Hiragino Sans GB W3", "微软雅黑", "Helvetica Neue", Arial, sans-serif;font-weight:300;font-size:6em;padding-bottom:15px; }
+		  #content article h1.title { color: brown; font-family: "Open Sans", "Microsoft YaHei", "Hiragino Sans GB", "Hiragino Sans GB W3", "微软雅黑", "Helvetica Neue", Arial, sans-serif;font-weight:300;font-size:3.5em;padding-bottom:15px; }
 		  #content article h1.title a { color: brown;-webkit-transition:color 0.3s;-moz-transition:color 0.3s;-o-transition:color 0.3s;transition:color 0.3s }
 		  #content div.archives h1.title { font-size: 3em }
 		  .container .mid-col footer { width: 100% }

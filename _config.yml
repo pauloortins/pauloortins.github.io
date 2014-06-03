@@ -5,7 +5,7 @@ gravatar_url: http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.pn
 paginate: 20
 name: Your New Jekyll Site
 markdown: kramdown
-pygments: true
+highlighter: pygments 
 
 permalink: /:year/:month/:day/:title/
 
