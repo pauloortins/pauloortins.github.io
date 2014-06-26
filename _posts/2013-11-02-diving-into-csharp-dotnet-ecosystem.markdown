@@ -15,14 +15,15 @@ A huge discussion is happening on HackerNews about this theme:
 _Disclaimer: All the points below reflect my and only my opinion. If you agree with me, cool, if not, give your opinion and we can start a discussion, after all, blogs are made for it. Welcome and Good read!_
 
 ## Post Outline
+<br/>
 
-  1. Introduction and Motivation
-  2. Language Features
-  3. Generalist/Niche
-  4. Tools
-  5. Costs Involved
-  6. Community/Open Source
-  7. Future
+  - Introduction and Motivation
+  - Language Features
+  - Generalist/Niche
+  - Tools
+  - Costs Involved
+  - Community/Open Source
+  - Future
 
 ## Introduction and Motivation
 
@@ -55,7 +56,7 @@ It’s a very controversy topic, and I know we can be less bureaucratic and more
     };
 
     function printAdultStudent(student) {
-        if (student.Age &gt; 18) {
+        if (student.Age > 18) {
             console.message(student.Name);
         }
     }
@@ -80,7 +81,7 @@ It’s a very controversy topic, and I know we can be less bureaucratic and more
 
     public void PrintAdultStudent(Student student)
     {
-        if (student.Age &gt; 18)
+        if (student.Age > 18)
         {
             Console.WriteLine(student.Name);
         }
@@ -165,12 +166,12 @@ Let me give some examples of how extension methods can be used:
     {
         public static IEnumerable Adults(this IEnumerable people)
         {
-            return people.Where(x =&gt; x.Age &gt;= 18);
+            return people.Where(x => x.Age &gt;= 18);
         }
 
         public static IEnumerable Approved(this IEnumerable people)
         {
-            return people.Where(x =&gt; x.Grade &gt;= 7.0M);
+            return people.Where(x => x.Grade &gt;= 7.0M);
         }
     }
 
@@ -192,10 +193,10 @@ Let me give some examples of how extension methods can be used:
 
         var lowNums =
             from n in numbers
-            where n &lt; 5
+            where n < 5
             select n;
 
-        Console.WriteLine("Numbers &lt; 5:");
+        Console.WriteLine("Numbers < 5:");
         foreach (var x in lowNums)
         {
             Console.WriteLine(x);
@@ -203,7 +204,7 @@ Let me give some examples of how extension methods can be used:
     }
 
     /*
-    Numbers &lt; 5:
+    Numbers < 5:
     4
     1
     3
@@ -265,16 +266,16 @@ C#, like Ruby, Python, Javascript and Scala, also provides to us functional prog
         {
             // Action
             var person = new Person() {Age = 19, Grade = 7.0M};
-            Action printAge = () =&gt; Console.WriteLine(person.Age);
-            Action printGrade = () =&gt; Console.WriteLine(person.Grade);
+            Action printAge = () => Console.WriteLine(person.Age);
+            Action printGrade = () => Console.WriteLine(person.Grade);
             PrintSomething(printAge);   // 19
             PrintSomething(printGrade); // 7.0
 
             // Functions
-            DoAndPrintMathOperation((num1,num2) =&gt; num1 * num2); // 50
-            DoAndPrintMathOperation((num1,num2) =&gt; num1 - num2); // 5
-            DoAndPrintMathOperation((num1,num2) =&gt; num1 %2B num2); // 15
-            DoAndPrintMathOperation((num1,num2) =&gt; num1 / num2); // 2
+            DoAndPrintMathOperation((num1,num2) => num1 * num2); // 50
+            DoAndPrintMathOperation((num1,num2) => num1 - num2); // 5
+            DoAndPrintMathOperation((num1,num2) => num1 + num2); // 15
+            DoAndPrintMathOperation((num1,num2) => num1 / num2); // 2
 
         }
 
@@ -304,14 +305,14 @@ C# 5.0, brought two new keywords, async and await, that make easier to write asy
 
 private static void Main(string[] args)
 {
-    Action runAsync = () =&gt;
+    Action runAsync = () =>
     {
         var siteLength = GetSiteContentLengthAsync("http://msdn.microsoft.com");
-            siteLength.ContinueWith(x =&gt; Console.WriteLine("COMPLETED"));
+            siteLength.ContinueWith(x => Console.WriteLine("COMPLETED"));
             Thread.Sleep(1000);
         };
 
-    Action runSync = () =&gt;
+    Action runSync = () =>
     {
         var siteLength = GetSiteContentLengthSync("http://msdn.microsoft.com");
         Console.WriteLine("COMPLETED");
@@ -326,7 +327,7 @@ public static void Profile(Action action)
 {
     var initialTime = DateTime.Now;
 
-    for (var i = 0; i &lt; 10; i%2B%2B)
+    for (var i = 0; i < 10; i++)
     { 
        action();
     }
@@ -485,21 +486,19 @@ Are there a future where we will have a `top language` like C#, running on a `fr
 
 Wish to learn more about C#? [Check out these resources][15].
 
-November 2, 2013 @ 12:56 pm
-
-   [1]: http://coding.smashingmagazine.com/2013/04/18/introduction-to-programming-type-systems/
-   [2]: http://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b
-   [3]: http://pauloortins.com/wp-content/uploads/2013/10/400px-CLR_diag.svg_.png
-   [4]: http://nancyfx.org/
-   [5]: http://mvc.fubu-project.org/
-   [6]: http://openrasta.org/
-   [7]: http://pauloortins.com/wp-content/uploads/2013/10/monoForMacOS-1024x762.png
-   [8]: http://pauloortins.com/wp-content/uploads/2013/10/mobile_market_share-300x247.png
-   [9]: http://pauloortins.com/wp-content/uploads/2013/10/Screen-Shot-2013-10-29-at-8.46.30-PM.png
-   [10]: http://visualstudiomagazine.com/articles/2013/09/24/big-data-deployments-going-slow.aspx
-   [11]: http://pauloortins.com/wp-content/uploads/2013/10/hadoop_azure.jpeg
-   [12]: http://pauloortins.com/wp-content/uploads/2013/10/kinect-phi.jpeg
-   [13]: http://pauloortins.com/wp-content/uploads/2013/10/dreamspark.jpeg
-   [14]: http://mvp.microsoft.com/en-US/default.aspx
-   [15]: http://pauloortins.com/good-resources-to-learn-casp-net/ (Resources to become a Ninja: C#)
+[1]: http://coding.smashingmagazine.com/2013/04/18/introduction-to-programming-type-systems/
+[2]: http://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b
+[3]: /images/posts/2013-11-02/clr-compilation.jpg
+[4]: http://nancyfx.org/
+[5]: http://mvc.fubu-project.org/
+[6]: http://openrasta.org/
+[7]: /images/posts/2013-11-02/touchdraw.png 
+[8]: /images/posts/2013-11-02/market-prediction.jpg 
+[9]: /images/posts/2013-11-02/rdio.png 
+[10]: http://visualstudiomagazine.com/articles/2013/09/24/big-data-deployments-going-slow.aspx
+[11]: /images/posts/2013-11-02/hdinsight.jpg 
+[12]: /images/posts/2013-11-02/kinect.jpg 
+[13]: /images/posts/2013-11-02/dreamspark.jpg 
+[14]: http://mvp.microsoft.com/en-US/default.aspx
+[15]: /2013/06/15/good-resources-to-learn-casp-net
   
