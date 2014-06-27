@@ -239,7 +239,6 @@ a {
 		    left: 0;
 	    }
 	    #pagenavi .prev:before {
-		    content: "\f060";
 		    font: 1.3em FontAwesome;0		    position: absolute;
 		    left: 0;
 	    }
@@ -248,7 +247,6 @@ a {
 		    right: 0;
 	    }
 	    #pagenavi .next:before {
-		    content: "\f061";
 		    font: 1.3em FontAwesome;
 		    position: absolute;
 		    right: 0;
