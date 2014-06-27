@@ -633,3 +633,7 @@ a {
 .archives li:before {
     content: '' !important;
 }
+
+#content article h1.index-title {
+    font-size: 2em;
+}
