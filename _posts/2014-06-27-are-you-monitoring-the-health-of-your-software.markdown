@@ -199,6 +199,7 @@ There is no coupling in this class since it don't use any external class and we 
 Calculate the LCOM here is a little tricky. To make it simpler let's separate the number of pairs of methods without similarity from those that have some similarity.
 
 ##### Similar Methods (6)
+<p></p>
 
 - GetAccount -> Credit
 - GetAccount -> Debit
@@ -208,6 +209,7 @@ Calculate the LCOM here is a little tricky. To make it simpler let's separate th
 - Debit -> CloseAccount
 
 ##### Non-Similar Methods (9)
+<p></p>
 
 - GetName -> GetAddress
 - GetName -> GetAccount
