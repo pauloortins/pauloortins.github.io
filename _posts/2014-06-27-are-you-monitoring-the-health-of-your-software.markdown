@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Are you monitoring the health of your software?"
-date:   2014-07-01
+date:   2014-06-28
 categories: code-metrics
 comments: true
 ---
