@@ -331,6 +331,13 @@ Despite of code metrics have been researched for decades, I still think that mos
 I'm researching about code metrics for a year and I really want to bring what I'm learning to the industry, this article is my initial effort and I hope that it can generate good discussions about this subject.
 
 See you soon!
+
+## Want more?
+
+Below are more resources about code metrics and code quality:
+
+- [Refactoring: Improving the Design of Existing Code][9]
+- [Object-Oriented Metrics in Practice: Using Software Metrics to Characterize, Evaluate, and Improve the Design of Object-Oriented Systems][10]
  
 [1]: /2013/07/11/5-reasons-to-avoid-code-comments
 [2]: http://www.extremeprogramming.org/rules/pair.html
@@ -340,3 +347,5 @@ See you soon!
 [6]: http://www.cloudbees.com/
 [7]: http://www.ndepend.com/Default.aspx
 [8]: http://nemo.sonarqube.org/
+[9]: http://www.amazon.com/gp/product/0201485672/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0201485672&linkCode=as2&tag=paulorti-20&linkId=GTUH7K4JEGIHNORX
+[10]: http://www.amazon.com/gp/product/3642063748/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=3642063748&linkCode=as2&tag=paulorti-20&linkId=WWCJT3SUKEO3IKEF
