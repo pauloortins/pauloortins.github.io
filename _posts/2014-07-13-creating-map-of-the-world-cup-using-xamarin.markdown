@@ -10,6 +10,7 @@ It's World Cup time in Brazil and is impossible to programming without at least 
 
 In the last days I thought: "Why don't join these two things and write a blog post showing how we can use Xamarin features to visualize information about the World Cup?".
 
+<!--more-->
 
 In this post, I pretend to show a step by step guide about how we can create maps with Xamarin.iOS and use them to show the location of the countries and stadiums involved in the World Cup 2014. We will do it using baby steps in the following order.
 

@@ -7,6 +7,8 @@ comments: true
 ---
 Yesterday, I released my first package on NuGet, the SmartPeriod, the experience was a lot of fun and rewarding, release a NuGet package is too simple and intuitive, I hope to be contributing with more packages in the future.
 
+<!--more-->
+
 The code is also available publicly on [github][1].
 
 ## SmartPeriod ##

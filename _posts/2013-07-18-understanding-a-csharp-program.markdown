@@ -6,6 +6,9 @@ date: 2013-07-18
 comments: true
 ---
 In the [previous post][1] we talked about C# history, how it’s evolving and some of his characteristics. Now, we will start to see code. We are going to see the C# keywords, blocks, how a C# program is structured and so on.
+
+<!--more-->
+
 Understanding our First C# Program
 
 {% highlight c# %}

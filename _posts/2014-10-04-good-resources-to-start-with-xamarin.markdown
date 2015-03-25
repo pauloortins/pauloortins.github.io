@@ -8,6 +8,8 @@ comments: true
 
 Hi guys, how are you? Those who know me or follow me on the internet are seeing how much I'm in love for Xamarin and how I'm betting on it to build amazing native mobile apps that are delighting my customers.
 
+<!--more-->
+
 Recently I spoke about Xamarin in two events with the goal to show to local developers how good Xamarin is. In these talks I spoke about the mobile market and how it's getting bigger, how users prefer native apps instead html5-based apps, how we can develop native experiences using Xamarin, how much code we can reuse and how we are also ready for a future of wearable devices, cars and so on.
 
 The feedback was awesome and I ended up with a lot of emails asking me how someone can start to develop apps with Xamarin, which resources are the best, who are the guys who head the community, licenses, and a lot of other doubts. 

@@ -7,6 +7,7 @@ comments: true
 ---
 I started to programming using C# three years ago. Coming from Java, it was love at first sight, the language offers a lot of shortcuts to accomplish tasks easier than I was used with Java. Recently, I felt the need to leave to be a only a language user and start to understand what is happening under the hood. This series of posts are a result from my experience trying to deepen my C# knowledge through books, online tutorial, videos and so on. I hope it can help other people who are trying to learn more about C# too.
 
+<!--more-->:
 
 ## What it's C#?
 

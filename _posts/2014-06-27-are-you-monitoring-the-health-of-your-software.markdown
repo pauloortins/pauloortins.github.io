@@ -8,6 +8,8 @@ comments: true
 
 Software projects tend to become more and more complex as they evolve. This complexity, if not managed, can contribute in an important way to the project failure. One of the parts that are more exposed to a complexity increase is source code. In this article we are going to see how software complexity increases and how we can use code metrics to increase code quality avoiding that a software fails due this complexity increase.
 
+<!--more-->
+
 ## Software Evolution
 
 Since 1967 people are researching about the software importance in our society and how we can establish patterns and practices that we can be applied to develop high quality software. Other studies are also trying to study how software evolves and what are the consequences of this evolution.

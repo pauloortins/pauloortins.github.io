@@ -8,6 +8,8 @@ comments: true
 
 Every time I can, I like to read books about the subjects that I’m looking to learn, programming is not different, besides it’s considered a practical field where most of the learning comes trough experience (the famous “learn by doing”), I think important to read books, they help us to build theoretical foundation that we can use to justify our practical decisions.
 
+<!--more-->
+
 In the last week, I take a time to deep my knowledge about mobile development using Xamarin. The chosen source was the book [Xamarin Cross-platform Application Development][1] written by [@JonathanPeppers][2] and published by [Packt][8].
 
 ![Book Image][3]

@@ -8,6 +8,8 @@ comments: true
 
 Last weekend I gave a talk in a local event about the `C#/.NET ecosystem`, the audience was dominated by students and I tried to show to them how they can analyze a programming language, points they should observe and after I analyzed the C# through these points. The post below is a compiled of this talk.
 
+<!--more-->
+
 ## Updated – Discussions
 
 A huge discussion is happening on HackerNews about this theme: 

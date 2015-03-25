@@ -9,6 +9,8 @@ A couple weeks ago I was in a walk with a friend of mine, he was complaining abo
  
 Is it worth my time? Is it promising or not ? 
 
+<!--more-->
+
 And even after we made these choices, every year we have to make them again, maybe a hot technology became obsolete or a technology that didn't appear to be promising is now the hottest in our local market and we need to learn it as soon as possible. 
 
 My answer to him was that software development world is like a stock market. Let me explain my analogy.

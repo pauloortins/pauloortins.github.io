@@ -2,14 +2,14 @@ author: Paulo Ortins
 title: Paulo Ortins
 gravatar_url: http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png
 
-paginate: 20
+paginate: 10
 name: Your New Jekyll Site
 markdown: kramdown
 highlighter: pygments 
 
 permalink: /:year/:month/:day/:title/
 
-excerpt_separator: ""
+excerpt_separator: <!--more-->
 
 # Disqus Comments
 disqus_short_name: pauloortins

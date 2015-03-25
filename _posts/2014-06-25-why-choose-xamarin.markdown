@@ -8,6 +8,8 @@ comments: true
 
 A common doubt when we are starting a new mobile project is which strategy should we choose. Should we develop a webapp? A phonegap hybrid app? Or should we go for the native ones and develop a specific version for each platform?
 
+<!--more-->
+
 Each one of these strategies has advantages and disadvantages that should be analyzed carefully accordingly to the application's characteristics and the team's knowledge. 
 
 Examples of characteristics that can be analyzed are:
