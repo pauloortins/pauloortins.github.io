@@ -1,9 +1,9 @@
 @font-face {
-	font-family: '"Open Sans", "Microsoft YaHei", "Hiragino Sans GB", "Hiragino Sans GB W3", "微软雅黑", "Helvetica Neue", Arial, sans-serif;';
-	src: url("/font/fontawesome-webfont.eot");
-	src: url("/font/fontawesome-webfont.eot?#iefix") format("embedded-opentype"),url("/font/fontawesome-webfont.woff") format("woff"),url("/font/fontawesome-webfont.ttf") format("truetype"),url("/font/fontawesome-webfont.svgz#FontAwesomeRegular") format("svg"),url("/font/fontawesome-webfont.svg#FontAwesomeRegular") format("svg");
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'FontAwesome';
+    src: url("/font/fontawesome-webfont.eot");
+    src: url("/font/fontawesome-webfont.eot?#iefix") format("embedded-opentype"),url("/font/fontawesome-webfont.woff") format("woff"),url("/font/fontawesome-webfont.ttf") format("truetype"),url("/font/fontawesome-webfont.svgz#FontAwesomeRegular") format("svg"),url("/font/fontawesome-webfont.svg#FontAwesomeRegular") format("svg");
+    font-weight: normal;
+    font-style: normal;
 }
 * {
 	margin: 0;
@@ -467,16 +467,16 @@ a {
 				  margin-right: 30px;
 			  }
 		  }
-		  /*.meta .date:before { content: "\f073" }
+		  .meta .date:before { content: "\f073" }
 		  .meta .tags:before { content: "\f02c" }
 		  .meta .comments:before { content: "\f075" }
-		  .meta .edit:before { content: "\f044" }*/
+		  .meta .edit:before { content: "\f044" }
 		  #content article .entry-content .archives { font-family: "Open Sans" }
 		  #content article .entry-content .archives .year { font-size: 1.1em }
 		  #content article .entry-content .archives h3.title {
 			  display: inline-block;
 			  font-size: 0.9em;
-			  font-weight: 400;
+			  /*font-weight: 400;*/
 		  }
 		  #content article .entry-content .archives ul {
 			  padding: 20px;
@@ -533,6 +533,7 @@ a {
 		  #content article .title { margin-left: 0px;font-size:4em;font-weight:300;line-height:1em }
 		  #content article.single-post .title { text-align: center;text-decoration:underline }
 		  #content article .entry-content { margin-left: 0px;line-height:1.8em;font-size:1.6em }
+		  #content article .excerpt { margin-left: 0px;line-height:1.6em;font-size:1.4em }
 		  #content article .entry-content p { margin-top: 30px }
 		  #content article .entry-content .github-widget p { margin-top: 0px }
 		  #content article .entry-content .more-link:before { line-height: 1.2em }
