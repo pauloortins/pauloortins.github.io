@@ -3,7 +3,6 @@ title: Paulo Ortins
 gravatar_url: http://www.gravatar.com/avatar/a1c6e240931b44f7f4b21492232cd3fc.png
 
 paginate: 10
-name: Your New Jekyll Site
 markdown: kramdown
 highlighter: pygments 
 
@@ -25,3 +24,8 @@ github_user: pauloortins
 
 #analytics
 google_analytics_tracking_id: UA-40530191-1
+
+#blog info
+name: Paulo Ortins .NET
+description: Want to know more about Xamarin, .NET and software development? You came to the right place!
+url: http://pauloortins.com
