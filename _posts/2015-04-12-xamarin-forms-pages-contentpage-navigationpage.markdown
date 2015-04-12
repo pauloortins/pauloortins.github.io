@@ -6,7 +6,7 @@ categories: Mobile Xamarin
 comments: true
 ---
 
-In my last post I showed to you the structure of a Xamarin.Forms app, we also used some of its components to create a simple screen that had native look-and-feel in each one of the three platforms. From this post we will learn more about these componentes starting by the Pages.
+In my last post I showed to you the structure of a Xamarin.Forms app, we also used some of its components to create a simple screen that had native look-and-feel in each one of the three platforms. From this post we will learn more about these components starting by the Pages.
 
 <!--more-->
 
