@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Xamarin.Forms Pages: ContentPage and NavigationPage"
-date:   2015-04-05
+date:   2015-04-12
 categories: Mobile Xamarin
 comments: true
 ---
