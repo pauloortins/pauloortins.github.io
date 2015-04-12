@@ -14,13 +14,13 @@ In my last post I showed to you the structure of a Xamarin.Forms app, we also us
 
 A `Page` in Xamarin.Forms represents a screen in our mobile apps, it works in an analogous way to the `Activities` in the Android, to the `ViewControllers` in the iOS and the namesake `Pages` in the Windows Phone. The image below shows all types of Pages that belongs to Xamarin.Forms API, in this post we will cover the `ContentPage` and the `NavigationPage` leaving the `TabbedPage`, the `CarouselPage` and the `MasterDetailPage` to the next posts.
 
-![Tipos de Pages][1]
+![Page Types][1]
 
 #### ContentPage
 
 The `ContentPage` is exactly a Page with a view inside her. In Xamarin.Forms each ContentPage has its content associated to a `Content` property of type View, this type is the superclass for all Layouts and Controls ([Do you remember the StackLayout, Label and Entry that we saw in the last post?)][10]. 
 
-![ContentPage com Lorem Ipsun][2]
+![ContentPage with Lorem Ipsun][2]
 
 The image above shows a `ContentPage` where the `Content` property was filled with a Label that contains a random text. The code below was used to create this ContentPage. Take a look on it!
 
@@ -46,7 +46,7 @@ public class FirstPage : ContentPage
 
 In the `ContentPage` above we filled the `Content` property with a `Control` (Label is a Control), however, as I said in the beginning of the post, we can also use `Layouts` as Content. The image below shows a ContentPage where its Content property was filled with a `StackLayout` to show the rainbow colors.
 
-![ContentPage com as cores do arco-íris][3]
+![ContentPage with rainbow colors][3]
 
 And below is the code that I used to create this page.
 
@@ -205,23 +205,23 @@ When running the app we can see the following screens:
 
 First Page
 
-![Primeira Página][4]
+![First Page][4]
 
 After we click in the Push Red Page button, we will be in a Red page and our navigation stack now has 2 pages.
 
-![Segunda Página][5]
+![Second Page][5]
 
 After we click in the *Back* button, the RedPage will be popped and we will be back to the root page. 
 
-![Terceira Página][6]
+![Third Page][6]
 
 If we click 3 times the *Push Red Page* button, we will be in a `RedPage` and our navigation stack now has 4 pages.
 
-![Quarta Página][7]
+![Forth Page][7]
 
 And for last, after we click in the *Back to Root* button, all the pages, except the root, will be popped and we will be back again to the root page.
 
-![Quinta Página][8]
+![Fifth Page][8]
 
 ### This is it!
 
