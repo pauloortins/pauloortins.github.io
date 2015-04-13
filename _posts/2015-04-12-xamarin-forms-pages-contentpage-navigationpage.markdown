@@ -12,7 +12,7 @@ In my last post I showed to you the structure of a Xamarin.Forms app, we also us
 
 ### Pages
 
-A `Page` in Xamarin.Forms represents a screen in our mobile apps, it works in an analogous way to the `Activities` in the Android, to the `ViewControllers` in the iOS and the namesake `Pages` in the Windows Phone. The image below shows all types of Pages that belongs to Xamarin.Forms API, in this post we will cover the `ContentPage` and the `NavigationPage` leaving the `TabbedPage`, the `CarouselPage` and the `MasterDetailPage` to the next posts.
+A `Page` in Xamarin.Forms represents a screen in our mobile apps, it works in an analogous way to the `Activities` in Android, to the `ViewControllers` in iOS and the namesake `Pages` in Windows Phone. The image below shows all types of Pages that belongs to Xamarin.Forms API, in this post we will cover the `ContentPage` and the `NavigationPage` leaving the `TabbedPage`, the `CarouselPage` and the `MasterDetailPage` to the next posts.
 
 ![Page Types][1]
 
