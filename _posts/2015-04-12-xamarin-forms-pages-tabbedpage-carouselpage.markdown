@@ -154,7 +154,7 @@ public event EventHandler CurrentPageChanged
 
 Both samples are available in my github: [TabbedPage][13] and [CarouselPage][14].
 
-### That's all!
+### This is it!
 
 In this post we saw more two kinds of `Pages`, this time, pages that act like a managers of other pages that are the `TabbedPage` and and the `CarouselPage` and we also saw how easy is to use them to create navigations equal to the ones that we use in other apps in our mobile devices. In the next post I will finish this section with the last kind of page: the `MasterDetailPage`.
 
