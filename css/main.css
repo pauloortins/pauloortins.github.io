@@ -532,7 +532,7 @@ a {
 		  #content article { border-top: none; }
 		  #content article .title { margin-left: 0px;font-size:4em;font-weight:300;line-height:1em }
 		  #content article.single-post .title { text-align: center;text-decoration:underline }
-		  #content article .entry-content { margin-left: 0px;line-height:1.7em;font-size:1.5em }
+		  #content article .entry-content { margin-left: 0px;line-height:1.6em;font-size:1.4em }
 		  #content article .excerpt { margin-left: 0px;line-height:1.6em;font-size:1.4em }
 		  #content article .entry-content p { margin-top: 30px }
 		  #content article .entry-content .github-widget p { margin-top: 0px }
