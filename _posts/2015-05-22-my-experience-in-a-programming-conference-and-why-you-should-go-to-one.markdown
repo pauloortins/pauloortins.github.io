@@ -77,7 +77,7 @@ In my opinion, programming conferences brings too much benefits to a programmer 
 What's the next conference that you are going?
 
 [1]: /images/posts/2015-05-22/trilhas-tdc-floripa-2015.png 
-[2]: /images/posts/2015-05-22/minhas-trilhas.jpg 
+[2]: /images/posts/2015-05-22/minhas-trilhas.JPG 
 [3]: http://www.intelsoftwareday.com.br/
 [4]: http://www.thedevelopersconference.com.br/
 [5]: http://www.pythonbrasil.org.br/
