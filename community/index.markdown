@@ -13,14 +13,13 @@ I love to contribute to software communities and I have contributing a lot in th
 ## 2015 [8]
 
 ### The Developer's Conference
+July, 21 - July 25
+Coordinator: Career Track
+
+### The Developer's Conference
 May, 13 - May 17  
 Florianópolis, Brazil  
 Talk: Use Xamarin.Forms and surprise your customers when develop native apps, in less time and cheaper (Use o Xamarin.Forms e surpreenda os clientes ao desenvolver apps nativas, em menos tempo e mais baratos)
-
-### Monkey Nights #1 (Brazilian Xamarin Hangout)
-May, 1  
-Online  
-Organizer  
 
 ### Microsoft Open Day - Visconde Cairu
 April, 23  
