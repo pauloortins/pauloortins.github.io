@@ -12,10 +12,10 @@ I love to contribute to software communities and I have contributing a lot in th
 
 ## 2015 [8]
 
-### The Developer's Conference
-July, 21 - July 25
-São Paulo, Brazil
-Coordinator: Career Track
+### The Developer`s Conference
+July, 21 - July 25  
+São Paulo, Brazil  
+Coordinator: Career Track  
 
 ### The Developer's Conference
 May, 13 - May 17  
