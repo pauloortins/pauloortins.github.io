@@ -10,7 +10,12 @@ sharing: false
 
 I love to contribute to software communities and I have contributing a lot in the last years, in this page you can see a list of all events that I helped to organize and all talks or workshops that I gave.
 
-## 2015 [8]
+## 2015 [9]
+
+### Mobile Cross Plataform Summit Brasil   
+October 6 - October 9   
+Online   
+Organizer and Speaker   
 
 ### The Developer`s Conference
 July, 21 - July 25  
