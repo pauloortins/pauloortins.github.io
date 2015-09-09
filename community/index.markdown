@@ -10,12 +10,28 @@ sharing: false
 
 I love to contribute to software communities and I have contributing a lot in the last years, in this page you can see a list of all events that I helped to organize and all talks or workshops that I gave.
 
-## 2015 [9]
+## 2015 [12]
 
-### Mobile Cross Plataform Summit Brasil   
-October 6 - October 9   
-Online   
-Organizer and Speaker   
+### The Developer's Conference
+September 24, - September 26
+Porto Alegre, Brazil
+Talk: One year with Xamarin.Forms (1 ano com Xamarin.Forms)
+Coordinator: Career Track
+
+### Engineering Week SATC
+September 21 - September 23
+Criciúma, Brazil
+Talk: Want to develop native cross-platform apps? Ask-me how! (Quer desenvolver aplicativos nativos e cross-plataforma? Pergunte-me como!)
+
+### Computer Science Week UFBA
+September, 4
+Salvador, Brazil  
+Talk: How to be part of software communities changed my career and can also changes yours! (Como participar de comunidades de software mudou a minha carreira e também pode mudar a sua!)    
+
+### Engineering Week Unifacs
+September, 2
+Salvador, Brazil    
+Talk: Mobility beyond the smartphone (Mobilidade além do smartphone) 
 
 ### The Developer`s Conference
 July, 21 - July 25  
