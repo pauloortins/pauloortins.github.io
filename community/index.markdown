@@ -13,13 +13,13 @@ I love to contribute to software communities and I have contributing a lot in th
 ## 2015 [12]
 
 ### The Developer's Conference
-September 24, - September 26      
+September, 24 - September, 26      
 Porto Alegre, Brazil     
 Talk: One year with Xamarin.Forms (1 ano com Xamarin.Forms)     
 Coordinator: Career Track      
 
 ### Engineering Week SATC
-September 21 - September 23      
+September, 21 - September, 23      
 Criciúma, Brazil      
 Talk: Want to develop native cross-platform apps? Ask-me how! (Quer desenvolver aplicativos nativos e cross-plataforma? Pergunte-me como!)    
 
@@ -34,12 +34,12 @@ Salvador, Brazil
 Talk: Mobility beyond the smartphone (Mobilidade além do smartphone)     
 
 ### The Developer`s Conference
-July, 21 - July 25  
+July, 21 - July, 25  
 São Paulo, Brazil  
 Coordinator: Career Track  
 
 ### The Developer's Conference
-May, 13 - May 17  
+May, 13 - May, 17  
 Florianópolis, Brazil  
 Talk: Use Xamarin.Forms and surprise your customers when develop native apps, in less time and cheaper (Use o Xamarin.Forms e surpreenda os clientes ao desenvolver apps nativas, em menos tempo e mais baratos)
 
@@ -124,7 +124,7 @@ Salvador, Brazil
 Talk: Now is the time of mobile (Agora é a vez do mobile)  
 
 ### Computer Science Week UFBA
-September, 24 - September 27  
+September, 24 - September, 27  
 Salvador, Brazil  
 Talk: Diving into the .NET ecosystem (Mergulhando no ecossistema .NET)  
 
@@ -136,6 +136,6 @@ Talk: Tests in Javascript using Jasmine and Testacular (Testes em Javascript usa
 ## 2012 [1]
 
 ### Software Freedom Day
-September 16  
+September, 16  
 Salvador, Brazil  
 Talk: C# for the community (C# para a comunidade)  
