@@ -13,13 +13,13 @@ I love to contribute to software communities and I have contributing a lot in th
 ## 2015 [12]
 
 ### The Developer's Conference
-September 24, - September 26
+September 24, - September 26      
 Porto Alegre, Brazil     
 Talk: One year with Xamarin.Forms (1 ano com Xamarin.Forms)     
 Coordinator: Career Track      
 
 ### Engineering Week SATC
-September 21 - September 23
+September 21 - September 23      
 Criciúma, Brazil      
 Talk: Want to develop native cross-platform apps? Ask-me how! (Quer desenvolver aplicativos nativos e cross-plataforma? Pergunte-me como!)    
 
