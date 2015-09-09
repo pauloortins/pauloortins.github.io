@@ -14,24 +14,24 @@ I love to contribute to software communities and I have contributing a lot in th
 
 ### The Developer's Conference
 September 24, - September 26
-Porto Alegre, Brazil
-Talk: One year with Xamarin.Forms (1 ano com Xamarin.Forms)
-Coordinator: Career Track
+Porto Alegre, Brazil     
+Talk: One year with Xamarin.Forms (1 ano com Xamarin.Forms)     
+Coordinator: Career Track      
 
 ### Engineering Week SATC
 September 21 - September 23
-Criciúma, Brazil
-Talk: Want to develop native cross-platform apps? Ask-me how! (Quer desenvolver aplicativos nativos e cross-plataforma? Pergunte-me como!)
+Criciúma, Brazil      
+Talk: Want to develop native cross-platform apps? Ask-me how! (Quer desenvolver aplicativos nativos e cross-plataforma? Pergunte-me como!)    
 
 ### Computer Science Week UFBA
-September, 4
-Salvador, Brazil  
+September, 4       
+Salvador, Brazil    
 Talk: How to be part of software communities changed my career and can also changes yours! (Como participar de comunidades de software mudou a minha carreira e também pode mudar a sua!)    
 
 ### Engineering Week Unifacs
-September, 2
-Salvador, Brazil    
-Talk: Mobility beyond the smartphone (Mobilidade além do smartphone) 
+September, 2     
+Salvador, Brazil         
+Talk: Mobility beyond the smartphone (Mobilidade além do smartphone)     
 
 ### The Developer`s Conference
 July, 21 - July 25  
